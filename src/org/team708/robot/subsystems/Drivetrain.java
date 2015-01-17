@@ -154,7 +154,7 @@ public class Drivetrain extends PIDSubsystem {
      */
     protected void usePIDOutput(double output) {
         pidOutput = output;
-        haloDrive(moveSpeed, output);
+        drivetrain.arcadeDrive(moveSpeed, output);
     }
     
     /**
