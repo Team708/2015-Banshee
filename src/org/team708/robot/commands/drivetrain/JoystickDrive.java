@@ -1,5 +1,5 @@
 
-package org.team708.robot.commands;
+package org.team708.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 

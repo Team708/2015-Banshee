@@ -1,6 +1,10 @@
 package org.team708.robot;
 
+import org.team708.robot.commands.drivetrain.ToggleBrakeMode;
 import org.team708.robot.util.Gamepad;
+
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -8,10 +12,25 @@ import org.team708.robot.util.Gamepad;
  */
 public class OI {
 	
+	// Creates the driver and operator gamepad for use in the code
 	public static Gamepad driverGamepad = new Gamepad(RobotMap.driverGamepad);
 	public static Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepad);
 	
+	/*
+	 * Driver Button Mapping
+	 */
+	private static final int toggleBrakeModeButton = Gamepad.button_L_Shoulder;
+	
+	/*
+	 * Driver Buttons
+	 */
+	private static final Button toggleBrakeMode = new JoystickButton(driverGamepad, toggleBrakeModeButton);
+	
 	public OI() {
+		/*
+		 * Driver Commands to be called by button
+		 */
+		toggleBrakeMode.whenPressed(new ToggleBrakeMode());
 	}
 	
     //// CREATING BUTTONS
