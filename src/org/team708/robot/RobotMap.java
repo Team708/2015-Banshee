@@ -13,16 +13,15 @@ public class RobotMap {
 	
 	// Drivetrain CAN Device IDs
 	public static final int drivetrainLeftMotorMaster = 14;
-	public static final int drivetrainLeftMotorSlave1 = 11;
+	public static final int drivetrainLeftMotorSlave1 = 13;
 	public static final int drivetrainLeftMotorSlave2 = 12;
-	public static final int drivetrainRightMotorMaster = 13;
+	public static final int drivetrainRightMotorMaster = 11;
 	public static final int drivetrainRightMotorSlave1 = 15;
 	public static final int drivetrainRightMotorSlave2 = 16;
 	
 	
 	// Analog sensor IDs
 	public static final int gyro = 0;
-	
 	
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
