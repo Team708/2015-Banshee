@@ -28,7 +28,7 @@ public class Drivetrain extends PIDSubsystem {
 	private double pidOutput = 0.0;
 	private static final double tankControlTolerance = .025;
 	
-	public CANTalon leftMaster, leftSlave1, leftSlave2, rightMaster, rightSlave1, rightSlave2;		// Motor Controllers
+	private CANTalon leftMaster, leftSlave1, leftSlave2, rightMaster, rightSlave1, rightSlave2;		// Motor Controllers
 	private RobotDrive drivetrain;		// FRC provided drivetrain class
 	
 	private BuiltInAccelerometer accelerometer;		// Accelerometer that is built into the roboRIO
@@ -142,7 +142,6 @@ public class Drivetrain extends PIDSubsystem {
     public void resetGyro() {
     	gyro.reset();
     }
-    
     /**
      * Sets up the drivetrain motors to have a master that is controlled by the 
      * default FRC RobotDrive class and slaves that do whatever the master
