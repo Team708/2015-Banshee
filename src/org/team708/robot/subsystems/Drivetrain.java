@@ -142,6 +142,7 @@ public class Drivetrain extends PIDSubsystem {
     public void resetGyro() {
     	gyro.reset();
     }
+    
     /**
      * Sets up the drivetrain motors to have a master that is controlled by the 
      * default FRC RobotDrive class and slaves that do whatever the master
@@ -184,7 +185,7 @@ public class Drivetrain extends PIDSubsystem {
      */
     protected void usePIDOutput(double output) {
         pidOutput = output;
-        drivetrain.arcadeDrive(moveSpeed, output);
+        drivetrain.arcadeDrive(moveSpeed, -output);
     }
     
     /**
