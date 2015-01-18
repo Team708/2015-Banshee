@@ -42,6 +42,10 @@ public class Robot extends IterativeRobot {
         
         drivetrain = new Drivetrain();
 		oi = new OI();
+		
+		SmartDashboard.putData(drivetrain);
+		LiveWindow.addActuator("PID", "PID", drivetrain.getPIDController());
+		
         // instantiate the command used for the autonomous period
 		autonomousMode = new SendableChooser();
 		queueAutonomousModes();
