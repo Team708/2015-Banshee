@@ -28,7 +28,7 @@ public class Drivetrain extends PIDSubsystem {
 	private double pidOutput = 0.0;
 	private static final double tankControlTolerance = .025;
 	
-	private CANTalon leftMaster, leftSlave1, leftSlave2, rightMaster, rightSlave1, rightSlave2;		// Motor Controllers
+	public CANTalon leftMaster, leftSlave1, leftSlave2, rightMaster, rightSlave1, rightSlave2;		// Motor Controllers
 	private RobotDrive drivetrain;		// FRC provided drivetrain class
 	
 	private BuiltInAccelerometer accelerometer;		// Accelerometer that is built into the roboRIO
