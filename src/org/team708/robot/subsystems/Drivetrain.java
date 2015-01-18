@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -17,17 +18,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Drivetrain extends PIDSubsystem {
 	
 	// PID Tuning parameters
-	private static final double Kp = 0.05;		// Proportional gain		// Was 0.05 for coulsons
-	private static final double Ki = 0.01;		// Integral gain			// Was 0.01 for coulsons
+	private static final double Kp = 0.15;		// Proportional gain		// Was 0.05 for 4in colsons
+	private static final double Ki = 0.01;		// Integral gain			// Was 0.01 for 4in colsons
 	private static final double Kd = 0.0;		// Derivative gain
-	private static final double tolerance = 5;
+	private static final double tolerance = 2;
 	
 	// Variables specific for drivetrain PID loop
 	private double moveSpeed = 0.0;
 	private double pidOutput = 0.0;
 	private static final double tankControlTolerance = .025;
 	
-	private CANTalon leftMaster, leftSlave1, leftSlave2, rightMaster, rightSlave1, rightSlave2;		// Motor Controllers
+	public CANTalon leftMaster, leftSlave1, leftSlave2, rightMaster, rightSlave1, rightSlave2;		// Motor Controllers
 	private RobotDrive drivetrain;		// FRC provided drivetrain class
 	
 	private BuiltInAccelerometer accelerometer;		// Accelerometer that is built into the roboRIO
@@ -83,6 +84,7 @@ public class Drivetrain extends PIDSubsystem {
     		// Enables the PID controller if it is not already
     		if (!getPIDController().isEnable()) {
     			gyro.reset();
+    			getPIDController().reset();
     			enable();
     		}
     		// Sets the forward move speed to the move parameter
@@ -106,6 +108,8 @@ public class Drivetrain extends PIDSubsystem {
     	if (Math.abs(left - right) < tankControlTolerance && left != 0.0 && right != 0.0) {
     		// Enables the PID controller if it is not already
     		if (!getPIDController().isEnable()) {
+    			gyro.reset();
+    			getPIDController().reset();
     			enable();
     		}
     		// Sets the forward move speed to the average of the two sticks
@@ -188,12 +192,19 @@ public class Drivetrain extends PIDSubsystem {
      * Sends data for this subsystem to the dashboard
      */
     public void sendToDashboard() {
+    	// Accelerometer Info
     	SmartDashboard.putNumber("Accelerometer X", accelerometer.getX());
     	SmartDashboard.putNumber("Accelerometer Y", accelerometer.getY());
     	SmartDashboard.putNumber("Accelerometer Z", accelerometer.getZ());
+    	
+    	// Gyro Info
     	SmartDashboard.putNumber("Gyro angle", gyro.getAngle());
     	SmartDashboard.putNumber("Gyro Rate", gyro.getRate());
+    	
+    	// Drivetrain states
     	SmartDashboard.putBoolean("Brake", brake);
+    	
+    	// PID Info
     	SmartDashboard.putNumber("PID Output", pidOutput);
     }
 }
