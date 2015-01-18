@@ -6,9 +6,12 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.team708.robot.commands.DoNothing;
+import org.team708.robot.commands.autonomous.DriveInSquare;
 import org.team708.robot.subsystems.Drivetrain;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -26,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
     Command autonomousCommand;
+    SendableChooser autonomousMode;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -39,7 +43,8 @@ public class Robot extends IterativeRobot {
         drivetrain = new Drivetrain();
 		oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new DoNothing();
+		autonomousMode = new SendableChooser();
+		queueAutonomousModes();
     }
 	
 	public void disabledPeriodic() {
@@ -49,6 +54,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+    	autonomousCommand = (Command)autonomousMode.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -99,5 +105,10 @@ public class Robot extends IterativeRobot {
             // Various debug information
             drivetrain.sendToDashboard();
         }
+    }
+    
+    private void queueAutonomousModes() {
+    	autonomousMode.addDefault("Drive in Square", new DriveInSquare());
+    	SmartDashboard.putData("Autonomous Selection", autonomousMode);
     }
 }
