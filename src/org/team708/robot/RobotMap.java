@@ -12,10 +12,10 @@ public class RobotMap {
 	public static final int operatorGamepad = 2;
 	
 	// Drivetrain CAN Device IDs
-	public static final int drivetrainLeftMotorMaster = 14;
-	public static final int drivetrainLeftMotorSlave1 = 13;
-	public static final int drivetrainLeftMotorSlave2 = 12;
-	public static final int drivetrainRightMotorMaster = 11;
+	public static final int drivetrainLeftMotorMaster = 11;
+	public static final int drivetrainLeftMotorSlave1 = 12;
+	public static final int drivetrainLeftMotorSlave2 = 13;
+	public static final int drivetrainRightMotorMaster = 14;
 	public static final int drivetrainRightMotorSlave1 = 15;
 	public static final int drivetrainRightMotorSlave2 = 16;
 	

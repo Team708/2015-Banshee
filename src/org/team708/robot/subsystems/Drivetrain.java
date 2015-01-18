@@ -17,10 +17,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Drivetrain extends PIDSubsystem {
 	
 	// PID Tuning parameters
-	private static final double Kp = .0001;		// Proportional gain
-	private static final double Ki = 0.0;		// Integral gain
+	private static final double Kp = 0.05;		// Proportional gain		// Was 0.05 for coulsons
+	private static final double Ki = 0.01;		// Integral gain			// Was 0.01 for coulsons
 	private static final double Kd = 0.0;		// Derivative gain
-	private static final double tolerance = .1;
+	private static final double tolerance = 5;
 	
 	// Variables specific for drivetrain PID loop
 	private double moveSpeed = 0.0;
@@ -61,6 +61,7 @@ public class Drivetrain extends PIDSubsystem {
 		setAbsoluteTolerance(tolerance);
 		setInputRange(-360.0, 360);
         setSetpoint(0.0);
+        disable();
     }
     
     /**
@@ -81,6 +82,7 @@ public class Drivetrain extends PIDSubsystem {
     	if (rotate == 0.0 && move != 0.0) {
     		// Enables the PID controller if it is not already
     		if (!getPIDController().isEnable()) {
+    			gyro.reset();
     			enable();
     		}
     		// Sets the forward move speed to the move parameter
@@ -117,6 +119,26 @@ public class Drivetrain extends PIDSubsystem {
     	}
     }
     
+    public void stop() {
+    	leftMaster.set(0.0);
+    	rightMaster.set(0.0);
+    }
+    
+    /**
+     * Gets the degrees that the gyro is reading
+     * @return
+     */
+    public double getAngle() {
+    	return gyro.getAngle();
+    }
+    
+    /**
+     * Resets the gyro reading
+     */
+    public void resetGyro() {
+    	gyro.reset();
+    }
+    
     /**
      * Sets up the drivetrain motors to have a master that is controlled by the 
      * default FRC RobotDrive class and slaves that do whatever the master
@@ -140,6 +162,11 @@ public class Drivetrain extends PIDSubsystem {
     public void toggleBrakeMode() {
     	brake = !brake;
     	leftMaster.enableBrakeMode(brake);
+    	leftSlave1.enableBrakeMode(brake);
+    	leftSlave2.enableBrakeMode(brake);
+    	rightMaster.enableBrakeMode(brake);
+    	rightSlave1.enableBrakeMode(brake);
+    	rightSlave2.enableBrakeMode(brake);
     }
     
     /**
@@ -154,7 +181,7 @@ public class Drivetrain extends PIDSubsystem {
      */
     protected void usePIDOutput(double output) {
         pidOutput = output;
-        drivetrain.arcadeDrive(moveSpeed, output);
+        drivetrain.arcadeDrive(moveSpeed, -output);
     }
     
     /**
