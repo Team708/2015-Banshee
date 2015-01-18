@@ -27,5 +27,4 @@ public class HatterDrive extends RobotDrive {
 		super(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
 		// TODO Auto-generated constructor stub
 	}
-
 }
