@@ -17,9 +17,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Drivetrain extends PIDSubsystem {
 	
 	// PID Tuning parameters
-	private static final double Kp = 0.05;		// Proportional gain		// Was 0.05 for coulsons
-	private static final double Ki = 0.01;		// Integral gain			// Was 0.01 for coulsons
-	private static final double Kd = 0.0;		// Derivative gain
+	private static final double Kp = 0.20;		// Proportional gain		// Was 0.05 for 4in colsons
+	private static final double Ki = 0.0;		// Integral gain			// Was 0.01 for 4in colsons
+	private static final double Kd = 0.1;		// Derivative gain
 	private static final double tolerance = 5;
 	
 	// Variables specific for drivetrain PID loop

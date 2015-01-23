@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class DriveInSquare extends CommandGroup {
+
+	private static final double driveStraightSpeed = 0.7;
+	private static final double driveStraightTime = 1;
 	
-	private static final double driveStraightSpeed = 0.5;
-	private static final double driveStraightTime = 2.0;
-	
-	private static final double turnSpeed = 0.5;
-	private static final double turnDegrees = 90;
+	private static final double turnSpeed = 0.58;
+	private static final double turnDegrees = 80;
     
     public  DriveInSquare() {
     	addSequential(new DriveStraightForTime(driveStraightSpeed, driveStraightTime));
