@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team708.robot.commands.autonomous.DriveInSquare;
 import org.team708.robot.subsystems.Drivetrain;
+import org.team708.robot.subsystems.VisionProcessor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,6 +27,7 @@ public class Robot extends IterativeRobot {
     private final double sendStatsIntervalSec = .5;		// Interval between statistic reporting
     
 	public static Drivetrain drivetrain;
+	public static VisionProcessor visionProcessor;
 	public static OI oi;
 
     Command autonomousCommand;
@@ -42,6 +44,7 @@ public class Robot extends IterativeRobot {
         
         drivetrain = new Drivetrain();
 		oi = new OI();
+		visionProcessor = new VisionProcessor();
         // instantiate the command used for the autonomous period
 		autonomousMode = new SendableChooser();
 		queueAutonomousModes();
@@ -104,6 +107,7 @@ public class Robot extends IterativeRobot {
 
             // Various debug information
             drivetrain.sendToDashboard();
+            visionProcessor.sendToDashboard();
         }
     }
     
