@@ -78,22 +78,22 @@ public class Drivetrain extends PIDSubsystem {
      * @param rotate
      */
     public void haloDrive(double move, double rotate) {
-    	// Checks whether drift correction is needed
-    	if (rotate == 0.0 && move != 0.0) {
-    		// Enables the PID controller if it is not already
-    		if (!getPIDController().isEnable()) {
-    			gyro.reset();
-    			enable();
-    		}
-    		// Sets the forward move speed to the move parameter
-    		moveSpeed = move;
-    	} else {
-    		// Disables the PID controller if it enabled so the drivetrain can move freely
-    		if (getPIDController().isEnable()) {
-    			disable();
-    		}
+//    	// Checks whether drift correction is needed
+//    	if (rotate == 0.0 && move != 0.0) {
+//    		// Enables the PID controller if it is not already
+//    		if (!getPIDController().isEnable()) {
+//    			gyro.reset();
+//    			enable();
+//    		}
+//    		// Sets the forward move speed to the move parameter
+//    		moveSpeed = move;
+//    	} else {
+//    		// Disables the PID controller if it enabled so the drivetrain can move freely
+//    		if (getPIDController().isEnable()) {
+//    			disable();
+//    		}
     		drivetrain.arcadeDrive(move, rotate);
-    	}
+//    	}
     }
     
     /**

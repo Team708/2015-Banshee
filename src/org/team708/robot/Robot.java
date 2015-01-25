@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team708.robot.commands.autonomous.DriveInSquare;
+import org.team708.robot.commands.autonomous.OneToteOneContainer;
+import org.team708.robot.commands.visionProcessor.DriveToContainer;
+import org.team708.robot.commands.visionProcessor.ProcessData;
 import org.team708.robot.subsystems.Drivetrain;
 import org.team708.robot.subsystems.VisionProcessor;
 
@@ -45,6 +48,7 @@ public class Robot extends IterativeRobot {
         drivetrain = new Drivetrain();
 		oi = new OI();
 		visionProcessor = new VisionProcessor();
+		
         // instantiate the command used for the autonomous period
 		autonomousMode = new SendableChooser();
 		queueAutonomousModes();
@@ -113,6 +117,9 @@ public class Robot extends IterativeRobot {
     
     private void queueAutonomousModes() {
     	autonomousMode.addDefault("Drive in Square", new DriveInSquare());
+    	autonomousMode.addObject("Follow Tote", new ProcessData());
+    	autonomousMode.addObject("One Container One Tote", new OneToteOneContainer());
+    	autonomousMode.addObject("One Container", new DriveToContainer());
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
     }
 }
