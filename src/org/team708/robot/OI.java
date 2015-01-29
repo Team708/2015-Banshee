@@ -1,6 +1,10 @@
 package org.team708.robot;
 
+import org.team708.robot.commands.ToggleHockeyStick;
 import org.team708.robot.util.Gamepad;
+
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -11,7 +15,20 @@ public class OI {
 	public static Gamepad driverGamepad = new Gamepad(RobotMap.driverGamepad);
 	public static Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepad);
 	
+	//Driver Gamepad
+	private static final int deployHockeyButtonNumber = Gamepad.button_Y;
+	private static final int retractHockeyButtonNumber = Gamepad.button_Y;
+	
+	//* Driver Buttons //
+	
+	//deploys the Hockey Stick
+	public static final Button deployHockeyStick = new JoystickButton(driverGamepad, deployHockeyButtonNumber);
+	public static final Button retractHockeyStick = new JoystickButton(driverGamepad, retractHockeyButtonNumber);
+	
 	public OI() {
+		//Driver
+		deployHockeyStick.whenPressed(new ToggleHockeyStick());
+		retractHockeyStick.whenPressed(new ToggleHockeyStick());
 	}
 	
     //// CREATING BUTTONS

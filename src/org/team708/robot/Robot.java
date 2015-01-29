@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.team708.robot.commands.DoNothing;
 import org.team708.robot.subsystems.Drivetrain;
+import org.team708.robot.subsystems.HockeyStick;
+import org.team708.robot.subsystems.Intake;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -22,7 +24,9 @@ public class Robot extends IterativeRobot {
     Timer statsTimer;                               // Timer used for Smart Dash statistics
     private final double sendStatsIntervalSec = .5;		// Interval between statistic reporting
     
+    public static final Intake intake = new Intake();
 	public static final Drivetrain drivetrain = new Drivetrain();
+	public static final HockeyStick hockeyStick = new HockeyStick();
 	public static OI oi;
 
     Command autonomousCommand;
