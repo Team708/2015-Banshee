@@ -21,8 +21,8 @@ public class RobotMap {
 	
 	
 	//Intake CAN Device IDs
-	public static final int intakeLeftMotor = 31;
-	public static final int intakeRightMotor = 32;		
+	public static final int intakeLeftMotor = 21;
+	public static final int intakeRightMotor = 22;		
 	
 	// Analog sensor IDs
 	public static final int gyro = 0;

@@ -11,11 +11,10 @@ public class HockeyStick extends Subsystem {
 
 	//Hockey stick solenoid
 	private final DoubleSolenoid hockeySolenoid;
-			//Extended Solenoid
+		//Extended Solenoid
 		public final DoubleSolenoid.Value DEPLOYED = DoubleSolenoid.Value.kForward;
 		//Retracted Solenoid
 		public final DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
-	
 		public HockeyStick() {
 		//Create the solenoid for the hockey stick piston
 		hockeySolenoid = new DoubleSolenoid(RobotMap.hockeySolenoidA, RobotMap.hockeySolenoidB);
