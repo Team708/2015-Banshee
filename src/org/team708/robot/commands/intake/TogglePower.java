@@ -1,4 +1,4 @@
-package org.team708.robot.commands;
+package org.team708.robot.commands.intake;
 
 import org.team708.robot.Robot;
 
@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ToggleHockeyStick extends Command {
+public class TogglePower extends Command {
 
-    public ToggleHockeyStick() {
+    public TogglePower() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -20,16 +20,12 @@ public class ToggleHockeyStick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Robot.hockeyStick.getSolenoidValue().equals(Robot.hockeyStick.DEPLOYED)) {
-    		Robot.hockeyStick.retractHockey();
-    	} else {
-    		Robot.hockeyStick.deployHockey();
-    	}
+    	Robot.intake.setOn(!Robot.intake.isOn());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

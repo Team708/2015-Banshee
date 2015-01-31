@@ -1,4 +1,4 @@
-package org.team708.robot.commands;
+package org.team708.robot.commands.intake;
 
 import org.team708.robot.OI;
 import org.team708.robot.Robot;
@@ -21,7 +21,7 @@ public class JoystickIntake extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.intake.intake(OI.operatorGamepad.getAxis(Gamepad.rightStick_Y));
+		Robot.intake.set(OI.operatorGamepad.getAxis(Gamepad.rightStick_Y));
 	}
 
 	@Override

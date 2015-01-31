@@ -1,6 +1,8 @@
 package org.team708.robot;
 
-import org.team708.robot.commands.ToggleHockeyStick;
+import org.team708.robot.commands.hockeyStick.ToggleHockeyStick;
+import org.team708.robot.commands.intake.ToggleDirection;
+import org.team708.robot.commands.intake.TogglePower;
 import org.team708.robot.util.Gamepad;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -12,23 +14,32 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	
+	// Gamepads
 	public static Gamepad driverGamepad = new Gamepad(RobotMap.driverGamepad);
 	public static Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepad);
 	
-	//Driver Gamepad
-	private static final int deployHockeyButtonNumber = Gamepad.button_Y;
-	private static final int retractHockeyButtonNumber = Gamepad.button_Y;
+	/*
+	 * Driver Button Assignment
+	 */
+	private static final int toggleHockeyStickButton = Gamepad.button_Y;
+	private static final int toggleIntakePowerButton = Gamepad.button_L_Shoulder;
+	private static final int toggleIntakeDirectionButton = Gamepad.button_R_Shoulder;
 	
-	//* Driver Buttons //
+	/*
+	 * Driver Button Commands
+	 */
+	public static final Button toggleHockeyStick = new JoystickButton(driverGamepad, toggleHockeyStickButton);			// Toggles the hockey stick
+	public static final Button toggleIntakePower = new JoystickButton(driverGamepad, toggleIntakePowerButton);			// Toggles the intake power on/off
+	public static final Button toggleIntakeDirection = new JoystickButton(driverGamepad, toggleIntakeDirectionButton);	// Toggles the intake direction
 	
-	//deploys the Hockey Stick
-	public static final Button deployHockeyStick = new JoystickButton(driverGamepad, deployHockeyButtonNumber);
-	public static final Button retractHockeyStick = new JoystickButton(driverGamepad, retractHockeyButtonNumber);
-	
+	/**
+	 * Constructor
+	 */
 	public OI() {
 		//Driver
-		deployHockeyStick.whenPressed(new ToggleHockeyStick());
-		retractHockeyStick.whenPressed(new ToggleHockeyStick());
+		toggleHockeyStick.whenPressed(new ToggleHockeyStick());
+		toggleIntakePower.whenPressed(new TogglePower());
+		toggleIntakeDirection.whenPressed(new ToggleDirection());
 	}
 	
     //// CREATING BUTTONS

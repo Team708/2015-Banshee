@@ -101,6 +101,7 @@ public class Robot extends IterativeRobot {
 
             // Various debug information
             drivetrain.sendToDashboard();
+            intake.sendToDashboard();
         }
     }
 }
