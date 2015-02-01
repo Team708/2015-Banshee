@@ -1,6 +1,12 @@
 package org.team708.robot;
 
+import org.team708.robot.commands.hockeyStick.ToggleHockeyStick;
+import org.team708.robot.commands.intake.ToggleDirection;
+import org.team708.robot.commands.intake.TogglePower;
 import org.team708.robot.util.Gamepad;
+
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -8,10 +14,32 @@ import org.team708.robot.util.Gamepad;
  */
 public class OI {
 	
+	// Gamepads
 	public static Gamepad driverGamepad = new Gamepad(RobotMap.driverGamepad);
 	public static Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepad);
 	
+	/*
+	 * Driver Button Assignment
+	 */
+	private static final int toggleHockeyStickButton = Gamepad.button_Y;
+	private static final int toggleIntakePowerButton = Gamepad.button_L_Shoulder;
+	private static final int toggleIntakeDirectionButton = Gamepad.button_R_Shoulder;
+	
+	/*
+	 * Driver Button Commands
+	 */
+	public static final Button toggleHockeyStick = new JoystickButton(driverGamepad, toggleHockeyStickButton);			// Toggles the hockey stick
+	public static final Button toggleIntakePower = new JoystickButton(driverGamepad, toggleIntakePowerButton);			// Toggles the intake power on/off
+	public static final Button toggleIntakeDirection = new JoystickButton(driverGamepad, toggleIntakeDirectionButton);	// Toggles the intake direction
+	
+	/**
+	 * Constructor
+	 */
 	public OI() {
+		//Driver
+		toggleHockeyStick.whenPressed(new ToggleHockeyStick());
+		toggleIntakePower.whenPressed(new TogglePower());
+		toggleIntakeDirection.whenPressed(new ToggleDirection());
 	}
 	
     //// CREATING BUTTONS
