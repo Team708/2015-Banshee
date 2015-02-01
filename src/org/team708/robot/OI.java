@@ -3,6 +3,8 @@ package org.team708.robot;
 import org.team708.robot.commands.hockeyStick.ToggleHockeyStick;
 import org.team708.robot.commands.intake.ToggleDirection;
 import org.team708.robot.commands.intake.TogglePower;
+import org.team708.robot.commands.ToteElevatorDown;
+import org.team708.robot.commands.ToteElevatorUp;
 import org.team708.robot.util.Gamepad;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -26,11 +28,23 @@ public class OI {
 	private static final int toggleIntakeDirectionButton = Gamepad.button_R_Shoulder;
 	
 	/*
+	 * Operator Button Assignment
+	 */
+	private static final int toteUpButton = Gamepad.button_Y;
+	private static final int toteDownButton = Gamepad.button_A;
+	
+	/*
 	 * Driver Button Commands
 	 */
 	public static final Button toggleHockeyStick = new JoystickButton(driverGamepad, toggleHockeyStickButton);			// Toggles the hockey stick
 	public static final Button toggleIntakePower = new JoystickButton(driverGamepad, toggleIntakePowerButton);			// Toggles the intake power on/off
 	public static final Button toggleIntakeDirection = new JoystickButton(driverGamepad, toggleIntakeDirectionButton);	// Toggles the intake direction
+	
+	/*
+	 * Operator Button Commands
+	 */
+	private static final Button toteUp = new JoystickButton(operatorGamepad, toteUpButton);
+	private static final Button toteDown = new JoystickButton(operatorGamepad, toteDownButton);
 	
 	/**
 	 * Constructor
@@ -40,6 +54,8 @@ public class OI {
 		toggleHockeyStick.whenPressed(new ToggleHockeyStick());
 		toggleIntakePower.whenPressed(new TogglePower());
 		toggleIntakeDirection.whenPressed(new ToggleDirection());
+		toteUp.whenPressed(new ToteElevatorUp());
+		toteDown.whenPressed(new ToteElevatorDown());
 	}
 	
     //// CREATING BUTTONS

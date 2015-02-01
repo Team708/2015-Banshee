@@ -83,6 +83,14 @@ public class Gamepad extends Joystick{
         return port;
     }
     
+    public boolean axisMovedUp(int axis, boolean moved) {
+    	if(moved && (getAxis(axis) >= axis_deadband)) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
     /**
      * Outputs the gamepad's axes to the SmartDashboard.
      */

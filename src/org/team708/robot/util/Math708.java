@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 /**
  * Miscellaneous math functions.
- * @author Connor Willison
+ * @author Connor Willison & Nam Tran
  */
 public class Math708 {
     
@@ -103,5 +103,27 @@ public class Math708 {
             return !prevValue;
         }
         return prevValue;
+    }
+    
+    /**
+     * Gets the percent error of a sensor reading with a desired value
+     * @param currentValue
+     * @param goalValue
+     * @return
+     */
+    public static double getPercentError(double currentValue, double goalValue)
+    {
+    	return (goalValue - currentValue) / goalValue;
+    }
+    
+    /**
+     * Checks if a sensor reading is within a threshold of a desired value
+     * @param currentValue
+     * @param goalValue
+     * @param threshold
+     * @return
+     */
+    public static boolean isWithinThreshold(double currentValue, double goalValue, double threshold) {
+    	return Math.abs(goalValue - currentValue) <= threshold;
     }
 }

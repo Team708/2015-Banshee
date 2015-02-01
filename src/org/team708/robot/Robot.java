@@ -11,6 +11,8 @@ import org.team708.robot.commands.DoNothing;
 import org.team708.robot.subsystems.Drivetrain;
 import org.team708.robot.subsystems.HockeyStick;
 import org.team708.robot.subsystems.Intake;
+import org.team708.robot.subsystems.ToteElevator;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -27,6 +29,7 @@ public class Robot extends IterativeRobot {
     public static final Intake intake = new Intake();
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final HockeyStick hockeyStick = new HockeyStick();
+	public static final ToteElevator toteElevator = new ToteElevator();
 	public static OI oi;
 
     Command autonomousCommand;
