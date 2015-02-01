@@ -24,6 +24,7 @@ public class ToteElevator extends Subsystem {
 	public int TOTE_COUNT = 0;
 	public final int TOTE_UPPER_LIMIT = 3;
 	public final int TOTE_LOWER_LIMIT = 0;
+	public boolean MOVE_COMPLETED = false;
 	
 	//Digital sensors
 	private Encoder toteElevatorEncoder;
@@ -125,6 +126,7 @@ public class ToteElevator extends Subsystem {
 
 	//raises tote when y is pressed
 	public void YToteUp() {
+		MOVE_COMPLETED = false;
 		if (TOTE_COUNT < TOTE_UPPER_LIMIT) {
 			if (!encoderTop()) {
 				this.raiseTote();
@@ -132,14 +134,17 @@ public class ToteElevator extends Subsystem {
 				this.increaseCount();
 				this.stopTote();
 				this.resetEncoder();
+				MOVE_COMPLETED = true;
 			}
 		}
 		else {
 			this.stopTote();
+			MOVE_COMPLETED = true;
 			}
 	}
 	//lowers tote when a is pressed	
 	public void AToteDown() {
+		MOVE_COMPLETED = false;
 			if (TOTE_COUNT > TOTE_LOWER_LIMIT) {
 				if (!encoderBottom()) {
 					this.lowerTote();
@@ -148,9 +153,11 @@ public class ToteElevator extends Subsystem {
 					this.decreaseCount();
 					this.stopTote();
 					this.resetEncoder();
+					MOVE_COMPLETED = true;
 				}
 		} else {
 			this.stopTote();
+			MOVE_COMPLETED = true;
 			}
 		}
 		
