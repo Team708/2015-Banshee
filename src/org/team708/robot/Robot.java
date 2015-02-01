@@ -28,17 +28,13 @@ public class Robot extends IterativeRobot {
     
     public static final Intake intake = new Intake();
 	public static final Drivetrain drivetrain = new Drivetrain();
-<<<<<<< HEAD
 
 	public static final HockeyStick hockeyStick = new HockeyStick();
 
 	public static final Claw claw = new Claw();
 	public static final ClawElevator clawElevator = new ClawElevator(); 
 
-=======
-	public static final Claw claw = new Claw();
-	public static final ClawElevator clawElevator = new ClawElevator(); 
->>>>>>> d7998cf2e9794ec222cf487ffbdb867014f6844d
+
 	public static OI oi;
 
     Command autonomousCommand;
