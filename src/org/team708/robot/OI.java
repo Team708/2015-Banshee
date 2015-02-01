@@ -5,6 +5,13 @@ import org.team708.robot.commands.intake.ToggleDirection;
 import org.team708.robot.commands.intake.TogglePower;
 import org.team708.robot.commands.ToteElevatorDown;
 import org.team708.robot.commands.ToteElevatorUp;
+import org.team708.robot.commands.claw.ClawHeightDecrement;
+import org.team708.robot.commands.claw.ClawHeightDecrementNoPID;
+import org.team708.robot.commands.claw.ClawHeightIncrement;
+import org.team708.robot.commands.claw.ClawHeightIncrementNoPID;
+import org.team708.robot.commands.claw.ToggleClawOpen;
+import org.team708.robot.commands.claw.ToggleWrist;
+
 import org.team708.robot.util.Gamepad;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -20,6 +27,8 @@ public class OI {
 	public static Gamepad driverGamepad = new Gamepad(RobotMap.driverGamepad);
 	public static Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepad);
 	
+	
+	
 	/*
 	 * Driver Button Assignment
 	 */
@@ -32,6 +41,10 @@ public class OI {
 	 */
 	private static final int toteUpButton = Gamepad.button_Y;
 	private static final int toteDownButton = Gamepad.button_A;
+	public static final int toggleClawOpenButton = Gamepad.button_R_Shoulder;
+	public static final int toggleWristPositionButton = Gamepad.button_L_Shoulder;
+	public static final int clawHeightIncrementButton = Gamepad.button_Y;
+	public static final int clawHeightDecrementButton = Gamepad.button_A;
 	
 	/*
 	 * Driver Button Commands
@@ -45,17 +58,29 @@ public class OI {
 	 */
 	private static final Button toteUp = new JoystickButton(operatorGamepad, toteUpButton);
 	private static final Button toteDown = new JoystickButton(operatorGamepad, toteDownButton);
+	public static final Button toggleClawOpen = new JoystickButton(operatorGamepad, toggleClawOpenButton);				// Opens and closes the claw on a toggle
+	public static final Button toggleWristPosition = new JoystickButton(operatorGamepad, toggleWristPositionButton);	// Toggles the wrist position (horizontal/vertical)
+	public static final Button clawHeightIncrement = new JoystickButton(operatorGamepad, clawHeightIncrementButton);	// Increases the claw height by the height of a tote
+	public static final Button clawHeightDecrement = new JoystickButton(operatorGamepad, clawHeightDecrementButton);	// Decreases the claw height by the height of a tote
 	
 	/**
 	 * Constructor
 	 */
 	public OI() {
+		
+
 		//Driver
 		toggleHockeyStick.whenPressed(new ToggleHockeyStick());
 		toggleIntakePower.whenPressed(new TogglePower());
 		toggleIntakeDirection.whenPressed(new ToggleDirection());
 		toteUp.whenPressed(new ToteElevatorUp());
 		toteDown.whenPressed(new ToteElevatorDown());
+
+		// Maps the buttons to commands
+		toggleClawOpen.whenPressed(new ToggleClawOpen());
+		toggleWristPosition.whenPressed(new ToggleWrist());
+		clawHeightIncrement.whenPressed(new ClawHeightIncrementNoPID());
+		clawHeightDecrement.whenPressed(new ClawHeightDecrementNoPID());
 	}
 	
     //// CREATING BUTTONS

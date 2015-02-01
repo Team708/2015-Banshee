@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.team708.robot.commands.DoNothing;
+import org.team708.robot.subsystems.Claw;
+import org.team708.robot.subsystems.ClawElevator;
 import org.team708.robot.subsystems.Drivetrain;
 import org.team708.robot.subsystems.HockeyStick;
 import org.team708.robot.subsystems.Intake;
@@ -28,8 +30,14 @@ public class Robot extends IterativeRobot {
     
     public static final Intake intake = new Intake();
 	public static final Drivetrain drivetrain = new Drivetrain();
+
 	public static final HockeyStick hockeyStick = new HockeyStick();
+	
 	public static final ToteElevator toteElevator = new ToteElevator();
+
+	public static final Claw claw = new Claw();
+	public static final ClawElevator clawElevator = new ClawElevator(); 
+
 	public static OI oi;
 
     Command autonomousCommand;
