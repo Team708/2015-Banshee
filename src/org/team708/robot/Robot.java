@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.team708.robot.commands.DoNothing;
 import org.team708.robot.subsystems.Drivetrain;
+import org.team708.robot.subsystems.ToteElevator;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -23,6 +24,7 @@ public class Robot extends IterativeRobot {
     private final double sendStatsIntervalSec = .5;		// Interval between statistic reporting
     
 	public static final Drivetrain drivetrain = new Drivetrain();
+	public static final ToteElevator toteElevator = new ToteElevator();
 	public static OI oi;
 
     Command autonomousCommand;

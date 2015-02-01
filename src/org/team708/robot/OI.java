@@ -1,6 +1,11 @@
 package org.team708.robot;
 
+import org.team708.robot.commands.ToteElevatorDown;
+import org.team708.robot.commands.ToteElevatorUp;
 import org.team708.robot.util.Gamepad;
+
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -11,7 +16,18 @@ public class OI {
 	public static Gamepad driverGamepad = new Gamepad(RobotMap.driverGamepad);
 	public static Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepad);
 	
+	//driver
+	
+	private static final int toteUpButton = Gamepad.button_Y;
+	private static final int toteDownButton = Gamepad.button_A;
+	
+	private static final Button toteUp = new JoystickButton(driverGamepad, toteUpButton);
+	private static final Button toteDown = new JoystickButton(driverGamepad, toteDownButton);
+
+	
 	public OI() {
+		toteUp.whenPressed(new ToteElevatorUp());
+		toteDown.whenPressed(new ToteElevatorDown());
 	}
 	
     //// CREATING BUTTONS

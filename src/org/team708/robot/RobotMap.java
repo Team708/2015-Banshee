@@ -19,9 +19,17 @@ public class RobotMap {
 	public static final int drivetrainRightMotorSlave1 = 15;
 	public static final int drivetrainRightMotorSlave2 = 16;
 	
+	// Tote Elevator CAN Device IDs
+	public static final int toteElevatorMotor1 = 21;
+	public static final int toteElevatorMotor2 = 22;
+	
+	// Digital Input Output
+	public static final int toteElevatorEncoderA = 2;
+	public static final int toteElevatorEncoderB = 3;
 	
 	// Analog sensor IDs
 	public static final int gyro = 0;
+	public static final int toteElevatorIRSensor = 1;
 	
 	
     // For example to map the left and right motors, you could define the
