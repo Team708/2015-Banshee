@@ -1,6 +1,13 @@
 package org.team708.robot;
 
+import org.team708.robot.commands.claw.ClawHeightDecrement;
+import org.team708.robot.commands.claw.ClawHeightIncrement;
+import org.team708.robot.commands.claw.ToggleClawOpen;
+import org.team708.robot.commands.claw.ToggleWrist;
 import org.team708.robot.util.Gamepad;
+
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -8,10 +15,36 @@ import org.team708.robot.util.Gamepad;
  */
 public class OI {
 	
-	public static Gamepad driverGamepad = new Gamepad(RobotMap.driverGamepad);
-	public static Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepad);
+	// Button IDs
+	public static final int toggleClawOpenButton = Gamepad.button_R_Shoulder;
+	public static final int toggleWristPositionButton = Gamepad.button_L_Shoulder;
+	public static final int clawHeightIncrementButton = Gamepad.button_Y;
+	public static final int clawHeightDecrementButton = Gamepad.button_A;
+	
+	// Gamepad IDs
+	public static final Gamepad driverGamepad = new Gamepad(RobotMap.driverGamepad);
+	public static final Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepad);
+	
+	// Opens and closes the claw on a toggle
+	Button toggleClawOpen = new JoystickButton(operatorGamepad, toggleClawOpenButton);
+	
+	// Toggles the wrist position (horizontal/vertical)
+	Button toggleWristPosition = new JoystickButton(operatorGamepad, toggleWristPositionButton);
+	
+	// Increases the claw height by the height of a tote
+	Button clawHeightIncrement = new JoystickButton(operatorGamepad, clawHeightIncrementButton);
+	
+	// Decreases the claw height by the height of a tote
+	Button clawHeightDecrement = new JoystickButton(operatorGamepad, clawHeightDecrementButton);
 	
 	public OI() {
+		
+		// Maps the buttons to commands
+		toggleClawOpen.whenPressed(new ToggleClawOpen());
+		toggleWristPosition.whenPressed(new ToggleWrist());
+		clawHeightIncrement.whenPressed(new ClawHeightIncrement());
+		clawHeightDecrement.whenPressed(new ClawHeightDecrement());
+		
 	}
 	
     //// CREATING BUTTONS

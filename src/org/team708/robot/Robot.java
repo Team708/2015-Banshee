@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.team708.robot.commands.DoNothing;
+import org.team708.robot.subsystems.Claw;
+import org.team708.robot.subsystems.ClawElevator;
 import org.team708.robot.subsystems.Drivetrain;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +25,8 @@ public class Robot extends IterativeRobot {
     private final double sendStatsIntervalSec = .5;		// Interval between statistic reporting
     
 	public static final Drivetrain drivetrain = new Drivetrain();
+	public static final Claw claw = new Claw();
+	public static final ClawElevator clawElevator = new ClawElevator(); 
 	public static OI oi;
 
     Command autonomousCommand;
