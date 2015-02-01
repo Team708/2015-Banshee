@@ -6,7 +6,9 @@ import org.team708.robot.commands.intake.ToggleDirection;
 import org.team708.robot.commands.intake.TogglePower;
 
 import org.team708.robot.commands.claw.ClawHeightDecrement;
+import org.team708.robot.commands.claw.ClawHeightDecrementNoPID;
 import org.team708.robot.commands.claw.ClawHeightIncrement;
+import org.team708.robot.commands.claw.ClawHeightIncrementNoPID;
 import org.team708.robot.commands.claw.ToggleClawOpen;
 import org.team708.robot.commands.claw.ToggleWrist;
 
@@ -70,8 +72,8 @@ public class OI {
 		// Maps the buttons to commands
 		toggleClawOpen.whenPressed(new ToggleClawOpen());
 		toggleWristPosition.whenPressed(new ToggleWrist());
-		clawHeightIncrement.whenPressed(new ClawHeightIncrement());
-		clawHeightDecrement.whenPressed(new ClawHeightDecrement());
+		clawHeightIncrement.whenPressed(new ClawHeightIncrementNoPID());
+		clawHeightDecrement.whenPressed(new ClawHeightDecrementNoPID());
 		
 	}
 	

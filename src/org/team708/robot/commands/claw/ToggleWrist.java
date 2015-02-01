@@ -2,7 +2,6 @@ package org.team708.robot.commands.claw;
 
 import org.team708.robot.Robot;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -23,17 +22,13 @@ public class ToggleWrist extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	// Sets the wrist to reverse if it is forward
-    	if(Robot.claw.getClawPosition() == DoubleSolenoid.Value.kForward) {
-    		Robot.claw.setClawPosition(DoubleSolenoid.Value.kReverse);
+    	// Sets the wrist to horizontal position if it is vertical
+    	if(Robot.claw.isClawVertical()) {
+    		Robot.claw.setClawHorizontal();
     	} 
-    	// Sets the wrist to forward if it is reverse
-    	else if(Robot.claw.getClawPosition() == DoubleSolenoid.Value.kReverse) {
-    		Robot.claw.setClawPosition(DoubleSolenoid.Value.kForward);
-    	}
-    	// Sets the wrist to OFF if it is off or doing anything weird
-    	else {
-    		Robot.claw.setClawPosition(DoubleSolenoid.Value.kOff);
+    	// Sets the wrist to vertical position if it is horizontal
+    	else if(Robot.claw.isClawHorizontal()) {
+    		Robot.claw.setClawVertical();
     	}
     	
     }

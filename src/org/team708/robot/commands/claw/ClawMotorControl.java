@@ -4,7 +4,6 @@ import org.team708.robot.OI;
 import org.team708.robot.Robot;
 import org.team708.robot.util.Gamepad;
 
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -29,11 +28,11 @@ public class ClawMotorControl extends Command {
     	 *  
     	 */
     	if(OI.operatorGamepad.getAxis(Gamepad.rightStick_X) >= .50) {
-    		Robot.claw.setFingerMotor(Relay.Value.kForward);
+    		Robot.claw.intake();
     	} else if(OI.operatorGamepad.getAxis(Gamepad.rightStick_X) <= -.50) {
-    		Robot.claw.setFingerMotor(Relay.Value.kReverse);
+    		Robot.claw.dispense();
     	} else {
-    		Robot.claw.setFingerMotor(Relay.Value.kOff);
+    		Robot.claw.stopFingerMotor();
     	}
     	
     }

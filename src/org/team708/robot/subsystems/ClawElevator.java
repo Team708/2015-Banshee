@@ -50,13 +50,19 @@ public class ClawElevator extends PIDSubsystem {
     	
     	// Sets up the PID parameter
     	setSetpoint(0.0);
-    	enable();
+    	disable();
     	
     }
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void setElevatorSpeed_Manual(double input) {
+    	
+    	clawElevatorMotor.set(input);
+    	
     }
     
     protected double returnPIDInput() {
