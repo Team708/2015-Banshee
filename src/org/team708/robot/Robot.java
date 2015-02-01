@@ -2,6 +2,7 @@
 package org.team708.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -24,15 +25,18 @@ import org.team708.robot.subsystems.VisionProcessor;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
-	//creates choose object on SmartDashboard
-    Timer statsTimer;                               // Timer used for Smart Dash statistics
-    private final double sendStatsIntervalSec = .5;		// Interval between statistic reporting
     
 	public static Drivetrain drivetrain;
 	public static VisionProcessor visionProcessor;
 	public static OI oi;
 
+	//SmartDashboard
+    Preferences robotPreferences;
+    
+    //creates timer for the SmartDashboard stat sending
+    Timer statsTimer;                               // Timer used for Smart Dash statistics
+    private final double sendStatsIntervalSec = .5;		// Interval between statistic reporting
+    
     Command autonomousCommand;
     SendableChooser autonomousMode;
 
@@ -52,6 +56,7 @@ public class Robot extends IterativeRobot {
         // instantiate the command used for the autonomous period
 		autonomousMode = new SendableChooser();
 		queueAutonomousModes();
+		setPIDPreferences();
     }
 	
 	public void disabledPeriodic() {
@@ -85,8 +90,8 @@ public class Robot extends IterativeRobot {
      * This function is called when the disabled button is hit.
      * You can use it to reset subsystems before shutting down.
      */
-    public void disabledInit(){
-
+    public void disabledInit() {
+    	
     }
 
     /**
@@ -120,5 +125,11 @@ public class Robot extends IterativeRobot {
     	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
     	autonomousMode.addDefault("One Container", new OneContainerOneTote());
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
+    }
+    
+    private void setPIDPreferences() {
+    	drivetrain.setPIDGain('p', robotPreferences.getDouble("P", drivetrain.getPIDGain('p')));
+    	drivetrain.setPIDGain('i', robotPreferences.getDouble("I", drivetrain.getPIDGain('i')));
+    	drivetrain.setPIDGain('d', robotPreferences.getDouble("D", drivetrain.getPIDGain('d')));
     }
 }
