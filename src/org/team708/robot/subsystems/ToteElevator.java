@@ -21,10 +21,14 @@ public class ToteElevator extends Subsystem {
 	public final double RAISE_SPEED = 1.0;
 	public final double LOWER_SPEED = -1.0;
 	
-	public int toteCount = 0;
-	public final int TOTE_UPPER_LIMIT = 3;
-	public final int TOTE_LOWER_LIMIT = 0;
-	public boolean moveComplete = false;
+	//Whether elevator has been lowered
+	public boolean elevatorDown = false;
+	
+	//number of tote heights/totes indexed
+	public int toteCount;
+	
+	//max number of tote heights allowed to raise
+	public final int TOTE_UPPER_LIMIT = 6;
 	
 	//Digital sensors
 	private Encoder toteElevatorEncoder;
@@ -56,20 +60,28 @@ public class ToteElevator extends Subsystem {
 		toteElevatorIRSensor.setTriggerBounds(HAS_TOTE_DISTANCE_CLOSE, HAS_TOTE_DISTANCE_FAR, false);
 
 	}
-	
+	/*
+	 * Sets speed of motors to raise or lower totes
+	 */
 	public void set(double speed) {
 		toteElevatorMotor1.set(speed);
 		toteElevatorMotor2.set(-speed);
 	}
-	
+	/*
+	 * Gets the distance the elevator has moved
+	 */
 	public double getEncoderDistance() {
 		return toteElevatorEncoder.getDistance();
 	}
-	
+	/*
+	 * Gets the speed the encoder measures
+	 */
 	public double getEncoderRate() {
 		return toteElevatorEncoder.getRate();
 	}
-	
+	/*
+	 * Resets the encoder count
+	 */
 	public void resetEncoder() {
 		toteElevatorEncoder.reset();
 	}
@@ -85,7 +97,7 @@ public class ToteElevator extends Subsystem {
 	}
 	
 	public boolean encoderBottom() {
-		if (getEncoderDistance() > BOTTOM_ENCODER_DISTANCE) {
+		if (getEncoderDistance() > -TOP_ENCODER_DISTANCE) {
 			return false;
 		} else {
 			return true;
@@ -112,9 +124,17 @@ public class ToteElevator extends Subsystem {
 	public void lowerTote() {
 		this.set(LOWER_SPEED);
 	}
-	
+	/*
+	 * Does not move the tote
+	 */
 	public void stopTote() {
 		this.set(0.0);
+	}
+	/*
+	 * Gets the number of tote increments that have been raised
+	 */
+	public int getToteCount() {
+		return toteCount;
 	}
 	
 	public void setToteCount(int toteCount) {
@@ -123,41 +143,13 @@ public class ToteElevator extends Subsystem {
 
 	//raises tote when y is pressed
 	public void YToteUp() {
-		moveComplete = false;
-		if (toteCount < TOTE_UPPER_LIMIT) {
-			if (!encoderTop()) {
-				this.raiseTote();
-			} else {
-				this.increaseCount();
-				this.stopTote();
-				this.resetEncoder();
-				moveComplete = true;
-			}
-		}
-		else {
-			this.stopTote();
-			moveComplete = true;
-			}
+		
 	}
 	
 	//lowers tote when a is pressed	
 	public void AToteDown() {
-		moveComplete = false;
-			if (toteCount > TOTE_LOWER_LIMIT) {
-				if (!encoderBottom()) {
-					this.lowerTote();
-				} 
-				else {
-					this.decreaseCount();
-					this.stopTote();
-					this.resetEncoder();
-					moveComplete = true;
-				}
-		} else {
-			this.stopTote();
-			moveComplete = true;
-			}
-		}
+
+	}
 		
 	
     public void initDefaultCommand() {
