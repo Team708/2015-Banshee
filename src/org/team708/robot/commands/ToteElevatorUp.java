@@ -27,7 +27,7 @@ public class ToteElevatorUp extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.toteElevator.MOVE_COMPLETED;
+    	return Robot.toteElevator.moveComplete;
     }
 
     // Called once after isFinished returns true

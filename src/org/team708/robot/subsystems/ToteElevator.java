@@ -21,16 +21,16 @@ public class ToteElevator extends Subsystem {
 	public final double RAISE_SPEED = 1.0;
 	public final double LOWER_SPEED = -1.0;
 	
-	public int TOTE_COUNT = 0;
+	public int toteCount = 0;
 	public final int TOTE_UPPER_LIMIT = 3;
 	public final int TOTE_LOWER_LIMIT = 0;
-	public boolean MOVE_COMPLETED = false;
+	public boolean moveComplete = false;
 	
 	//Digital sensors
 	private Encoder toteElevatorEncoder;
 	private final double PULSES_PER_REVOLUTION = 7.0;
 	private final double GEARING = (16 / 50);
-	private double DISTANCE_PER_PULSE;
+	private double distancePerPulse;
 	
 	public final double TOP_ENCODER_DISTANCE = 25.0;
 	public final double BOTTOM_ENCODER_DISTANCE = 0.0;
@@ -47,8 +47,8 @@ public class ToteElevator extends Subsystem {
 		
 		//Creates encoders for elevator motors
 		toteElevatorEncoder = new Encoder(RobotMap.toteElevatorEncoderA, RobotMap.toteElevatorEncoderB);
-		DISTANCE_PER_PULSE = PULSES_PER_REVOLUTION * GEARING;
-		toteElevatorEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
+		distancePerPulse = PULSES_PER_REVOLUTION * GEARING;
+		toteElevatorEncoder.setDistancePerPulse(distancePerPulse);
 		toteElevatorEncoder.setReverseDirection(true);
 		
 		//Creates IR sensor
@@ -90,7 +90,8 @@ public class ToteElevator extends Subsystem {
 		} else {
 			return true;
 		}
-}
+	}
+	
 	/*
 	 * Checks if tote is in elevator
 	 */
@@ -116,36 +117,33 @@ public class ToteElevator extends Subsystem {
 		this.set(0.0);
 	}
 	
-	public void increaseCount() {
-		TOTE_COUNT = TOTE_COUNT + 1;
-	}
-	
-	public void decreaseCount() {
-		TOTE_COUNT = TOTE_COUNT - 1;
+	public void setToteCount(int toteCount) {
+		this.toteCount = toteCount;
 	}
 
 	//raises tote when y is pressed
 	public void YToteUp() {
-		MOVE_COMPLETED = false;
-		if (TOTE_COUNT < TOTE_UPPER_LIMIT) {
+		moveComplete = false;
+		if (toteCount < TOTE_UPPER_LIMIT) {
 			if (!encoderTop()) {
 				this.raiseTote();
 			} else {
 				this.increaseCount();
 				this.stopTote();
 				this.resetEncoder();
-				MOVE_COMPLETED = true;
+				moveComplete = true;
 			}
 		}
 		else {
 			this.stopTote();
-			MOVE_COMPLETED = true;
+			moveComplete = true;
 			}
 	}
+	
 	//lowers tote when a is pressed	
 	public void AToteDown() {
-		MOVE_COMPLETED = false;
-			if (TOTE_COUNT > TOTE_LOWER_LIMIT) {
+		moveComplete = false;
+			if (toteCount > TOTE_LOWER_LIMIT) {
 				if (!encoderBottom()) {
 					this.lowerTote();
 				} 
@@ -153,11 +151,11 @@ public class ToteElevator extends Subsystem {
 					this.decreaseCount();
 					this.stopTote();
 					this.resetEncoder();
-					MOVE_COMPLETED = true;
+					moveComplete = true;
 				}
 		} else {
 			this.stopTote();
-			MOVE_COMPLETED = true;
+			moveComplete = true;
 			}
 		}
 		
