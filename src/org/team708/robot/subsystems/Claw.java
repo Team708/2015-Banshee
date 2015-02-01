@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * two arms that open and close off of a single solenoid
  * @param <OFF>
  */
-public class Claw<OFF> extends Subsystem {
+public class Claw extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
