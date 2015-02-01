@@ -2,7 +2,6 @@ package org.team708.robot.commands.claw;
 
 import org.team708.robot.Robot;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -23,18 +22,15 @@ public class ToggleClawOpen extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	// Makes the solenoid reverse if it is forward
-    	if(Robot.claw.getClawOpen() == DoubleSolenoid.Value.kForward) {
-    		Robot.claw.setClawOpen(DoubleSolenoid.Value.kReverse);
+    	// Sets the claw to closed if it is open
+    	if(Robot.claw.isClawOpen()) {
+    		Robot.claw.closeClaw();
     	} 
-    	// Makes the solenoid forward if it is reverse
-    	else if(Robot.claw.getClawOpen() == DoubleSolenoid.Value.kReverse) {
-    		Robot.claw.setClawOpen(DoubleSolenoid.Value.kForward);
+    	// Sets the claw to open if it is closed
+    	else if(Robot.claw.isClawClosed()) {
+    		Robot.claw.openClaw();
     	} 
-    	// Makes the solenoid OFF is it si off or if it is doing weird things
-    	else {
-    		Robot.claw.setClawOpen(DoubleSolenoid.Value.kOff);
-    	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

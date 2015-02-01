@@ -10,8 +10,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * A claw that picks up recycling containers with a motor, 
  * two arms that open and close off of a single solenoid
+ * @param <OFF>
  */
-public class Claw extends Subsystem {
+public class Claw<OFF> extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -21,9 +22,22 @@ public class Claw extends Subsystem {
 	// Double solenoids to control pistons
 	private DoubleSolenoid clawFingerSolenoid;
 	private DoubleSolenoid clawWristSolenoid;
-
+	
+	// Finger solenoid states
+	private static final DoubleSolenoid.Value OPEN = DoubleSolenoid.Value.kReverse;
+	private static final DoubleSolenoid.Value CLOSED = DoubleSolenoid.Value.kForward;
+	
+	// Wrist solenoid states
+	private static final DoubleSolenoid.Value VERTICAL = DoubleSolenoid.Value.kReverse;
+	private static final DoubleSolenoid.Value HORIZONTAL = DoubleSolenoid.Value.kForward;
+	
 	// Spike to move the wheels at the end of the claw
 	private Relay clawFingerSpike;
+	
+	// Finger spike states
+	private static final Relay.Value INTAKE = Relay.Value.kForward;
+	private static final Relay.Value DISPENSE = Relay.Value.kReverse;
+	private static final Relay.Value OFF = Relay.Value.kOff;
 	
 	public Claw() {
 		
@@ -32,8 +46,8 @@ public class Claw extends Subsystem {
 		clawWristSolenoid = new DoubleSolenoid(RobotMap.clawWristDoubleSolenoidA, RobotMap.clawWristDoubleSolenoidB);
 		
 		// Sets solenoids to initial positions
-		clawFingerSolenoid.set(DoubleSolenoid.Value.kForward);
-		clawWristSolenoid.set(DoubleSolenoid.Value.kReverse);
+		clawFingerSolenoid.set(OPEN);
+		clawWristSolenoid.set(HORIZONTAL);
 	
 		// Makes the spike for the claw fingers
 		clawFingerSpike = new Relay(RobotMap.clawFingerMotorSpike);
@@ -47,39 +61,68 @@ public class Claw extends Subsystem {
     	setDefaultCommand(new ClawMotorControl());
     }
     
-    public void setClawOpen(DoubleSolenoid.Value value) {
+    
+    // Self explanatory getter/setter methods.
+    
+    public void openClaw() {
     	
-    	clawFingerSolenoid.set(value);
+    	clawFingerSolenoid.set(OPEN);
     
     }
     
-    public DoubleSolenoid.Value getClawOpen() {
+    public void closeClaw() {
     	
-    	return clawFingerSolenoid.get();
+    	clawFingerSolenoid.set(CLOSED);
+    	
+    }
+    
+    public boolean isClawOpen() {
+    	
+    	return clawFingerSolenoid.get().equals(OPEN);
     
     }
     
-    public void setClawPosition(DoubleSolenoid.Value value) {
+    public boolean isClawClosed() {
+    	return clawFingerSolenoid.get().equals(CLOSED);
+    }
+    
+    public void setClawVertical() {
     	
-    	clawWristSolenoid.set(value);
+    	clawWristSolenoid.set(VERTICAL);
     
     }
     
-    public DoubleSolenoid.Value getClawPosition() {
+    public void setClawHorizontal() {
     	
-    	return clawWristSolenoid.get();
+    	clawWristSolenoid.set(HORIZONTAL);
+    	
+    }
+    
+    public boolean isClawVertical() {
+    	
+    	return clawWristSolenoid.get().equals(VERTICAL);
     
     }
     
-    public void setFingerMotor(Relay.Value value) {
-    	
-    	clawFingerSpike.set(value);
+    public boolean isClawHorizontal() {
+    	return clawWristSolenoid.get().equals(HORIZONTAL);
+    }
     
+    public void intake() {
+    	
+    	clawFingerSpike.set(INTAKE);
+    
+    }
+    
+    public void dispense() {
+    	
+    	clawFingerSpike.set(DISPENSE);
+    	
     }
     
     public void stopFingerMotor() {
     	
-    	clawFingerSpike.set(Relay.Value.kOff);
+    	clawFingerSpike.set(OFF);
     	
     }
     
