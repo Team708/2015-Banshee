@@ -1,17 +1,23 @@
 package org.team708.robot;
 
+<<<<<<< HEAD
 
 import org.team708.robot.commands.hockeyStick.ToggleHockeyStick;
 import org.team708.robot.commands.intake.ToggleDirection;
 import org.team708.robot.commands.intake.TogglePower;
 
+=======
+>>>>>>> d7998cf2e9794ec222cf487ffbdb867014f6844d
 import org.team708.robot.commands.claw.ClawHeightDecrement;
 import org.team708.robot.commands.claw.ClawHeightDecrementNoPID;
 import org.team708.robot.commands.claw.ClawHeightIncrement;
 import org.team708.robot.commands.claw.ClawHeightIncrementNoPID;
 import org.team708.robot.commands.claw.ToggleClawOpen;
 import org.team708.robot.commands.claw.ToggleWrist;
+<<<<<<< HEAD
 
+=======
+>>>>>>> d7998cf2e9794ec222cf487ffbdb867014f6844d
 import org.team708.robot.util.Gamepad;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -23,18 +29,39 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	
+<<<<<<< HEAD
 	// Gamepads
 	public static Gamepad driverGamepad = new Gamepad(RobotMap.driverGamepad);
 	public static Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepad);
 
+=======
+>>>>>>> d7998cf2e9794ec222cf487ffbdb867014f6844d
 	// Button IDs
 	public static final int toggleClawOpenButton = Gamepad.button_R_Shoulder;
 	public static final int toggleWristPositionButton = Gamepad.button_L_Shoulder;
 	public static final int clawHeightIncrementButton = Gamepad.button_Y;
 	public static final int clawHeightDecrementButton = Gamepad.button_A;
 	
+<<<<<<< HEAD
 	// Opens and closes the claw on a toggle
 	Button toggleClawOpen = new JoystickButton(operatorGamepad, toggleClawOpenButton);
+=======
+	// Gamepad IDs
+	public static final Gamepad driverGamepad = new Gamepad(RobotMap.driverGamepad);
+	public static final Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepad);
+	
+	// Opens and closes the claw on a toggle
+	Button toggleClawOpen = new JoystickButton(operatorGamepad, toggleClawOpenButton);
+	
+	// Toggles the wrist position (horizontal/vertical)
+	Button toggleWristPosition = new JoystickButton(operatorGamepad, toggleWristPositionButton);
+	
+	// Increases the claw height by the height of a tote
+	Button clawHeightIncrement = new JoystickButton(operatorGamepad, clawHeightIncrementButton);
+	
+	// Decreases the claw height by the height of a tote
+	Button clawHeightDecrement = new JoystickButton(operatorGamepad, clawHeightDecrementButton);
+>>>>>>> d7998cf2e9794ec222cf487ffbdb867014f6844d
 	
 	// Toggles the wrist position (horizontal/vertical)
 	Button toggleWristPosition = new JoystickButton(operatorGamepad, toggleWristPositionButton);
@@ -64,11 +91,14 @@ public class OI {
 	 */
 	public OI() {
 		
+<<<<<<< HEAD
 		//Driver
 		toggleHockeyStick.whenPressed(new ToggleHockeyStick());
 		toggleIntakePower.whenPressed(new TogglePower());
 		toggleIntakeDirection.whenPressed(new ToggleDirection());
 
+=======
+>>>>>>> d7998cf2e9794ec222cf487ffbdb867014f6844d
 		// Maps the buttons to commands
 		toggleClawOpen.whenPressed(new ToggleClawOpen());
 		toggleWristPosition.whenPressed(new ToggleWrist());
