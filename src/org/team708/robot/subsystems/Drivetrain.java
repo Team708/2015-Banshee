@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Drivetrain extends Subsystem {
     
-	private CANTalon leftMaster, leftSlave1, leftSlave2, rightMaster, rightSlave1, rightSlave2;		// Motor Controllers
+	private CANTalon leftMaster, leftSlave, rightMaster, rightSlave;		// Motor Controllers
 	private RobotDrive drivetrain;		// FRC provided drivetrain class
 	
 	private BuiltInAccelerometer accelerometer;
@@ -26,11 +26,9 @@ public class Drivetrain extends Subsystem {
 	public Drivetrain() {
 		// Initializes motor controllers with device IDs from RobotMap
 		leftMaster = new CANTalon(RobotMap.drivetrainLeftMotorMaster);
-		leftSlave1 = new CANTalon(RobotMap.drivetrainLeftMotorSlave1);
-		leftSlave2 = new CANTalon(RobotMap.drivetrainLeftMotorSlave2);
+		leftSlave = new CANTalon(RobotMap.drivetrainLeftMotorSlave);
 		rightMaster = new CANTalon(RobotMap.drivetrainRightMotorMaster);
-		rightSlave1 = new CANTalon(RobotMap.drivetrainRightMotorSlave1);
-		rightSlave2 = new CANTalon(RobotMap.drivetrainRightMotorSlave2);
+		rightSlave = new CANTalon(RobotMap.drivetrainRightMotorSlave);
 		
 		// Initializes drivetrain class
 		drivetrain = new RobotDrive(leftMaster, rightMaster);
@@ -56,15 +54,11 @@ public class Drivetrain extends Subsystem {
     }
     
     public void setupMasterSlave() {
-    	leftSlave1.changeControlMode(CANTalon.ControlMode.Follower);
-		leftSlave2.changeControlMode(CANTalon.ControlMode.Follower);
-		rightSlave1.changeControlMode(CANTalon.ControlMode.Follower);
-		rightSlave2.changeControlMode(CANTalon.ControlMode.Follower);
+    	leftSlave.changeControlMode(CANTalon.ControlMode.Follower);
+		rightSlave.changeControlMode(CANTalon.ControlMode.Follower);
 		
-		leftSlave1.set(leftMaster.getDeviceID());
-		leftSlave2.set(leftMaster.getDeviceID());
-		rightSlave1.set(rightMaster.getDeviceID());
-		rightSlave2.set(rightMaster.getDeviceID());
+		leftSlave.set(leftMaster.getDeviceID());
+		rightSlave.set(rightMaster.getDeviceID());
     }
     
     public void sendToDashboard() {
