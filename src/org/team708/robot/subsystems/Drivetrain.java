@@ -2,6 +2,7 @@ package org.team708.robot.subsystems;
 
 import org.team708.robot.RobotMap;
 import org.team708.robot.commands.drivetrain.JoystickDrive;
+import org.team708.robot.util.IRSensor;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -32,7 +33,9 @@ public class Drivetrain extends PIDSubsystem {
 	private RobotDrive drivetrain;		// FRC provided drivetrain class
 	
 	private BuiltInAccelerometer accelerometer;		// Accelerometer that is built into the roboRIO
-	private Gyro gyro;		// Gyro that is used for drift correction
+	private Gyro gyro;								// Gyro that is used for drift correction
+	
+	private IRSensor irSensor;						// IR Sensor that is used for short distancing		
 	
 	private boolean brake = true;		// Whether the talons should be in coast or brake mode (this could be important if a jerky robot causes things to topple
 	
@@ -58,6 +61,7 @@ public class Drivetrain extends PIDSubsystem {
 		accelerometer = new BuiltInAccelerometer();		// Initializes the accelerometer from the roboRIO
 		gyro = new Gyro(RobotMap.gyro);					// Initializes the gyro
 		gyro.reset();									// Resets the gyro so that it starts with a 0.0 value
+		irSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);
     	
 		setAbsoluteTolerance(tolerance);
 		setInputRange(-360.0, 360);
@@ -94,7 +98,6 @@ public class Drivetrain extends PIDSubsystem {
     		if (getPIDController().isEnable()) {
     			disable();
     		}
-    		drivetrain.arcadeDrive(move, rotate);
     	}
     }
     
@@ -141,6 +144,26 @@ public class Drivetrain extends PIDSubsystem {
      */
     public void resetGyro() {
     	gyro.reset();
+    }
+    
+    public double getIRDistance() {
+    	return irSensor.getDistance();
+    }
+    
+    /**
+     * Returns the move speed of the robot needed to get to a certain IR distance reading.
+     * This assumes that the IR sensor is in the front of the robot.
+     * @param targetDistance
+     * @return
+     */
+    public double moveByIR(double targetDistance, double tolerance) {
+    	double difference = getIRDistance() - targetDistance;
+    	
+    	if (Math.abs(difference) <= tolerance) {
+    		difference = 0.0;
+    	}
+    	
+    	return difference / targetDistance;
     }
     
     /**
@@ -245,5 +268,6 @@ public class Drivetrain extends PIDSubsystem {
     	
     	// PID Info
     	SmartDashboard.putNumber("PID Output", pidOutput);
+    	SmartDashboard.putNumber("IR Reading", getIRDistance());
     }
 }

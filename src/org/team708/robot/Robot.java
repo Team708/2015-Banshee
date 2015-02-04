@@ -11,7 +11,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team708.robot.commands.autonomous.DriveInSquare;
+import org.team708.robot.commands.autonomous.OneContainer;
+import org.team708.robot.commands.autonomous.OneContainerOneTote;
+import org.team708.robot.commands.visionProcessor.FollowYellowTote;
 import org.team708.robot.subsystems.Drivetrain;
+import org.team708.robot.subsystems.VisionProcessor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +27,7 @@ import org.team708.robot.subsystems.Drivetrain;
 public class Robot extends IterativeRobot {
     
 	public static Drivetrain drivetrain;
+	public static VisionProcessor visionProcessor;
 	public static OI oi;
 
 	//SmartDashboard
@@ -46,6 +51,7 @@ public class Robot extends IterativeRobot {
         
         drivetrain = new Drivetrain();
 		oi = new OI();
+		visionProcessor = new VisionProcessor();
 		
 		SmartDashboard.putData(drivetrain);
 		LiveWindow.addActuator("PID", "PID", drivetrain.getPIDController());
@@ -113,11 +119,14 @@ public class Robot extends IterativeRobot {
 
             // Various debug information
             drivetrain.sendToDashboard();
+            visionProcessor.sendToDashboard();
         }
     }
     
     private void queueAutonomousModes() {
-    	autonomousMode.addDefault("Drive in Square", new DriveInSquare());
+//    	autonomousMode.addDefault("Drive in Square", new DriveInSquare());
+    	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
+    	autonomousMode.addDefault("One Container", new OneContainerOneTote());
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
     }
     
