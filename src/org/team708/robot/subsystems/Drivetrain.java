@@ -18,10 +18,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Drivetrain extends PIDSubsystem {
 	
 	// PID Tuning parameters
-	private static final double Kp = 0.15;		// Proportional gain		// Was 0.05 for 4in colsons
-	private static final double Ki = 0.01;		// Integral gain			// Was 0.01 for 4in colsons
-	private static final double Kd = 0.0;		// Derivative gain
-	private static final double tolerance = 2;
+	private static double Kp = 0.20;		// Proportional gain		// Was 0.05 for 4in colsons
+	private static double Ki = 0.0;		// Integral gain			// Was 0.01 for 4in colsons
+	private static double Kd = 0.1;		// Derivative gain
+	private static double tolerance = 5;
 	
 	// Variables specific for drivetrain PID loop
 	private double moveSpeed = 0.0;
@@ -186,6 +186,45 @@ public class Drivetrain extends PIDSubsystem {
     protected void usePIDOutput(double output) {
         pidOutput = output;
         drivetrain.arcadeDrive(moveSpeed, -output);
+    }
+    
+    /**
+     * Returns the PID gain constant
+     * @param gain
+     * @return
+     */
+    public double getPIDGain(char gain) {
+    	switch(gain) {
+    		case 'p':
+    			return Kp;
+    		case 'i':
+    			return Ki;
+    		case 'd':
+    			return Kd;
+    		default:
+    			return 0.0;
+    	}
+    }
+    
+    /**
+     * Sets the PID gain constant to the desired value
+     * @param gain
+     * @param value
+     */
+    public void setPIDGain(char gain, double value) {
+    	switch(gain) {
+		case 'p':
+			Kp = value;
+			break;
+		case 'i':
+			Ki = value;
+			break;
+		case 'd':
+			Kd = value;
+			break;
+		default:
+			break;
+	}
     }
     
     /**
