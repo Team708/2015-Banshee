@@ -10,12 +10,15 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.team708.robot.commands.autonomous.DriveInSquare;
-import org.team708.robot.commands.autonomous.OneContainer;
 import org.team708.robot.commands.autonomous.OneContainerOneTote;
 import org.team708.robot.commands.visionProcessor.FollowYellowTote;
 import org.team708.robot.subsystems.Drivetrain;
 import org.team708.robot.subsystems.VisionProcessor;
+import org.team708.robot.subsystems.Claw;
+import org.team708.robot.subsystems.ClawElevator;
+import org.team708.robot.subsystems.HockeyStick;
+import org.team708.robot.subsystems.Intake;
+import org.team708.robot.subsystems.ToteElevator;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -37,6 +40,12 @@ public class Robot extends IterativeRobot {
     Timer statsTimer;                               // Timer used for Smart Dash statistics
     private final double sendStatsIntervalSec = .5;		// Interval between statistic reporting
     
+    public static final Intake intake = new Intake();
+	public static final HockeyStick hockeyStick = new HockeyStick();
+	public static final ToteElevator toteElevator = new ToteElevator();
+	public static final Claw claw = new Claw();
+	public static final ClawElevator clawElevator = new ClawElevator();
+
     Command autonomousCommand;
     SendableChooser autonomousMode;
 
@@ -120,6 +129,7 @@ public class Robot extends IterativeRobot {
             // Various debug information
             drivetrain.sendToDashboard();
             visionProcessor.sendToDashboard();
+            intake.sendToDashboard();
         }
     }
     
