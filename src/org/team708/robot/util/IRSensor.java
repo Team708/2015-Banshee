@@ -18,7 +18,7 @@ public class IRSensor extends DistanceSensor{
     public IRSensor(int channel,Model m){
         super(channel,m);
     }
-
+    
      public double getDistance(){
          return 1/(Math708.lerp(model.getLowV(), model.getLowD(), model.getHighV(), model.getHighD(), getVoltage()) * 2.54);
      }

@@ -70,6 +70,23 @@ public class Gamepad extends Joystick{
     }
     
     /**
+     * Gets the value of a gamepad axis, then squares it for easier controlling
+     * @param axis
+     * @return
+     */
+    public double getSquaredAxis(int axis) {
+    	double val = getRawAxis(axis);
+    	
+    	if (val >= 0) {
+    		val = (val * val);
+    	} else {
+    		val = -(val * val);
+    	}
+    		
+    	return val;
+    }
+    
+    /**
      * Get the value of a gamepad button.
      * @param button
      * @return 

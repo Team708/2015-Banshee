@@ -28,7 +28,7 @@ public abstract class DistanceSensor{
     private double highTriggerBound = -1;
     private boolean invertTriggerRange = false;
 
-    public DistanceSensor(int channel,Model m){
+    public DistanceSensor(int channel,Model m) {
         sensor = new AnalogInput(channel);
         model = m;
     }

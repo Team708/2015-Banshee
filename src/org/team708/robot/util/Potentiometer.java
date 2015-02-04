@@ -27,7 +27,7 @@ public class Potentiometer {
     
     public double getAngle() {
         // Finds the scaling factor for the voltage
-        double scalingFactor = (maxPotentiometerAngle - MIN_POTENTIOMETER_ANGLE) / (MAX_POTENTIOMETER_VOLTAGE - MIN_POTENTIOMETER_VOLTAGE); 
+        double scalingFactor = (maxPotentiometerAngle - MIN_POTENTIOMETER_ANGLE) / (MAX_POTENTIOMETER_VOLTAGE - MIN_POTENTIOMETER_VOLTAGE);
         
         double voltage = potentiometer.getVoltage();
         double offset = 0.0;
