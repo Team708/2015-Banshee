@@ -13,11 +13,9 @@ public class RobotMap {
 	
 	// Drivetrain CAN Device IDs
 	public static final int drivetrainLeftMotorMaster = 11;
-	public static final int drivetrainLeftMotorSlave1 = 12;
-	public static final int drivetrainLeftMotorSlave2 = 13;
+	public static final int drivetrainLeftMotorSlave = 12;
 	public static final int drivetrainRightMotorMaster = 14;
-	public static final int drivetrainRightMotorSlave1 = 15;
-	public static final int drivetrainRightMotorSlave2 = 16;
+	public static final int drivetrainRightMotorSlave = 15;
 	
 	
 	// Analog sensor IDs

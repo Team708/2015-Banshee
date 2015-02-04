@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * This class is a drivetrain subsystem that uses PID to drive straight.
  * @author Nam Tran & Victor Lourng
  */
+
 public class Drivetrain extends PIDSubsystem {
 	
 	// PID Tuning parameters
@@ -29,7 +30,8 @@ public class Drivetrain extends PIDSubsystem {
 	private double pidOutput = 0.0;
 	private static final double tankControlTolerance = .025;
 	
-	public CANTalon leftMaster, leftSlave1, leftSlave2, rightMaster, rightSlave1, rightSlave2;		// Motor Controllers
+	private CANTalon leftMaster, leftSlave, rightMaster, rightSlave;		// Motor Controllers
+	
 	private RobotDrive drivetrain;		// FRC provided drivetrain class
 	
 	private BuiltInAccelerometer accelerometer;		// Accelerometer that is built into the roboRIO
@@ -48,11 +50,9 @@ public class Drivetrain extends PIDSubsystem {
     	
     	// Initializes motor controllers with device IDs from RobotMap
 		leftMaster = new CANTalon(RobotMap.drivetrainLeftMotorMaster);
-		leftSlave1 = new CANTalon(RobotMap.drivetrainLeftMotorSlave1);
-		leftSlave2 = new CANTalon(RobotMap.drivetrainLeftMotorSlave2);
+		leftSlave = new CANTalon(RobotMap.drivetrainLeftMotorSlave);
 		rightMaster = new CANTalon(RobotMap.drivetrainRightMotorMaster);
-		rightSlave1 = new CANTalon(RobotMap.drivetrainRightMotorSlave1);
-		rightSlave2 = new CANTalon(RobotMap.drivetrainRightMotorSlave2);
+		rightSlave = new CANTalon(RobotMap.drivetrainRightMotorSlave);
 		
 		drivetrain = new RobotDrive(leftMaster, rightMaster);		// Initializes drivetrain class
 		
@@ -172,15 +172,11 @@ public class Drivetrain extends PIDSubsystem {
      * talon is doing
      */
     public void setupMasterSlave() {
-    	leftSlave1.changeControlMode(CANTalon.ControlMode.Follower);
-		leftSlave2.changeControlMode(CANTalon.ControlMode.Follower);
-		rightSlave1.changeControlMode(CANTalon.ControlMode.Follower);
-		rightSlave2.changeControlMode(CANTalon.ControlMode.Follower);
+    	leftSlave.changeControlMode(CANTalon.ControlMode.Follower);
+		rightSlave.changeControlMode(CANTalon.ControlMode.Follower);
 		
-		leftSlave1.set(leftMaster.getDeviceID());
-		leftSlave2.set(leftMaster.getDeviceID());
-		rightSlave1.set(rightMaster.getDeviceID());
-		rightSlave2.set(rightMaster.getDeviceID());
+		leftSlave.set(leftMaster.getDeviceID());
+		rightSlave.set(rightMaster.getDeviceID());
     }
     
     /**
@@ -189,11 +185,9 @@ public class Drivetrain extends PIDSubsystem {
     public void toggleBrakeMode() {
     	brake = !brake;
     	leftMaster.enableBrakeMode(brake);
-    	leftSlave1.enableBrakeMode(brake);
-    	leftSlave2.enableBrakeMode(brake);
+    	leftSlave.enableBrakeMode(brake);
     	rightMaster.enableBrakeMode(brake);
-    	rightSlave1.enableBrakeMode(brake);
-    	rightSlave2.enableBrakeMode(brake);
+    	rightSlave.enableBrakeMode(brake);
     }
     
     /**
