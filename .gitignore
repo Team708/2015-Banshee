@@ -24,7 +24,6 @@ tmp/
 local.properties
 .settings/
 .loadpath
-.classpath
 sysProps.xml
 
 # =========================
