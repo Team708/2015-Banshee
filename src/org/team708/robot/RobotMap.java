@@ -32,6 +32,8 @@ public class RobotMap {
 	public static final int clawElevatorMotor = 31;
 	
 	// Digital IO
+	public static final int drivetrainEncoderA = 0;
+	public static final int drivetrainEncoderB = 1;
 	public static final int clawElevatorEncoderA = 4;
 	public static final int clawElevatorEncoderB = 5;
 
