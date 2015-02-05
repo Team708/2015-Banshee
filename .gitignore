@@ -24,6 +24,8 @@ tmp/
 local.properties
 .settings/
 .loadpath
+.classpath
+sysProps.xml
 
 # =========================
 # Operating System Files
