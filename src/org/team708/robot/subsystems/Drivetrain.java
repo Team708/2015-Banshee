@@ -6,10 +6,10 @@ import org.team708.robot.util.IRSensor;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -30,10 +30,14 @@ public class Drivetrain extends PIDSubsystem {
 	private double pidOutput = 0.0;
 	private static final double tankControlTolerance = .025;
 	
+	// Variable to determine which side the encoder is on
+	private static final boolean isEncoderLeft = true;
+	
 	private CANTalon leftMaster, leftSlave, rightMaster, rightSlave;		// Motor Controllers
 	
 	private RobotDrive drivetrain;		// FRC provided drivetrain class
 	
+	private Encoder encoder;							// Encoder for the drivetrain
 	private BuiltInAccelerometer accelerometer;		// Accelerometer that is built into the roboRIO
 	private Gyro gyro;								// Gyro that is used for drift correction
 	
@@ -61,6 +65,10 @@ public class Drivetrain extends PIDSubsystem {
 		accelerometer = new BuiltInAccelerometer();		// Initializes the accelerometer from the roboRIO
 		gyro = new Gyro(RobotMap.gyro);					// Initializes the gyro
 		gyro.reset();									// Resets the gyro so that it starts with a 0.0 value
+		encoder = new Encoder(RobotMap.drivetrainEncoderA, RobotMap.drivetrainEncoderB);
+														// Initializes the encoder
+		encoder.reset();								// Resets the encoder so that it starts with a 0.0 value
+		setEncoderReading();							// Sets the encoder to read positive when moving forward
 		irSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);
     	
 		setAbsoluteTolerance(tolerance);
@@ -188,6 +196,28 @@ public class Drivetrain extends PIDSubsystem {
     	leftSlave.enableBrakeMode(brake);
     	rightMaster.enableBrakeMode(brake);
     	rightSlave.enableBrakeMode(brake);
+    }
+    
+    /**
+     * Sets encoder direction depending on which side of the drivetrain it is on
+     */
+    public void setEncoderReading() {
+    	encoder.setReverseDirection(isEncoderLeft);
+    }
+    
+    /**
+     * 
+     * @return Distance traveled since last encoder reset
+     */
+    public double getEncoderDistance() {
+    	return encoder.getDistance();
+    }
+    
+    /**
+     * Resets the encoder to 0.0
+     */
+    public void resetEncoder() {
+    	encoder.reset();
     }
     
     /**
