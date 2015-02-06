@@ -8,14 +8,23 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import org.team708.robot.RobotMap;
 import org.team708.robot.commands.intake.IntepretIntake;
 
+/**
+ * This is the subsystem for the tote intake system.
+ * It uses two motors powered by CAN Talons and has a switch for when it has one.
+ * @author Nam Tran, Alex Tysak, Tommy Zhao
+ *
+ */
 public class Intake extends Subsystem {
 
-	private CANTalon leftMotor, rightMotor;
+	private CANTalon leftMotor, rightMotor;		// Motors for spinning the intake
 	
-	private DigitalInput toteSwitch;
+	private DigitalInput toteSwitch;			// Switch to detect when has switch
 	
 	private boolean on = false;
 	private boolean in = true;
+	
+	public static final double IN_SPEED = 1.0;
+	public static final double OUT_SPEED = -1.0;
 	
 	public Intake() {
 		

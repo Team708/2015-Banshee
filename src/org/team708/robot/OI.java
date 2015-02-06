@@ -1,7 +1,5 @@
 package org.team708.robot;
 
-import org.team708.robot.commands.ToteElevatorDown;
-import org.team708.robot.commands.ToteElevatorUp;
 import org.team708.robot.commands.claw.ClawHeightDecrementNoPID;
 import org.team708.robot.commands.claw.ClawHeightIncrementNoPID;
 import org.team708.robot.commands.claw.ToggleClawOpen;
@@ -10,6 +8,8 @@ import org.team708.robot.commands.drivetrain.ToggleBrakeMode;
 import org.team708.robot.commands.hockeyStick.ToggleHockeyStick;
 import org.team708.robot.commands.intake.ToggleDirection;
 import org.team708.robot.commands.intake.TogglePower;
+import org.team708.robot.commands.toteElevator.ToteElevatorDown;
+import org.team708.robot.commands.toteElevator.ToteElevatorUp;
 import org.team708.robot.util.Gamepad;
 
 import edu.wpi.first.wpilibj.buttons.Button;
