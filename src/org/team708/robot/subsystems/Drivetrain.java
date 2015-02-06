@@ -106,6 +106,7 @@ public class Drivetrain extends PIDSubsystem {
     		if (getPIDController().isEnable()) {
     			disable();
     		}
+    		drivetrain.arcadeDrive(move, rotate);
     	}
     }
     
