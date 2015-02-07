@@ -1,27 +1,19 @@
-
 package org.team708.robot.commands.autonomous;
 
-import org.team708.robot.commands.drivetrain.DriveToIRDistance;
-import org.team708.robot.commands.intake.IntakeTote;
-import org.team708.robot.commands.toteElevator.ToteElevatorUp;
-import org.team708.robot.subsystems.Drivetrain;
+import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class OneContainerOneTote extends CommandGroup {
+public class MoveToAutozone extends CommandGroup {
 	
-	private double irTolerance = 1;
+	private final int DISTANCE = 17;
     
-    public  OneContainerOneTote() {
+    public  MoveToAutozone() {
     	
-    	addSequential(new DriveToIRDistance(Drivetrain.DISTANCE_FROM_TOTE, irTolerance));
-    	addSequential(new IntakeTote());
-    	addSequential(new ToteElevatorUp());
-    	addSequential(new DealWithContainer());
-    	
+    	addSequential(new DriveStraightToEncoderDistance(DISTANCE));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
