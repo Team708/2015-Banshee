@@ -37,13 +37,13 @@ public class ClawElevator extends PIDSubsystem {
         // setSetpoint() -  Sets where the PID controller should move the system
         //                  to
         // enable() - Enables the PID controller.
-    	
-    	// Sets the PID parameter to distance
-    	clawElevatorEncoder.setPIDSourceParameter(PIDSource.PIDSourceParameter.kDistance);
-    	
+
     	// Creates the encoder and talon for the elevator
     	clawElevatorEncoder = new Encoder(RobotMap.clawElevatorEncoderA, RobotMap.clawElevatorEncoderB);
     	clawElevatorMotor = new CANTalon(RobotMap.clawElevatorMotor);
+    	
+    	// Sets the PID parameter to distance
+    	clawElevatorEncoder.setPIDSourceParameter(PIDSource.PIDSourceParameter.kDistance);
     	
     	// Resets the encoder on initialization 
     	clawElevatorEncoder.reset();

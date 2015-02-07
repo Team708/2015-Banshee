@@ -13,7 +13,7 @@ public class ClawHeightIncrement extends Command {
     public ClawHeightIncrement() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-//    	requires(Robot.clawElevator);
+    	requires(Robot.clawElevator);
     }
 
     // Called just before this Command runs the first time
