@@ -1,13 +1,19 @@
 package org.team708.robot.commands.autonomous;
 
+import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
 public class MoveToAutozone extends CommandGroup {
+	
+	private final int DISTANCE = 17;
     
     public  MoveToAutozone() {
+    	
+    	addSequential(new DriveStraightToEncoderDistance(DISTANCE));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

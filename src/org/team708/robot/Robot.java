@@ -43,11 +43,11 @@ public class Robot extends IterativeRobot {
     Timer statsTimer;                               // Timer used for Smart Dash statistics
     private final double sendStatsIntervalSec = .5;		// Interval between statistic reporting
     
-    public static final Intake intake = new Intake();
-	public static final HockeyStick hockeyStick = new HockeyStick();
-	public static final ToteElevator toteElevator = new ToteElevator();
-	public static final Claw claw = new Claw();
-	public static final ClawElevator clawElevator = new ClawElevator();
+    public static Intake intake;
+	public static HockeyStick hockeyStick;
+	public static ToteElevator toteElevator;
+	public static Claw claw;
+	public static ClawElevator clawElevator;
 
     Command autonomousCommand;
     SendableChooser autonomousMode;
@@ -64,6 +64,11 @@ public class Robot extends IterativeRobot {
         drivetrain = new Drivetrain();
 		oi = new OI();
 		visionProcessor = new VisionProcessor();
+		intake = new Intake();
+		hockeyStick = new HockeyStick();
+		toteElevator = new ToteElevator();
+		claw = new Claw();
+		clawElevator = new ClawElevator();
 		
 		SmartDashboard.putData(drivetrain);
 		LiveWindow.addActuator("PID", "PID", drivetrain.getPIDController());

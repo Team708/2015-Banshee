@@ -1,10 +1,8 @@
 package org.team708.robot.commands.autonomous;
 
-import org.team708.robot.Robot;
 import org.team708.robot.commands.claw.ClawHeightIncrement;
 import org.team708.robot.commands.claw.ToggleClawOpen;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
-import org.team708.robot.subsystems.Claw;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
