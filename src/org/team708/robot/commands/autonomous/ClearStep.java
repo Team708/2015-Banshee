@@ -11,6 +11,11 @@ import org.team708.robot.commands.drivetrain.TurnToDegrees;
  */
 public class ClearStep extends CommandGroup {
     
+	private static final double stepLength = 25;
+	private static final double rotateSpeed = 1.0;
+	private static final double rotateDegrees = 90.0;
+	private static final double driveToAutoLength = 5.0;
+	
     public  ClearStep() {
        
     	// Add Commands here:
@@ -31,10 +36,10 @@ public class ClearStep extends CommandGroup {
         // arm.
     	
     	addSequential(new DeployHockeyStick());
-    	addSequential(new DriveStraightToEncoderDistance(25));
+    	addSequential(new DriveStraightToEncoderDistance(stepLength));
     	addSequential(new CloseHockeyStick());
-    	addSequential(new TurnToDegrees(1.0, 90.0));
-    	addSequential(new DriveStraightToEncoderDistance(5));
+    	addSequential(new TurnToDegrees(rotateSpeed, rotateDegrees));
+    	addSequential(new DriveStraightToEncoderDistance(driveToAutoLength));
     	
     }
 }
