@@ -3,6 +3,7 @@ package org.team708.robot.subsystems;
 import org.team708.robot.RobotMap;
 import org.team708.robot.commands.drivetrain.JoystickDrive;
 import org.team708.robot.util.IRSensor;
+import org.team708.robot.util.Math708;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -41,7 +42,8 @@ public class Drivetrain extends PIDSubsystem {
 	private BuiltInAccelerometer accelerometer;		// Accelerometer that is built into the roboRIO
 	private Gyro gyro;								// Gyro that is used for drift correction
 	
-	private IRSensor irSensor;						// IR Sensor that is used for short distancing		
+	private IRSensor irSensor;						// IR Sensor that is used for short distancing
+	public static final double DISTANCE_FROM_TOTE = 3.0;
 	
 	private boolean brake = true;		// Whether the talons should be in coast or brake mode (this could be important if a jerky robot causes things to topple
 	
@@ -155,6 +157,16 @@ public class Drivetrain extends PIDSubsystem {
     	gyro.reset();
     }
     
+    public double rotateByGyro(double targetAngle, double tolerance) {
+    	double difference = getAngle() - targetAngle;
+    	
+    	if (Math708.isWithinThreshold(getIRDistance(), targetAngle, tolerance)) {
+    		difference = 0.0;
+    	}
+    	
+    	return difference / targetAngle;
+    }
+    
     public double getIRDistance() {
     	return irSensor.getDistance();
     }
@@ -168,7 +180,7 @@ public class Drivetrain extends PIDSubsystem {
     public double moveByIR(double targetDistance, double tolerance) {
     	double difference = getIRDistance() - targetDistance;
     	
-    	if (Math.abs(difference) <= tolerance) {
+    	if (Math708.isWithinThreshold(getIRDistance(), targetDistance, tolerance)) {
     		difference = 0.0;
     	}
     	

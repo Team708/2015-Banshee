@@ -39,10 +39,10 @@ public class ToteElevator extends Subsystem {
 	public final double TOP_ENCODER_DISTANCE = 25.0;
 	public final double BOTTOM_ENCODER_DISTANCE = 0.0;
 	
-	//Analog sensors
-	private IRSensor toteElevatorIRSensor;
-	private final double HAS_TOTE_DISTANCE_CLOSE = 0;
-	private final double HAS_TOTE_DISTANCE_FAR = 3;
+//	//Analog sensors
+//	private IRSensor toteElevatorIRSensor;
+//	private final double HAS_TOTE_DISTANCE_CLOSE = 0;
+//	private final double HAS_TOTE_DISTANCE_FAR = 3;
 	
 	public ToteElevator() {
 		//Creates motors that run elevator
@@ -56,8 +56,8 @@ public class ToteElevator extends Subsystem {
 		toteElevatorEncoder.setReverseDirection(true);
 		
 		//Creates IR sensor
-		toteElevatorIRSensor = new IRSensor(RobotMap.toteElevatorIRSensor, IRSensor.GP2Y0A21YK0F);
-		toteElevatorIRSensor.setTriggerBounds(HAS_TOTE_DISTANCE_CLOSE, HAS_TOTE_DISTANCE_FAR, false);
+//		toteElevatorIRSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);
+//		toteElevatorIRSensor.setTriggerBounds(HAS_TOTE_DISTANCE_CLOSE, HAS_TOTE_DISTANCE_FAR, false);
 
 	}
 	/*
@@ -104,12 +104,12 @@ public class ToteElevator extends Subsystem {
 		}
 	}
 	
-	/*
-	 * Checks if tote is in elevator
-	 */
-	public boolean hasTote() {
-		return toteElevatorIRSensor.isTriggered();
-	}
+//	/*
+//	 * Checks if tote is in elevator
+//	 */
+//	public boolean hasTote() {
+//		return toteElevatorIRSensor.isTriggered();
+//	}
 	/*
 	 * Raises the tote
 	 */

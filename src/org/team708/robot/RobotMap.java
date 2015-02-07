@@ -44,7 +44,6 @@ public class RobotMap {
 	// Analog sensor IDs
 	public static final int gyro = 0;
 	public static final int drivetrainIRSensor = 1;
-	public static final int toteElevatorIRSensor = 1;
 	
 	//Hockey stick Solenoids
 	public static final int hockeySolenoidA = 4;

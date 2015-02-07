@@ -10,7 +10,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.team708.robot.commands.DoNothing;
+import org.team708.robot.commands.autonomous.DriveInSquare;
 import org.team708.robot.commands.autonomous.OneContainerOneTote;
+import org.team708.robot.commands.autonomous.ThreeTotes;
 import org.team708.robot.commands.visionProcessor.FollowYellowTote;
 import org.team708.robot.subsystems.Drivetrain;
 import org.team708.robot.subsystems.VisionProcessor;
@@ -29,10 +32,6 @@ import org.team708.robot.subsystems.ToteElevator;
  */
 public class Robot extends IterativeRobot {
     
-	public static Drivetrain drivetrain;
-	public static VisionProcessor visionProcessor;
-	public static OI oi;
-
 	//SmartDashboard
     Preferences robotPreferences;
     
@@ -40,11 +39,14 @@ public class Robot extends IterativeRobot {
     Timer statsTimer;                               // Timer used for Smart Dash statistics
     private final double sendStatsIntervalSec = .5;		// Interval between statistic reporting
     
-    public static final Intake intake = new Intake();
-	public static final HockeyStick hockeyStick = new HockeyStick();
-	public static final ToteElevator toteElevator = new ToteElevator();
-	public static final Claw claw = new Claw();
-	public static final ClawElevator clawElevator = new ClawElevator();
+    public static Drivetrain drivetrain;
+	public static VisionProcessor visionProcessor;
+    public static Intake intake;
+	public static HockeyStick hockeyStick;
+	public static ToteElevator toteElevator;
+	public static Claw claw;
+	public static ClawElevator clawElevator;
+	public static OI oi;
 
     Command autonomousCommand;
     SendableChooser autonomousMode;
@@ -59,8 +61,13 @@ public class Robot extends IterativeRobot {
         statsTimer.start();
         
         drivetrain = new Drivetrain();
-		oi = new OI();
 		visionProcessor = new VisionProcessor();
+		intake = new Intake();
+		hockeyStick = new HockeyStick();
+		toteElevator = new ToteElevator();
+		claw = new Claw();
+		clawElevator = new ClawElevator();
+		oi = new OI();
 		
 		SmartDashboard.putData(drivetrain);
 		LiveWindow.addActuator("PID", "PID", drivetrain.getPIDController());
@@ -134,15 +141,17 @@ public class Robot extends IterativeRobot {
     }
     
     private void queueAutonomousModes() {
-//    	autonomousMode.addDefault("Drive in Square", new DriveInSquare());
+    	autonomousMode.addDefault("Do Nothing", new DoNothing());
+    	autonomousMode.addObject("Drive in Square", new DriveInSquare());
     	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
-    	autonomousMode.addDefault("One Container", new OneContainerOneTote());
+    	autonomousMode.addObject("One Container", new OneContainerOneTote());
+    	autonomousMode.addObject("Three Totes", new ThreeTotes());
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
     }
     
     private void setPIDPreferences() {
-    	drivetrain.setPIDGain('p', robotPreferences.getDouble("P", drivetrain.getPIDGain('p')));
-    	drivetrain.setPIDGain('i', robotPreferences.getDouble("I", drivetrain.getPIDGain('i')));
-    	drivetrain.setPIDGain('d', robotPreferences.getDouble("D", drivetrain.getPIDGain('d')));
+//    	drivetrain.setPIDGain('p', robotPreferences.getDouble("P", drivetrain.getPIDGain('p')));
+//    	drivetrain.setPIDGain('i', robotPreferences.getDouble("I", drivetrain.getPIDGain('i')));
+//    	drivetrain.setPIDGain('d', robotPreferences.getDouble("D", drivetrain.getPIDGain('d')));
     }
 }

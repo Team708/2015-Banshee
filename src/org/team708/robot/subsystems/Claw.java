@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * A claw that picks up recycling containers with a motor, 
  * two arms that open and close off of a single solenoid
- * @param <OFF>
  */
 public class Claw extends Subsystem {
     

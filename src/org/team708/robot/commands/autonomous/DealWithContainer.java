@@ -1,49 +1,49 @@
-package org.team708.robot.commands;
+package org.team708.robot.commands.autonomous;
+
 import org.team708.robot.Robot;
-import org.team708.robot.util.Math708;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *Check
  */
-public class ToteElevatorDown extends Command {
+public class DealWithContainer extends Command {
 	
-	private final double threshold = 1;
+	private final double SMACK_TURN_ANGLE = 90.0;
+	private final double TURN_TOLERANCE = 5.0;
 
-    public ToteElevatorDown() {
+    public DealWithContainer() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.toteElevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.visionProcessor.processData();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (!Robot.toteElevator.elevatorDown) {
-    		Robot.toteElevator.lowerTote();
+    	if (Robot.visionProcessor.isHasContainer()) {
+    		Robot.hockeyStick.deployHockey();
+    		Robot.drivetrain.resetGyro();
+    		Robot.drivetrain.haloDrive(0.0, Robot.drivetrain.rotateByGyro(SMACK_TURN_ANGLE, TURN_TOLERANCE));
+    		Robot.drivetrain.haloDrive(0.0, Robot.drivetrain.rotateByGyro(0.0, TURN_TOLERANCE));
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Math708.isWithinThreshold(Robot.toteElevator.getEncoderDistance(), -Robot.toteElevator.TOP_ENCODER_DISTANCE, threshold)
-    				|| Robot.toteElevator.elevatorDown;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.toteElevator.stopTote();
-    	Robot.toteElevator.elevatorDown = true;
-    	Robot.toteElevator.setToteCount(0);
-    	Robot.toteElevator.resetEncoder();
+    	
     }
 
     // Called when another command which requires one or more of the same
-    // subsystems are scheduled to run
+    // subsystems is scheduled to run
     protected void interrupted() {
     	end();
     }
