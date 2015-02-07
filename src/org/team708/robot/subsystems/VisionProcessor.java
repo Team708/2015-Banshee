@@ -1,9 +1,6 @@
 package org.team708.robot.subsystems;
 
-import org.team708.robot.OI;
-import org.team708.robot.commands.visionProcessor.FollowYellowTote;
 import org.team708.robot.commands.visionProcessor.ProcessData;
-import org.team708.robot.util.Gamepad;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -20,7 +17,7 @@ public class VisionProcessor extends Subsystem {
 	private NumberArray toteBoundaries;
 	private NumberArray containerCrosshair;
 	private boolean hasTote;
-	private boolean hasContainer;
+	public boolean hasContainer;
 	
 	private final double imageWidth = 320;
 	private double centerX;
@@ -28,7 +25,7 @@ public class VisionProcessor extends Subsystem {
 	private double thresholdX = 20.0;
 	private double thresholdY = 0.1;
 	
-	private double containerX;
+//	private double containerX;
 	private double[] toteX = new double[2];
 	private double toteWidth;
 	
@@ -44,7 +41,7 @@ public class VisionProcessor extends Subsystem {
 		try {
 			roboRealmInfo.retrieveValue("CROSSHAIR_COORDINATES", containerCrosshair);
 			if (containerCrosshair.size() > 0) {
-				containerX = containerCrosshair.get(0);
+//				containerX = containerCrosshair.get(0);
 				hasContainer = true;
 			} else {
 				hasContainer = false;
