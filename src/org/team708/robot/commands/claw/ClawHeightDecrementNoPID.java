@@ -24,7 +24,7 @@ public class ClawHeightDecrementNoPID extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-    	// Checks to see if the elevaotr is within a tote height of the lower limit
+    	// Checks to see if the elevator is within a tote height of the lower limit
     	atLimit = (Robot.clawElevator.getPosition() <= 
     			(ClawElevator.LOWER_LIMIT + ClawElevator.TOTE_HEIGHT));
     	

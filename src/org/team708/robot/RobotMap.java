@@ -11,9 +11,6 @@ public class RobotMap {
 	public static final int driverGamepad = 1;
 	public static final int operatorGamepad = 2;
 	
-	// Relays
-	public static final int clawFingerMotorSpike = 2;
-	
 	// Drivetrain CAN Device IDs
 	public static final int drivetrainLeftMotorMaster = 11;
 	public static final int drivetrainLeftMotorSlave = 12;
@@ -24,12 +21,15 @@ public class RobotMap {
 	public static final int toteElevatorMotor1 = 21;
 	public static final int toteElevatorMotor2 = 22;
 	
-	// Digital Input Output
-	public static final int toteElevatorEncoderA = 2;
-	public static final int toteElevatorEncoderB = 3;
+	//Intake CAN Device IDs
+	public static final int intakeLeftMotor = 21;
+	public static final int intakeRightMotor = 22;		
 	
 	// Other CAN Talons
 	public static final int clawElevatorMotor = 31;
+	
+	// Relays
+	public static final int clawFingerMotorSpike = 2;
 	
 	// Digital IO
 	public static final int drivetrainEncoderA = 0;
@@ -37,26 +37,29 @@ public class RobotMap {
 	public static final int clawElevatorEncoderA = 4;
 	public static final int clawElevatorEncoderB = 5;
 
-	//Intake CAN Device IDs
-	public static final int intakeLeftMotor = 21;
-	public static final int intakeRightMotor = 22;		
-	
 	// Analog sensor IDs
 	public static final int gyro = 0;
 	public static final int drivetrainIRSensor = 1;
 	
-	//Hockey stick Solenoids
-	public static final int hockeySolenoidA = 4;
-	public static final int hockeySolenoidB = 5;
-	
 	// Digital I/O Ports
 	public static final int toteSwitch = 6;
 
-	// PCM Ports
+	// Digital Input Output
+	public static final int toteElevatorEncoderA = 2;
+	public static final int toteElevatorEncoderB = 3;
+	
+	//Hockey stick PCM Ports
+	public static final int hockeySolenoidA = 4;
+	public static final int hockeySolenoidB = 5;
+	
+	// Claw PCM Ports
 	public static final int clawDoubleSolenoidA = 2;
 	public static final int clawDoubleSolenoidB = 3;
-	public static final int clawWristDoubleSolenoidA = 4;
-	public static final int clawWristDoubleSolenoidB = 5;
+	public static final int clawWristDoubleSolenoidA = 6;
+	public static final int clawWristDoubleSolenoidB = 7;
+	
+	// PWM Ports
+	public static final int hockeyStickMotor = 3;
 	
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
