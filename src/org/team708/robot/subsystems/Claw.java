@@ -3,13 +3,14 @@ package org.team708.robot.subsystems;
 import org.team708.robot.RobotMap;
 import org.team708.robot.commands.claw.ClawMotorControl;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * A claw that picks up recycling containers with a motor, 
- * two arms that open and close off of a single solenoid
+ * two arms that open and close off of a single solenoid, and
+ * a rotary piston which controls the orientation of the arm
  */
 public class Claw extends Subsystem {
     
@@ -19,8 +20,8 @@ public class Claw extends Subsystem {
 	// Limit switch for the intake motors to stop
 	
 	// Double solenoids to control pistons
-	private DoubleSolenoid clawFingerSolenoid;
-	private DoubleSolenoid clawWristSolenoid;
+	private DoubleSolenoid clawFingerSolenoid;	// Pistons that open and close the claw
+	private DoubleSolenoid clawWristSolenoid;	// Rotary piston that changes the orientation of the claw
 	
 	// Finger solenoid states
 	private static final DoubleSolenoid.Value OPEN = DoubleSolenoid.Value.kReverse;
@@ -30,13 +31,13 @@ public class Claw extends Subsystem {
 	private static final DoubleSolenoid.Value VERTICAL = DoubleSolenoid.Value.kReverse;
 	private static final DoubleSolenoid.Value HORIZONTAL = DoubleSolenoid.Value.kForward;
 	
-	// Spike to move the wheels at the end of the claw
-	private Relay clawFingerSpike;
+	// Talon controlled motor to move the bands along the fingers of the claw
+	private CANTalon clawFingerMotor;
 	
-	// Finger spike states
-	private static final Relay.Value INTAKE = Relay.Value.kForward;
-	private static final Relay.Value DISPENSE = Relay.Value.kReverse;
-	private static final Relay.Value OFF = Relay.Value.kOff;
+	// Finger states (FWD/BACK/OFF)
+	private static final double INTAKE_SPEED = 1.0;
+	private static final double DISPENSE_SPEED = -1.0;
+	private static final double OFF_SPEED = 0.0;
 	
 	public Claw() {
 		
@@ -49,7 +50,7 @@ public class Claw extends Subsystem {
 		clawWristSolenoid.set(HORIZONTAL);
 	
 		// Makes the spike for the claw fingers
-		clawFingerSpike = new Relay(RobotMap.clawFingerMotorSpike);
+		clawFingerMotor = new CANTalon(RobotMap.clawFingerMotor);
 		
 	}
 	
@@ -60,68 +61,102 @@ public class Claw extends Subsystem {
     	setDefaultCommand(new ClawMotorControl());
     }
     
-    
-    // Self explanatory getter/setter methods.
-    
+    /**
+     * Opens the claw by setting the solenoid value
+     */
     public void openClaw() {
     	
     	clawFingerSolenoid.set(OPEN);
     
     }
     
+    /**
+     * Closes the claw by setting the solenoid value
+     */
     public void closeClaw() {
     	
     	clawFingerSolenoid.set(CLOSED);
     	
     }
     
+    /**
+     * Returns true if the claw is open
+     * @return Claw state as boolean
+     */
     public boolean isClawOpen() {
     	
     	return clawFingerSolenoid.get().equals(OPEN);
     
     }
     
+    /**
+     * Returns true if the claw is closed
+     * @return Claw state as boolean
+     */
     public boolean isClawClosed() {
     	return clawFingerSolenoid.get().equals(CLOSED);
     }
     
+    /**
+     * Makes the claw fingers perpendicular to the ground by setting the solenoid value
+     */
     public void setClawVertical() {
     	
     	clawWristSolenoid.set(VERTICAL);
     
     }
     
+    /**
+     * Makes the claw fingers parallel to the ground by setting the solenoid value
+     */
     public void setClawHorizontal() {
     	
     	clawWristSolenoid.set(HORIZONTAL);
     	
     }
     
+    /**
+     * Returns true if the claw is vertical
+     * @return Claw orientation
+     */
     public boolean isClawVertical() {
     	
     	return clawWristSolenoid.get().equals(VERTICAL);
     
     }
     
+    /**
+     * Returns true if the claw is horizontal
+     * @return Claw orientation
+     */
     public boolean isClawHorizontal() {
     	return clawWristSolenoid.get().equals(HORIZONTAL);
     }
     
+    /**
+     * Sets the motor to intake a container
+     */
     public void intake() {
     	
-    	clawFingerSpike.set(INTAKE);
+    	clawFingerMotor.set(INTAKE_SPEED);
     
     }
     
+    /**
+     * Sets the motor to dispense a container
+     */
     public void dispense() {
     	
-    	clawFingerSpike.set(DISPENSE);
+    	clawFingerMotor.set(DISPENSE_SPEED);
     	
     }
     
+    /**
+     * Stops the motor
+     */
     public void stopFingerMotor() {
     	
-    	clawFingerSpike.set(OFF);
+    	clawFingerMotor.set(OFF_SPEED);
     	
     }
     

@@ -12,7 +12,7 @@ public class RobotMap {
 	public static final int operatorGamepad = 2;
 	
 	// Relays
-	public static final int clawFingerMotorSpike = 2;
+	public static final int clawFingerMotor = 2;
 	
 	// Drivetrain CAN Device IDs
 	public static final int drivetrainLeftMotorMaster = 11;
