@@ -12,7 +12,7 @@ public class RobotMap {
 	public static final int operatorGamepad = 2;
 	
 	// Relays
-	public static final int clawFingerMotorSpike = 2;
+	public static final int clawFingerMotor = 2;
 	
 	// Drivetrain CAN Device IDs
 	public static final int drivetrainLeftMotorMaster = 11;
@@ -36,6 +36,9 @@ public class RobotMap {
 	public static final int drivetrainEncoderB = 1;
 	public static final int clawElevatorEncoderA = 4;
 	public static final int clawElevatorEncoderB = 5;
+	public static final int clawElevatorUpperLimit = 7;
+	public static final int clawElevatorSeries = 8;
+	public static final int clawElevatorLowerLimit = 9;
 
 	//Intake CAN Device IDs
 	public static final int intakeLeftMotor = 21;
@@ -55,8 +58,8 @@ public class RobotMap {
 	// PCM Ports
 	public static final int clawDoubleSolenoidA = 2;
 	public static final int clawDoubleSolenoidB = 3;
-	public static final int clawWristDoubleSolenoidA = 4;
-	public static final int clawWristDoubleSolenoidB = 5;
+	public static final int clawWristDoubleSolenoidA = 6;
+	public static final int clawWristDoubleSolenoidB = 7;
 	
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.

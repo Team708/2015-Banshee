@@ -1,20 +1,15 @@
-package org.team708.robot.commands.claw;
-
-import org.team708.robot.OI;
-import org.team708.robot.Robot;
-import org.team708.robot.util.Gamepad;
+package org.team708.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ClawMotorControl extends Command {
+public class RotateToTheta extends Command {
 
-    public ClawMotorControl() {
+    public RotateToTheta() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.claw);
     }
 
     // Called just before this Command runs the first time
@@ -23,18 +18,6 @@ public class ClawMotorControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	/* Sets the motor speed to forward if the joystick is held right
-    	 *  
-    	 */
-    	if(OI.operatorGamepad.getAxis(Gamepad.rightStick_X) >= .50) {
-    		Robot.claw.intake();
-    	} else if(OI.operatorGamepad.getAxis(Gamepad.rightStick_X) <= -.50) {
-    		Robot.claw.dispense();
-    	} else {
-    		Robot.claw.stopFingerMotor();
-    	}
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

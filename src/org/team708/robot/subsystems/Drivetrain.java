@@ -110,6 +110,7 @@ public class Drivetrain extends PIDSubsystem {
     		}
     		drivetrain.arcadeDrive(move, rotate);
     	}
+    	drivetrain.arcadeDrive(move, rotate);
     }
     
     /**
