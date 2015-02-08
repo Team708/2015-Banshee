@@ -5,7 +5,9 @@ import org.team708.robot.util.IRSensor;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -33,10 +35,11 @@ public class ToteElevator extends Subsystem {
 	//Digital sensors
 	private Encoder toteElevatorEncoder;
 	private final double PULSES_PER_REVOLUTION = 7.0;
-	private final double GEARING = (16 / 50);
+	private final double GEARING = 0.32;
+	private final double RADIUS = 2;
 	private double distancePerPulse;
 	
-	public final double TOP_ENCODER_DISTANCE = 25.0;
+	public final double TOP_ENCODER_DISTANCE = 2.0;
 	public final double BOTTOM_ENCODER_DISTANCE = 0.0;
 	
 //	//Analog sensors
@@ -51,7 +54,7 @@ public class ToteElevator extends Subsystem {
 		
 		//Creates encoders for elevator motors
 		toteElevatorEncoder = new Encoder(RobotMap.toteElevatorEncoderA, RobotMap.toteElevatorEncoderB);
-		distancePerPulse = PULSES_PER_REVOLUTION * GEARING;
+		distancePerPulse = (GEARING) / (PULSES_PER_REVOLUTION);
 		toteElevatorEncoder.setDistancePerPulse(distancePerPulse);
 		toteElevatorEncoder.setReverseDirection(true);
 		
@@ -79,6 +82,11 @@ public class ToteElevator extends Subsystem {
 	public double getEncoderRate() {
 		return toteElevatorEncoder.getRate();
 	}
+	
+	public double getEncoderCount() {
+		return toteElevatorEncoder.get();
+	}
+	
 	/*
 	 * Resets the encoder count
 	 */
@@ -150,11 +158,15 @@ public class ToteElevator extends Subsystem {
 	public void AToteDown() {
 
 	}
-		
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void sendToSmartDashboard() {
+    	SmartDashboard.putNumber("Encoder Count", getEncoderCount());
+    	SmartDashboard.putNumber("Encoder Distance", getEncoderDistance());
     }
 }
 

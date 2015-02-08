@@ -19,6 +19,7 @@ public class ToteElevatorDown extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,8 +31,9 @@ public class ToteElevatorDown extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Math708.isWithinThreshold(Robot.toteElevator.getEncoderDistance(), -Robot.toteElevator.TOP_ENCODER_DISTANCE, threshold)
-    				|| Robot.toteElevator.elevatorDown;
+//    	return Math708.isWithinThreshold(Robot.toteElevator.getEncoderDistance(), -Robot.toteElevator.TOP_ENCODER_DISTANCE, threshold)
+//    				|| Robot.toteElevator.elevatorDown;
+    	return Robot.toteElevator.getEncoderDistance() <= Robot.toteElevator.BOTTOM_ENCODER_DISTANCE;
     }
 
     // Called once after isFinished returns true
