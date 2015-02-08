@@ -139,6 +139,7 @@ public class Robot extends IterativeRobot {
             visionProcessor.sendToDashboard();
             intake.sendToDashboard();
             clawElevator.sendToDashboard();
+            toteElevator.sendToSmartDashboard();
         }
     }
     

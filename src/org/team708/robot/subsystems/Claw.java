@@ -50,7 +50,7 @@ public class Claw extends Subsystem {
 		clawWristSolenoid.set(HORIZONTAL);
 	
 		// Makes the spike for the claw fingers
-		clawFingerMotor = new CANTalon(RobotMap.clawFingerMotor);
+		clawFingerMotor = new CANTalon(RobotMap.clawFingerMotorSpike);
 		
 	}
 	

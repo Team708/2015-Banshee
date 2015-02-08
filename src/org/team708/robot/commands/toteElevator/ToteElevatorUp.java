@@ -1,6 +1,7 @@
 package org.team708.robot.commands.toteElevator;
 
 import org.team708.robot.Robot;
+import org.team708.robot.subsystems.Drivetrain;
 import org.team708.robot.util.Math708;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,21 +22,23 @@ public class ToteElevatorUp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.toteElevator.resetEncoder();
     	atToteLimitMax = (Robot.toteElevator.toteCount == Robot.toteElevator.TOTE_UPPER_LIMIT);
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		if (!atToteLimitMax) {
+		if (!atToteLimitMax && (Robot.drivetrain.getIRDistance() <= Drivetrain.DISTANCE_FROM_TOTE)) {
 			Robot.toteElevator.raiseTote();
 		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Math708.isWithinThreshold(Robot.toteElevator.getEncoderDistance(), Robot.toteElevator.TOP_ENCODER_DISTANCE, threshold)
-    			|| atToteLimitMax;
+//    	return Math708.isWithinThreshold(Robot.toteElevator.getEncoderDistance(), Robot.toteElevator.TOP_ENCODER_DISTANCE, threshold)
+//    			|| atToteLimitMax;
+    	return Robot.toteElevator.getEncoderDistance() >= Robot.toteElevator.TOP_ENCODER_DISTANCE;
     }
 
     // Called once after isFinished returns true
