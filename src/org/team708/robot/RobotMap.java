@@ -36,6 +36,9 @@ public class RobotMap {
 	public static final int drivetrainEncoderB = 1;
 	public static final int clawElevatorEncoderA = 4;
 	public static final int clawElevatorEncoderB = 5;
+	public static final int clawElevatorUpperLimit = 7;
+	public static final int clawElevatorSeries = 8;
+	public static final int clawElevatorLowerLimit = 9;
 
 	//Intake CAN Device IDs
 	public static final int intakeLeftMotor = 21;

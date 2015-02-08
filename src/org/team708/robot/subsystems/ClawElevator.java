@@ -3,78 +3,91 @@ package org.team708.robot.subsystems;
 import org.team708.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * 
+ *
  */
-public class ClawElevator extends PIDSubsystem {
-
-	// Sets PID variables
-	private static double Kp = 0.0;
-	private static double Ki = 0.0;
-	private static double Kd = 0.0;
-	
-	// Sets critical encoder constant values
-	public static final double UPPER_LIMIT = 60.0;
-	public static final double LOWER_LIMIT = 5.0;
-	public static final double TOTE_HEIGHT = 12.1;
-	
-	// Makes encoder
-	private Encoder clawElevatorEncoder;
-		
-	//Makes motor
-	private CANTalon clawElevatorMotor;
-	
-    // Initialize your subsystem here
-    public ClawElevator() {
-    	
-    	super(Kp, Ki, Kd);
-        
-    	// Use these to get going:
-        // setSetpoint() -  Sets where the PID controller should move the system
-        //                  to
-        // enable() - Enables the PID controller.
-
-    	// Creates the encoder and talon for the elevator
-    	clawElevatorEncoder = new Encoder(RobotMap.clawElevatorEncoderA, RobotMap.clawElevatorEncoderB);
-    	clawElevatorMotor = new CANTalon(RobotMap.clawElevatorMotor);
-    	
-    	// Sets the PID parameter to distance
-    	clawElevatorEncoder.setPIDSourceParameter(PIDSource.PIDSourceParameter.kDistance);
-    	
-    	// Resets the encoder on initialization 
-    	clawElevatorEncoder.reset();
-    	
-    	// Sets up the PID parameter
-    	setSetpoint(0.0);
-    	disable();
-    	
-    }
+public class ClawElevator extends Subsystem {
     
-    public void initDefaultCommand() {
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
+	
+	public static final int UPPER_LIMIT = 5;
+	public static final int LOWER_LIMIT = 0;
+	
+	private static final double UP_SPEED = 1.0;
+	private static final double DOWN_SPEED = -1.0;
+	private static final double STOPPED_SPEED = 0.0;
+	
+	private int containerHeight;
+	
+	private static DigitalInput upperSwitch;
+	private static DigitalInput switchSeries;
+	private static DigitalInput lowerSwitch;
+	
+	private static CANTalon motor;
+	
+	public ClawElevator() {
+		
+		upperSwitch = new DigitalInput(RobotMap.clawElevatorUpperLimit);
+		switchSeries = new DigitalInput(RobotMap.clawElevatorSeries);
+		lowerSwitch = new DigitalInput(RobotMap.clawElevatorLowerLimit);
+		
+		motor = new CANTalon(RobotMap.clawElevatorMotor);
+		
+	}
+
+	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    
-    public void setElevatorSpeed_Manual(double input) {
-    	
-    	clawElevatorMotor.set(input);
-    	
-    }
-    
-    protected double returnPIDInput() {
-        // Return your input value for the PID loop
-        // e.g. a sensor, like a potentiometer:
-        // yourPot.getAverageVoltage() / kYourMaxVoltage;
-    	return clawElevatorEncoder.getDistance();
-    }
-    
-    protected void usePIDOutput(double output) {
-        // Use output to drive your system, like a motor
-        // e.g. yourMotor.set(output);
-    	clawElevatorMotor.set(output);
-    }
+	
+
+	public boolean getUpperSwitch() {
+		return upperSwitch.get();
+	}
+	
+	public boolean getSeries() {
+		return switchSeries.get();
+	}
+	
+	public boolean getLowerSwitch() {
+		return lowerSwitch.get();
+	}
+	
+	public int getContainerHeight() {
+		return containerHeight;
+	}
+	
+	public void incrementContainerHeight() {
+		containerHeight++;
+	}
+	
+	public void decrementContainerHeight() {
+		containerHeight--;
+	}
+	
+	public void setContainerHeightMax() {
+		containerHeight = UPPER_LIMIT;
+	}
+	
+	public void setContainerHeightMin() {
+		containerHeight = LOWER_LIMIT;
+	}
+	
+	public void moveUp() {
+		motor.set(UP_SPEED);
+	}
+	
+	public void moveDown() {
+		motor.set(DOWN_SPEED);
+	}
+	
+	public void stop() {
+		motor.set(STOPPED_SPEED);
+	}
+	
 }
+

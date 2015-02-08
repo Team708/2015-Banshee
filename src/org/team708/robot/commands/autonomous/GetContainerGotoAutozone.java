@@ -1,6 +1,6 @@
 package org.team708.robot.commands.autonomous;
 
-import org.team708.robot.commands.claw.ClawHeightIncrement;
+import org.team708.robot.commands.claw.IncrementClawHeight;
 import org.team708.robot.commands.claw.ToggleClawOpen;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 
@@ -19,7 +19,7 @@ public class GetContainerGotoAutozone extends CommandGroup {
     	
     	addSequential(new ToggleClawOpen());
     	addSequential(new DriveStraightToEncoderDistance(driveDist));
-    	addSequential(new ClawHeightIncrement());
+    	addSequential(new IncrementClawHeight(1));
     	addSequential(new ToggleClawOpen());
     	
         // e.g. addSequential(new Command1());
