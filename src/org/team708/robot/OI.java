@@ -1,5 +1,9 @@
 package org.team708.robot;
 
+
+import or.team708.robot.util.triggers.AxisDown;
+import or.team708.robot.util.triggers.AxisUp;
+
 import org.team708.robot.commands.claw.ToggleClawOpen;
 import org.team708.robot.commands.claw.ToggleWrist;
 import org.team708.robot.commands.clawElevator.DecrementClawOne;
@@ -38,8 +42,9 @@ public class OI {
 	/*
 	 * Operator Button Assignment
 	 */
-//	private static final int toteUpButton = Gamepad.button_Y;
-//	private static final int toteDownButton = Gamepad.button_A;
+	private static final int toteUpAxis = Gamepad.leftStick_Y;
+	private static final int toteDownAxis = Gamepad.leftStick_Y;
+
 	public static final int toggleClawOpenButton = Gamepad.button_R_Shoulder;
 	public static final int toggleWristPositionButton = Gamepad.button_L_Shoulder;
 	public static final int clawHeightIncrementButton = Gamepad.button_Y;
@@ -56,8 +61,8 @@ public class OI {
 	/*
 	 * Operator Button Commands
 	 */
-//	private static final Button toteUp = new JoystickButton(operatorGamepad, toteUpButton);
-//	private static final Button toteDown = new JoystickButton(operatorGamepad, toteDownButton);
+	private static final AxisUp toteUp = new AxisUp(operatorGamepad, toteUpAxis);
+	private static final AxisDown toteDown = new AxisDown(operatorGamepad, toteDownAxis);
 	public static final Button toggleClawOpen = new JoystickButton(operatorGamepad, toggleClawOpenButton);				// Opens and closes the claw on a toggle
 	public static final Button toggleWristPosition = new JoystickButton(operatorGamepad, toggleWristPositionButton);	// Toggles the wrist position (horizontal/vertical)
 	public static final Button clawHeightIncrement = new JoystickButton(operatorGamepad, clawHeightIncrementButton);	// Increases the claw height by the height of a tote
@@ -80,10 +85,10 @@ public class OI {
 		 */
 		toggleClawOpen.whenPressed(new ToggleClawOpen());
 		toggleWristPosition.whenPressed(new ToggleWrist());
+		toteUp.whenActive(new ToteElevatorUp());
+		toteDown.whenActive(new ToteElevatorDown());
 		clawHeightIncrement.whenPressed(new IncrementClawOne());
 		clawHeightDecrement.whenPressed(new DecrementClawOne());
-//		toteUp.whenPressed(new ToteElevatorUp());
-//		toteDown.whenPressed(new ToteElevatorDown());
 	}
 	
     //// CREATING BUTTONS
