@@ -4,7 +4,9 @@ import org.team708.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * A lead screw based elevator to move the claw and container up and down
@@ -67,7 +69,7 @@ public class ClawElevator extends Subsystem {
 	 * @return On series
 	 */
 	public boolean getSeries() {
-		return switchSeries.get();
+		return !switchSeries.get();		// Inverse because the switch series is a series circuit running true when open
 	}
 	
 	/**
@@ -137,5 +139,10 @@ public class ClawElevator extends Subsystem {
 		motor.set(STOPPED_SPEED);
 	}
 	
+	public void sendToDashboard() {
+		SmartDashboard.putBoolean("Lower Switch", getLowerSwitch());
+		SmartDashboard.putBoolean("Switch Series", getSeries());
+		SmartDashboard.putBoolean("Upper Switch", getUpperSwitch());
+	}
 }
 

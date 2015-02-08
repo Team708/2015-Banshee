@@ -37,7 +37,7 @@ public class Robot extends IterativeRobot {
     
     //creates timer for the SmartDashboard stat sending
     Timer statsTimer;                               // Timer used for Smart Dash statistics
-    private final double sendStatsIntervalSec = .5;		// Interval between statistic reporting
+    private final double sendStatsIntervalSec = .25;		// Interval between statistic reporting
     
     public static Drivetrain drivetrain;
 	public static VisionProcessor visionProcessor;
@@ -69,7 +69,8 @@ public class Robot extends IterativeRobot {
 		clawElevator = new ClawElevator();
 		oi = new OI();
 		
-		SmartDashboard.putData(drivetrain);
+		sendDashboardSubsystems();
+		
 		LiveWindow.addActuator("PID", "PID", drivetrain.getPIDController());
 		
         // instantiate the command used for the autonomous period
@@ -137,6 +138,7 @@ public class Robot extends IterativeRobot {
             drivetrain.sendToDashboard();
             visionProcessor.sendToDashboard();
             intake.sendToDashboard();
+            clawElevator.sendToDashboard();
         }
     }
     
@@ -147,6 +149,16 @@ public class Robot extends IterativeRobot {
     	autonomousMode.addObject("One Container", new OneContainerOneTote());
     	autonomousMode.addObject("Three Totes", new ThreeTotes());
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
+    }
+    
+    private void sendDashboardSubsystems() {
+    	SmartDashboard.putData(drivetrain);
+		SmartDashboard.putData(clawElevator);
+		SmartDashboard.putData(claw);
+		SmartDashboard.putData(toteElevator);
+		SmartDashboard.putData(visionProcessor);
+		SmartDashboard.putData(hockeyStick);
+		SmartDashboard.putData(intake);
     }
     
     private void setPIDPreferences() {
