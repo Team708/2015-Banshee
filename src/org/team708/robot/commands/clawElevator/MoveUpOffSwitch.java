@@ -1,49 +1,47 @@
-package org.team708.robot.commands.claw;
+package org.team708.robot.commands.clawElevator;
 
-import org.team708.robot.OI;
 import org.team708.robot.Robot;
-import org.team708.robot.util.Gamepad;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ClawMotorControl extends Command {
+public class MoveUpOffSwitch extends Command {
+	
+	private boolean atUpperLimit;
+	private boolean atLowerLimit;
 
-    public ClawMotorControl() {
+    public MoveUpOffSwitch() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.claw);
+        requires(Robot.clawElevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	atUpperLimit = Robot.clawElevator.getUpperSwitch();
+    	atLowerLimit = Robot.clawElevator.getLowerSwitch();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	/* Sets the motor speed to forward if the joystick is held right
-    	 *  
-    	 */
-    	if(OI.operatorGamepad.getAxis(Gamepad.rightStick_X) >= .50) {
-    		Robot.claw.intake();
-    	} else if(OI.operatorGamepad.getAxis(Gamepad.rightStick_X) <= -.50) {
-    		Robot.claw.dispense();
-    	} else {
-    		Robot.claw.stopFingerMotor();
+    	if (!atUpperLimit) {
+    		Robot.clawElevator.moveUp();
     	}
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	if (atLowerLimit) {
+    		return !Robot.clawElevator.getLowerSwitch();
+    	} else {
+    		return !Robot.clawElevator.getSeries();
+    	}
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.clawElevator.stop();
     }
 
     // Called when another command which requires one or more of the same

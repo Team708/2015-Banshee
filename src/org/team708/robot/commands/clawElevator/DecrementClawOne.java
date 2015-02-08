@@ -1,27 +1,18 @@
-package org.team708.robot.commands.autonomous;
-
-import org.team708.robot.commands.claw.ToggleClawOpen;
-import org.team708.robot.commands.clawElevator.IncrementClawOne;
-import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
+package org.team708.robot.commands.clawElevator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class GetContainerGotoAutozone extends CommandGroup {
+public class DecrementClawOne extends CommandGroup {
     
-	private final int driveDist = 17;
-	
-    public  GetContainerGotoAutozone() {
+    public  DecrementClawOne() {
+    	
+    	addSequential(new MoveDownOffSwitch());
+    	addSequential(new DecrementOneClawHeight());
+    	
         // Add Commands here:
-    	
-    	
-    	addSequential(new ToggleClawOpen());
-    	addSequential(new DriveStraightToEncoderDistance(driveDist));
-    	addSequential(new IncrementClawOne());
-    	addSequential(new ToggleClawOpen());
-    	
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.

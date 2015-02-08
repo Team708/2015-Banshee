@@ -1,12 +1,15 @@
 package org.team708.robot;
 
+
 import or.team708.robot.util.triggers.AxisDown;
 import or.team708.robot.util.triggers.AxisUp;
 
-import org.team708.robot.commands.claw.IncrementClawHeight;
-import org.team708.robot.commands.claw.DecrementClawHeight;
 import org.team708.robot.commands.claw.ToggleClawOpen;
 import org.team708.robot.commands.claw.ToggleWrist;
+import org.team708.robot.commands.clawElevator.DecrementClawOne;
+import org.team708.robot.commands.clawElevator.DecrementOneClawHeight;
+import org.team708.robot.commands.clawElevator.IncrementClawOne;
+import org.team708.robot.commands.clawElevator.IncrementOneClawHeight;
 import org.team708.robot.commands.drivetrain.ToggleBrakeMode;
 import org.team708.robot.commands.hockeyStick.ToggleHockeyStick;
 import org.team708.robot.commands.intake.ToggleDirection;
@@ -41,6 +44,7 @@ public class OI {
 	 */
 	private static final int toteUpAxis = Gamepad.leftStick_Y;
 	private static final int toteDownAxis = Gamepad.leftStick_Y;
+
 	public static final int toggleClawOpenButton = Gamepad.button_R_Shoulder;
 	public static final int toggleWristPositionButton = Gamepad.button_L_Shoulder;
 	public static final int clawHeightIncrementButton = Gamepad.button_Y;
@@ -81,10 +85,10 @@ public class OI {
 		 */
 		toggleClawOpen.whenPressed(new ToggleClawOpen());
 		toggleWristPosition.whenPressed(new ToggleWrist());
-		clawHeightIncrement.whenPressed(new IncrementClawHeight(1));
-		clawHeightDecrement.whenPressed(new DecrementClawHeight(1));
 		toteUp.whenActive(new ToteElevatorUp());
 		toteDown.whenActive(new ToteElevatorDown());
+		clawHeightIncrement.whenPressed(new IncrementClawOne());
+		clawHeightDecrement.whenPressed(new DecrementClawOne());
 	}
 	
     //// CREATING BUTTONS
