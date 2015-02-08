@@ -58,8 +58,8 @@ public class RobotMap {
 	// PCM Ports
 	public static final int clawDoubleSolenoidA = 2;
 	public static final int clawDoubleSolenoidB = 3;
-	public static final int clawWristDoubleSolenoidA = 4;
-	public static final int clawWristDoubleSolenoidB = 5;
+	public static final int clawWristDoubleSolenoidA = 6;
+	public static final int clawWristDoubleSolenoidB = 7;
 	
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.

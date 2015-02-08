@@ -1,7 +1,7 @@
 package org.team708.robot;
 
-import org.team708.robot.commands.claw.ClawHeightDecrementNoPID;
-import org.team708.robot.commands.claw.ClawHeightIncrementNoPID;
+import org.team708.robot.commands.claw.IncrementClawHeight;
+import org.team708.robot.commands.claw.DecrementClawHeight;
 import org.team708.robot.commands.claw.ToggleClawOpen;
 import org.team708.robot.commands.claw.ToggleWrist;
 import org.team708.robot.commands.drivetrain.ToggleBrakeMode;
@@ -78,10 +78,10 @@ public class OI {
 		 */
 		toggleClawOpen.whenPressed(new ToggleClawOpen());
 		toggleWristPosition.whenPressed(new ToggleWrist());
-		clawHeightIncrement.whenPressed(new ClawHeightIncrementNoPID());
-		clawHeightDecrement.whenPressed(new ClawHeightDecrementNoPID());
-		toteUp.whenPressed(new ToteElevatorUp());
-		toteDown.whenPressed(new ToteElevatorDown());
+		clawHeightIncrement.whenPressed(new IncrementClawHeight(1));
+		clawHeightDecrement.whenPressed(new DecrementClawHeight(1));
+//		toteUp.whenPressed(new ToteElevatorUp());
+//		toteDown.whenPressed(new ToteElevatorDown());
 	}
 	
     //// CREATING BUTTONS
