@@ -17,7 +17,7 @@ public class AxisDown extends Trigger {
 		axis = targetAxis;
 	}
 		
-	    public boolean get() {
-	        return (gamepad.getAxis(axis) <= -.50);
-	    }
+    public boolean get() {
+        return (gamepad.getAxis(axis) <= -.50);
+    }
 }
