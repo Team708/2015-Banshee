@@ -1,8 +1,8 @@
 package org.team708.robot;
 
 
-import or.team708.robot.util.triggers.AxisDown;
-import or.team708.robot.util.triggers.AxisUp;
+import org.team708.robot.util.triggers.AxisDown;
+import org.team708.robot.util.triggers.AxisUp;
 
 import org.team708.robot.commands.claw.ToggleClawOpen;
 import org.team708.robot.commands.claw.ToggleWrist;
