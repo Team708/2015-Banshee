@@ -1,15 +1,10 @@
 package org.team708.robot;
 
 
-import org.team708.robot.util.triggers.AxisDown;
-import org.team708.robot.util.triggers.AxisUp;
-
 import org.team708.robot.commands.claw.ToggleClawOpen;
 import org.team708.robot.commands.claw.ToggleWrist;
 import org.team708.robot.commands.clawElevator.DecrementClawOne;
-import org.team708.robot.commands.clawElevator.DecrementOneClawHeight;
 import org.team708.robot.commands.clawElevator.IncrementClawOne;
-import org.team708.robot.commands.clawElevator.IncrementOneClawHeight;
 import org.team708.robot.commands.drivetrain.ToggleBrakeMode;
 import org.team708.robot.commands.hockeyStick.ToggleHockeyStick;
 import org.team708.robot.commands.intake.ToggleDirection;
@@ -17,6 +12,8 @@ import org.team708.robot.commands.intake.TogglePower;
 import org.team708.robot.commands.toteElevator.ToteElevatorDown;
 import org.team708.robot.commands.toteElevator.ToteElevatorUp;
 import org.team708.robot.util.Gamepad;
+import org.team708.robot.util.triggers.AxisDown;
+import org.team708.robot.util.triggers.AxisUp;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

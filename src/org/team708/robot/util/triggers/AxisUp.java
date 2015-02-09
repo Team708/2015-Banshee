@@ -1,4 +1,4 @@
-package or.team708.robot.util.triggers;
+package org.team708.robot.util.triggers;
 
 import org.team708.robot.util.Gamepad;
 
