@@ -1,10 +1,10 @@
 
 package org.team708.robot.commands.autonomous;
 
+import org.team708.robot.Constants;
 import org.team708.robot.commands.drivetrain.DriveToIRDistance;
+import org.team708.robot.commands.indexer.IndexerUp;
 import org.team708.robot.commands.intake.IntakeTote;
-import org.team708.robot.commands.toteElevator.ToteElevatorUp;
-import org.team708.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -17,9 +17,9 @@ public class OneContainerOneTote extends CommandGroup {
     
     public  OneContainerOneTote() {
     	
-    	addSequential(new DriveToIRDistance(Drivetrain.DISTANCE_FROM_TOTE, irTolerance));
+    	addSequential(new DriveToIRDistance(Constants.IR_HAS_TOTE_DISTANCE, irTolerance));
     	addSequential(new IntakeTote());
-    	addSequential(new ToteElevatorUp());
+    	addSequential(new IndexerUp());
     	addSequential(new DealWithContainer());
     	
         // Add Commands here:

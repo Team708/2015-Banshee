@@ -3,7 +3,6 @@ package org.team708.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.DigitalInput;
 
 import org.team708.robot.RobotMap;
 import org.team708.robot.commands.intake.IntepretIntake;
@@ -11,27 +10,20 @@ import org.team708.robot.commands.intake.IntepretIntake;
 /**
  * This is the subsystem for the tote intake system.
  * It uses two motors powered by CAN Talons and has a switch for when it has one.
- * @author Nam Tran, Alex Tysak, Tommy Zhao
- *
+ * @author omn0mn0m
+ * @author frakerman1
+ * @author wutnut
  */
 public class Intake extends Subsystem {
 
 	private CANTalon leftMotor, rightMotor;		// Motors for spinning the intake
 	
-	private DigitalInput toteSwitch;			// Switch to detect when has switch
-	
 	private boolean on = false;
 	private boolean in = true;
 	
-	public static final double IN_SPEED = 1.0;
-	public static final double OUT_SPEED = -1.0;
-	
 	public Intake() {
-		
 		leftMotor = new CANTalon(RobotMap.intakeLeftMotor);
 		rightMotor = new CANTalon(RobotMap.intakeRightMotor);
-		
-		toteSwitch = new DigitalInput(RobotMap.toteSwitch);
 	}
 
 	protected void initDefaultCommand() {
@@ -59,12 +51,8 @@ public class Intake extends Subsystem {
 		this.in = in;
 	}
 	
-	public boolean isToteSwitchTriggered() {
-		return !toteSwitch.get(); // Switched because the limit switch is wired to be true when not pressed and we want the opposite result
-	}
-	
 	public void sendToDashboard() {
-		SmartDashboard.putBoolean("Intake Power", on);
-		SmartDashboard.putBoolean("Intake In", in);
+		SmartDashboard.putBoolean("Intake Power", isOn());
+		SmartDashboard.putBoolean("Intake In", isIn());
 	}
 }

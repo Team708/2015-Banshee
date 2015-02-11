@@ -1,31 +1,32 @@
-package org.team708.robot.commands.toteElevator;
+package org.team708.robot.commands.indexer;
+
+import org.team708.robot.Constants;
 import org.team708.robot.Robot;
-import org.team708.robot.util.Math708;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ToteElevatorDown extends Command {
+public class IndexerDown extends Command {
 	
 	private final double threshold = 1;
 
-    public ToteElevatorDown() {
+    public IndexerDown() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.toteElevator);
+    	requires(Robot.indexer);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	Robot.indexer.resetEncoder();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (!Robot.toteElevator.elevatorDown) {
-    		Robot.toteElevator.lowerTote();
+    	if (!Robot.indexer.indexerDown) {
+    		Robot.indexer.lowerIndexer();
     	}
     }
 
@@ -33,15 +34,15 @@ public class ToteElevatorDown extends Command {
     protected boolean isFinished() {
 //    	return Math708.isWithinThreshold(Robot.toteElevator.getEncoderDistance(), -Robot.toteElevator.TOP_ENCODER_DISTANCE, threshold)
 //    				|| Robot.toteElevator.elevatorDown;
-    	return Robot.toteElevator.getEncoderDistance() <= Robot.toteElevator.BOTTOM_ENCODER_DISTANCE;
+    	return Robot.indexer.getEncoderDistance() <= -Constants.TOTE_HEIGHT;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.toteElevator.stopTote();
-    	Robot.toteElevator.elevatorDown = true;
-    	Robot.toteElevator.setToteCount(0);
-    	Robot.toteElevator.resetEncoder();
+    	Robot.indexer.stopIndexer();
+    	Robot.indexer.indexerDown = true;
+    	Robot.indexer.setToteCount(0);
+    	Robot.indexer.resetEncoder();
     }
 
     // Called when another command which requires one or more of the same

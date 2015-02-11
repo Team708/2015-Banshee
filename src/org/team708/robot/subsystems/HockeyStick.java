@@ -1,5 +1,6 @@
 package org.team708.robot.subsystems;
 
+import org.team708.robot.Constants;
 import org.team708.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -9,15 +10,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * This is the subsystem for the hockey stick.
  * It uses a double solenoid to extend and retract it.
- * @author Alex Tysak and Nam Tran
+ * @author frakerman1
+ * @author omn0mn0m
  *
  */
 public class HockeyStick extends Subsystem {
 
 	private final DoubleSolenoid hockeySolenoid;		//Hockey stick solenoid
-	
-	public final DoubleSolenoid.Value DEPLOYED = DoubleSolenoid.Value.kForward;		//Extended Solenoid
-	public final DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;	//Retracted Solenoid
 	
 	private final Talon hockeyStickMotor;
 	
@@ -29,16 +28,24 @@ public class HockeyStick extends Subsystem {
 	
 	//extends the hockey solenoid
 	public void deployHockey(){
-		hockeySolenoid.set(DEPLOYED);
+		hockeySolenoid.set(Constants.DEPLOYED);
 	}
 	
 	//retracts the hockey solenoid
 	public void retractHockey(){
-		hockeySolenoid.set(RETRACTED);
+		hockeySolenoid.set(Constants.RETRACTED);
 	}
 	
 	public DoubleSolenoid.Value getSolenoidValue() {
 		return hockeySolenoid.get();
+	}
+	
+	public void spinOut() {
+		hockeyStickMotor.set(Constants.MOTOR_FORWARD);
+	}
+	
+	public void spinIn() {
+		hockeyStickMotor.set(Constants.MOTOR_REVERSE);
 	}
 	
 	public void initDefaultCommand() {
