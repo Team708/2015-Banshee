@@ -1,14 +1,20 @@
 package org.team708.robot.commands.hockeyStick;
 
+import org.team708.robot.Constants;
 import org.team708.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Hockey stick command to toggle if it is in or out.
+ * @author frakerman1
+ * @author omn0mn0m
  */
 public class ToggleHockeyStick extends Command {
 
+	/**
+	 * Constructor
+	 */
     public ToggleHockeyStick() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -20,7 +26,7 @@ public class ToggleHockeyStick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Robot.hockeyStick.getSolenoidValue().equals(Robot.hockeyStick.DEPLOYED)) {
+    	if (Robot.hockeyStick.getSolenoidValue().equals(Constants.DEPLOYED)) {
     		Robot.hockeyStick.retractHockey();
     	} else {
     		Robot.hockeyStick.deployHockey();

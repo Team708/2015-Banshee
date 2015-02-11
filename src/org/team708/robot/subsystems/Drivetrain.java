@@ -1,5 +1,6 @@
 package org.team708.robot.subsystems;
 
+import org.team708.robot.Constants;
 import org.team708.robot.RobotMap;
 import org.team708.robot.commands.drivetrain.JoystickDrive;
 import org.team708.robot.util.IRSensor;
@@ -29,7 +30,6 @@ public class Drivetrain extends PIDSubsystem {
 	// Variables specific for drivetrain PID loop
 	private double moveSpeed = 0.0;
 	private double pidOutput = 0.0;
-	private static final double tankControlTolerance = .025;
 	
 	// Variable to determine which side the encoder is on
 	private static final boolean isEncoderLeft = true;
@@ -43,7 +43,6 @@ public class Drivetrain extends PIDSubsystem {
 	private Gyro gyro;								// Gyro that is used for drift correction
 	
 	private IRSensor irSensor;						// IR Sensor that is used for short distancing
-	public static final double DISTANCE_FROM_TOTE = 3.0;
 	
 	private boolean brake = true;		// Whether the talons should be in coast or brake mode (this could be important if a jerky robot causes things to topple
 	
@@ -120,7 +119,7 @@ public class Drivetrain extends PIDSubsystem {
      */
     public void tankDrive(double left, double right) {
     	// Checks whether drift correction is needed
-    	if (Math.abs(left - right) < tankControlTolerance && left != 0.0 && right != 0.0) {
+    	if (Math.abs(left - right) < Constants.TANK_STICK_TOLERANCE && left != 0.0 && right != 0.0) {
     		// Enables the PID controller if it is not already
     		if (!getPIDController().isEnable()) {
     			gyro.reset();
@@ -139,8 +138,8 @@ public class Drivetrain extends PIDSubsystem {
     }
     
     public void stop() {
-    	leftMaster.set(0.0);
-    	rightMaster.set(0.0);
+    	leftMaster.set(Constants.MOTOR_OFF);
+    	rightMaster.set(Constants.MOTOR_OFF);
     }
     
     /**
@@ -169,7 +168,7 @@ public class Drivetrain extends PIDSubsystem {
     }
     
     public double getIRDistance() {
-    	return irSensor.getDistance();
+    	return irSensor.getClippedDistance();
     }
     
     /**
@@ -274,18 +273,18 @@ public class Drivetrain extends PIDSubsystem {
      */
     public void setPIDGain(char gain, double value) {
     	switch(gain) {
-		case 'p':
-			Kp = value;
-			break;
-		case 'i':
-			Ki = value;
-			break;
-		case 'd':
-			Kd = value;
-			break;
-		default:
-			break;
-	}
+			case 'p':
+				Kp = value;
+				break;
+			case 'i':
+				Ki = value;
+				break;
+			case 'd':
+				Kd = value;
+				break;
+			default:
+				break;
+    	}
     }
     
     /**

@@ -47,6 +47,20 @@ public abstract class DistanceSensor{
      * @return
      */
     public abstract double getDistance();
+    
+    /**
+     * Returns the distance, corrected for weird voltage values
+     * @return
+     */
+    public double getClippedDistance() {
+    	double distance = getDistance();
+    	
+    	if (distance < 0.0) {
+    		return -distance;
+    	} else {
+    		return distance;
+    	}
+    }
 
     /**
      * Returns the raw voltage read from this sensor.

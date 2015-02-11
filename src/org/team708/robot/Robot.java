@@ -14,6 +14,8 @@ import org.team708.robot.commands.DoNothing;
 import org.team708.robot.commands.autonomous.DriveInSquare;
 import org.team708.robot.commands.autonomous.OneContainerOneTote;
 import org.team708.robot.commands.autonomous.ThreeTotes;
+import org.team708.robot.commands.indexer.IndexerDown;
+import org.team708.robot.commands.indexer.IndexerUp;
 import org.team708.robot.commands.visionProcessor.FollowYellowTote;
 import org.team708.robot.subsystems.Drivetrain;
 import org.team708.robot.subsystems.VisionProcessor;
@@ -21,7 +23,7 @@ import org.team708.robot.subsystems.Claw;
 import org.team708.robot.subsystems.ClawElevator;
 import org.team708.robot.subsystems.HockeyStick;
 import org.team708.robot.subsystems.Intake;
-import org.team708.robot.subsystems.ToteElevator;
+import org.team708.robot.subsystems.Indexer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,21 +31,18 @@ import org.team708.robot.subsystems.ToteElevator;
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource
  * directory.
+ * 
+ * @author omn0mn0m
  */
 public class Robot extends IterativeRobot {
     
-	//SmartDashboard
-    Preferences robotPreferences;
-    
-    //creates timer for the SmartDashboard stat sending
-    Timer statsTimer;                               // Timer used for Smart Dash statistics
-    private final double sendStatsIntervalSec = .25;		// Interval between statistic reporting
+    Timer statsTimer;										// Timer used for Smart Dash statistics
     
     public static Drivetrain drivetrain;
 	public static VisionProcessor visionProcessor;
     public static Intake intake;
 	public static HockeyStick hockeyStick;
-	public static ToteElevator toteElevator;
+	public static Indexer indexer;
 	public static Claw claw;
 	public static ClawElevator clawElevator;
 	public static OI oi;
@@ -56,34 +55,37 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	//initialize timer periodic debug messages
-        statsTimer = new Timer();
-        statsTimer.start();
-        
+        statsTimer = new Timer();	// Initialises the timer for sending Smart Dashboard data
+        statsTimer.start();			// Starts the timer for the Smart Dashboard
+        // Subsystem Initialisation
         drivetrain = new Drivetrain();
 		visionProcessor = new VisionProcessor();
 		intake = new Intake();
 		hockeyStick = new HockeyStick();
-		toteElevator = new ToteElevator();
+		indexer = new Indexer();
 		claw = new Claw();
 		clawElevator = new ClawElevator();
-		oi = new OI();
 		
-		sendDashboardSubsystems();
+		oi = new OI();	// Initialises the OI. This MUST BE LAST or a NullPointerException will be thrown
 		
-		LiveWindow.addActuator("PID", "PID", drivetrain.getPIDController());
+		sendDashboardSubsystems();	// Sends each subsystem's currently running command to the Smart Dashboard
 		
-        // instantiate the command used for the autonomous period
-		autonomousMode = new SendableChooser();
-		queueAutonomousModes();
-		setPIDPreferences();
+		autonomousMode = new SendableChooser();		// Initialises the Autonomous selection box
+		queueAutonomousModes();						// Adds autonomous modes to the selection box
+		setPIDPreferences();						// Adds PID gain constants to the Robot Preferences
     }
 	
+    /**
+     * Runs periodically while the robot is enabled
+     */
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		sendStatistics();
 	}
 
+	/**
+	 * Runs at the start of autonomous mode
+	 */
     public void autonomousInit() {
         // schedule the autonomous command (example)
     	autonomousCommand = (Command)autonomousMode.getSelected();
@@ -98,6 +100,9 @@ public class Robot extends IterativeRobot {
         sendStatistics();
     }
 
+    /**
+     * Runs when teleop mode initialises
+     */
     public void teleopInit() {
 		// This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
@@ -130,8 +135,11 @@ public class Robot extends IterativeRobot {
         sendStatistics();
     }
     
+    /**
+     * Sends data from each subsystem periodically as set by sendStatsIntervalSec
+     */
     private void sendStatistics() {
-        if (statsTimer.get() >= sendStatsIntervalSec) {
+        if (statsTimer.get() >= Constants.SEND_STATS_INTERVAL) {
             statsTimer.reset();
 
             // Various debug information
@@ -139,10 +147,13 @@ public class Robot extends IterativeRobot {
             visionProcessor.sendToDashboard();
             intake.sendToDashboard();
             clawElevator.sendToDashboard();
-            toteElevator.sendToSmartDashboard();
+            indexer.sendToSmartDashboard();
         }
     }
     
+    /**
+     * Adds every autonomous mode to the selection box and adds the box to the Smart Dashboard
+     */
     private void queueAutonomousModes() {
     	autonomousMode.addDefault("Do Nothing", new DoNothing());
     	autonomousMode.addObject("Drive in Square", new DriveInSquare());
@@ -152,19 +163,34 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
     }
     
+    /**
+     * Sends every subsystem to the Smart Dashboard
+     */
     private void sendDashboardSubsystems() {
     	SmartDashboard.putData(drivetrain);
 		SmartDashboard.putData(clawElevator);
 		SmartDashboard.putData(claw);
-		SmartDashboard.putData(toteElevator);
+		SmartDashboard.putData(indexer);
 		SmartDashboard.putData(visionProcessor);
 		SmartDashboard.putData(hockeyStick);
 		SmartDashboard.putData(intake);
+		
+		SmartDashboard.putData("Move Up", new IndexerUp());
+		SmartDashboard.putData("Move Down", new IndexerDown());
     }
     
+    /**
+     * Adds PID gain constants to the Robot Preferences to allow for faster tuning
+     */
     private void setPIDPreferences() {
-//    	drivetrain.setPIDGain('p', robotPreferences.getDouble("P", drivetrain.getPIDGain('p')));
-//    	drivetrain.setPIDGain('i', robotPreferences.getDouble("I", drivetrain.getPIDGain('i')));
-//    	drivetrain.setPIDGain('d', robotPreferences.getDouble("D", drivetrain.getPIDGain('d')));
+    	// Attempts to get robot preferences to set for PID, but throws an exception if the SmartDashboard is not found
+    	try {
+    		drivetrain.setPIDGain('p', Preferences.getInstance().getDouble("P", drivetrain.getPIDGain('p')));
+    		drivetrain.setPIDGain('i', Preferences.getInstance().getDouble("I", drivetrain.getPIDGain('i')));
+    		drivetrain.setPIDGain('d', Preferences.getInstance().getDouble("D", drivetrain.getPIDGain('d')));
+    	} catch (NullPointerException e) {
+    		e.printStackTrace();
+    	}
+    	
     }
 }
