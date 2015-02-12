@@ -2,7 +2,6 @@ package org.team708.robot.commands.indexer;
 
 import org.team708.robot.Constants;
 import org.team708.robot.Robot;
-import org.team708.robot.util.Math708;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -10,33 +9,32 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class IndexerUp extends Command {
-	
-	private final double threshold = 1;
+
 	private boolean atToteLimitMax;
+	private boolean hasToteInitially;
 
     public IndexerUp() {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.indexer);
+//    	requires(Robot.indexer);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.indexer.resetEncoder();
     	atToteLimitMax = (Robot.indexer.toteCount == Constants.TOTE_LIMIT);
-    	
+    	hasToteInitially = (Robot.drivetrain.getIRDistance() <= Constants.IR_HAS_TOTE_DISTANCE);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		if (!atToteLimitMax && (Robot.drivetrain.getIRDistance() <= Constants.IR_HAS_TOTE_DISTANCE)) {
+		if (!atToteLimitMax && hasToteInitially) {
 			Robot.indexer.raiseIndexer();
 		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-//    	return Math708.isWithinThreshold(Robot.drivetrain.getEncoderDistance(), Constants.TOTE_HEIGHT, threshold) || atToteLimitMax;
-    	return Robot.indexer.getEncoderDistance() >= Constants.TOTE_HEIGHT;
+    	return Robot.indexer.getEncoderDistance() >= Constants.TOTE_HEIGHT || !hasToteInitially;
     }
 
     // Called once after isFinished returns true

@@ -10,12 +10,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class IndexerDown extends Command {
 	
-	private final double threshold = 1;
 
     public IndexerDown() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.indexer);
+//    	requires(Robot.indexer);
     }
 
     // Called just before this Command runs the first time
