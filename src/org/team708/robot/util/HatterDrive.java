@@ -9,32 +9,22 @@ public class HatterDrive extends RobotDrive {
 											// drivetrain
 	private double driveStall = 0.1; // What percent power before the drivetrain
 										// can move
+	private boolean squaredInputs;
 	
-	public HatterDrive(int leftMotorChannel, int rightMotorChannel) {
+	public HatterDrive(int leftMotorChannel, int rightMotorChannel, boolean squaredInputs) {
 		super(leftMotorChannel, rightMotorChannel);
-		// TODO Auto-generated constructor stub
+		
+		this.squaredInputs = squaredInputs;
 	}
 
-	public HatterDrive(SpeedController leftMotor, SpeedController rightMotor) {
+	public HatterDrive(SpeedController leftMotor, SpeedController rightMotor, boolean squaredInputs) {
 		super(leftMotor, rightMotor);
-		// TODO Auto-generated constructor stub
-	}
-
-	public HatterDrive(int frontLeftMotor, int rearLeftMotor,
-			int frontRightMotor, int rearRightMotor) {
-		super(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
-		// TODO Auto-generated constructor stub
-	}
-
-	public HatterDrive(SpeedController frontLeftMotor,
-			SpeedController rearLeftMotor, SpeedController frontRightMotor,
-			SpeedController rearRightMotor) {
-		super(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
-		// TODO Auto-generated constructor stub
+		
+		this.squaredInputs = squaredInputs;
 	}
 
 	/**
-	 * Taken from Team 254, this allows for easily controlling a fast drivetrain
+	 * Borrowed from Team 254, this allows for easily controlling a fast drivetrain
 	 * 
 	 * @param move
 	 * @param rotate
@@ -75,6 +65,36 @@ public class HatterDrive extends RobotDrive {
 		lPower = correctDriveStall(lPower);
 		rPower = correctDriveStall(rPower);
 		setLeftRightMotorOutputs(lPower, rPower);
+	}
+	
+	/**
+	 * Drives the robot using a move value and a rotation value
+	 */
+	public void arcadeDrive(double move, double rotate) {
+		super.arcadeDrive(move, rotate, squaredInputs);
+	}
+	
+	/**
+	 * Drives the robot using a left side value and a right side value
+	 */
+	public void tankDrive(double left, double right) {
+		super.tankDrive(left, right, squaredInputs);
+	}
+	
+	/**
+	 * Returns if the inputs for the drivetrain is squared
+	 * @return
+	 */
+	public boolean isSquaredInputs() {
+		return squaredInputs;
+	}
+	
+	/**
+	 * Sets whether the robot should be squaring its drivetrain inputs
+	 * @param squaredInputs
+	 */
+	public void setSquaredInputs(boolean squaredInputs) {
+		this.squaredInputs = squaredInputs;
 	}
 	
 	/**

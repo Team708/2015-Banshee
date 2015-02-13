@@ -33,7 +33,8 @@ public class RobotMap {
 	public static final int clawFingerMotorSpike = 2;
 	
 	// Indexer Spike Relay Port
-	public static final int indexerMotor = 0;
+	public static final int indexerMotorLeft = 21;
+	public static final int indexerMotorRight = 22;
 	
 	// Digital IO
 	public static final int drivetrainEncoderA = 0;

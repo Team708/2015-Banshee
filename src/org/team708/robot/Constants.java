@@ -58,6 +58,8 @@ public final class Constants {
 	 * Drivetrain
 	 */
 	public static final double TANK_STICK_TOLERANCE = .025;
+	public static final boolean DRIVETRAIN_USE_LEFT_ENCODER = true;	// Variable to determine which side the encoder is on
+	public static final boolean DRIVE_USE_SQUARED_INPUT = false;
 	
 	/*
 	 * Vision Processor

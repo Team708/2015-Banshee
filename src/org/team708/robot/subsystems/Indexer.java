@@ -3,17 +3,20 @@ package org.team708.robot.subsystems;
 import org.team708.robot.Constants;
 import org.team708.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Subsystem that carries up totes on a chain system.
+ * @author jlwang
+ * @author omn0mn0m
  */
 public class Indexer extends Subsystem {
 
-	private Relay indexerMotor;		// Spike for the indexer motor
+	private CANTalon indexerMotorLeft;		// Spike for the indexer motor
+	private CANTalon indexerMotorRight;
 	
 	//Whether elevator has been lowered
 	public boolean indexerDown = false;
@@ -27,7 +30,8 @@ public class Indexer extends Subsystem {
 	
 	public Indexer() {
 		//Creates motors that run elevator
-		indexerMotor = new Relay(RobotMap.indexerMotor);
+		indexerMotorLeft = new CANTalon(RobotMap.indexerMotorLeft);
+		indexerMotorRight = new CANTalon(RobotMap.indexerMotorRight);
 		
 		//Creates encoders for elevator motors
 		indexerEncoder = new Encoder(RobotMap.indexerEncoderA, RobotMap.indexerEncoderB);
@@ -61,53 +65,43 @@ public class Indexer extends Subsystem {
 		indexerEncoder.reset();
 	}
 	
-	/*
-	 * Checks if tote is at height yet
-	 */
-	public boolean encoderTop() {
-		if (getEncoderDistance() < Constants.TOTE_HEIGHT) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
-	public boolean encoderBottom() {
-		if (getEncoderDistance() > -Constants.TOTE_HEIGHT) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
-	/*
+	/**
 	 * Raises the tote
 	 */
 	public void raiseIndexer() {
-		indexerMotor.set(Constants.SPIKE_FORWARD);
+		// NOTE: The motors on the indexer's gearbox run reverse of each other
+		indexerMotorLeft.set(Constants.MOTOR_REVERSE);
+		indexerMotorRight.set(Constants.MOTOR_FORWARD);
 	}
 	
-	/*
+	/**
 	 * Lowers the tote
 	 */
 	public void lowerIndexer() {
-		indexerMotor.set(Constants.SPIKE_REVERSE);
+		// NOTE: The motors on the indexer's gearbox run reverse of each other
+		indexerMotorLeft.set(Constants.MOTOR_FORWARD);
+		indexerMotorRight.set(Constants.MOTOR_REVERSE);
 	}
 	
-	/*
-	 * Does not move the tote
+	/**
+	 * Turns off the indexer so it does not move
 	 */
 	public void stopIndexer() {
-		indexerMotor.set(Constants.SPIKE_OFF);
+		indexerMotorLeft.set(Constants.MOTOR_OFF);
+		indexerMotorRight.set(Constants.MOTOR_OFF);
 	}
 	
-	/*
+	/**
 	 * Gets the number of tote increments that have been raised
 	 */
 	public int getToteCount() {
 		return toteCount;
 	}
 	
+	/**
+	 * Sets the number of totes collected
+	 * @param toteCount
+	 */
 	public void setToteCount(int toteCount) {
 		this.toteCount = toteCount;
 	}
@@ -117,6 +111,9 @@ public class Indexer extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
+    /**
+     * Sends data about the subsystem to the Smart Dashboard
+     */
     public void sendToSmartDashboard() {
     	SmartDashboard.putNumber("Encoder Count", getEncoderCount());
     	SmartDashboard.putNumber("Encoder Distance", getEncoderDistance());

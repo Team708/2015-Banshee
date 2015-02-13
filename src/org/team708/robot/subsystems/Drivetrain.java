@@ -3,6 +3,7 @@ package org.team708.robot.subsystems;
 import org.team708.robot.Constants;
 import org.team708.robot.RobotMap;
 import org.team708.robot.commands.drivetrain.JoystickDrive;
+import org.team708.robot.util.HatterDrive;
 import org.team708.robot.util.IRSensor;
 import org.team708.robot.util.Math708;
 
@@ -10,7 +11,6 @@ import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -31,12 +31,9 @@ public class Drivetrain extends PIDSubsystem {
 	private double moveSpeed = 0.0;
 	private double pidOutput = 0.0;
 	
-	// Variable to determine which side the encoder is on
-	private static final boolean isEncoderLeft = true;
-	
 	private CANTalon leftMaster, leftSlave, rightMaster, rightSlave;		// Motor Controllers
 	
-	private RobotDrive drivetrain;		// FRC provided drivetrain class
+	private HatterDrive drivetrain;		// FRC provided drivetrain class
 	
 	private Encoder encoder;							// Encoder for the drivetrain
 	private BuiltInAccelerometer accelerometer;		// Accelerometer that is built into the roboRIO
@@ -59,7 +56,7 @@ public class Drivetrain extends PIDSubsystem {
 		rightMaster = new CANTalon(RobotMap.drivetrainRightMotorMaster);
 		rightSlave = new CANTalon(RobotMap.drivetrainRightMotorSlave);
 		
-		drivetrain = new RobotDrive(leftMaster, rightMaster);		// Initializes drivetrain class
+		drivetrain = new HatterDrive(leftMaster, rightMaster, Constants.DRIVE_USE_SQUARED_INPUT);		// Initializes drivetrain class
 		
 		setupMasterSlave();			// Sets up master and slave
 		
@@ -109,7 +106,6 @@ public class Drivetrain extends PIDSubsystem {
     		}
     		drivetrain.arcadeDrive(move, rotate);
     	}
-    	drivetrain.arcadeDrive(move, rotate);
     }
     
     /**
@@ -215,7 +211,7 @@ public class Drivetrain extends PIDSubsystem {
      * Sets encoder direction depending on which side of the drivetrain it is on
      */
     public void setEncoderReading() {
-    	encoder.setReverseDirection(isEncoderLeft);
+    	encoder.setReverseDirection(Constants.DRIVETRAIN_USE_LEFT_ENCODER);
     }
     
     /**
