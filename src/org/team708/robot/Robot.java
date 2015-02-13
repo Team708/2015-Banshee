@@ -11,8 +11,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team708.robot.commands.DoNothing;
+import org.team708.robot.commands.autonomous.ClearStep;
 import org.team708.robot.commands.autonomous.DriveInSquare;
+import org.team708.robot.commands.autonomous.GetContainerGotoAutozone;
+import org.team708.robot.commands.autonomous.HockeyStickClearToAutoZone;
+import org.team708.robot.commands.autonomous.MoveToAutozone;
 import org.team708.robot.commands.autonomous.OneContainerOneTote;
+import org.team708.robot.commands.autonomous.OneToteToAuto;
+import org.team708.robot.commands.autonomous.ThreeContainersToAuto;
 import org.team708.robot.commands.autonomous.ThreeTotes;
 import org.team708.robot.commands.indexer.IndexerDown;
 import org.team708.robot.commands.indexer.IndexerUp;
@@ -158,7 +164,13 @@ public class Robot extends IterativeRobot {
     	autonomousMode.addDefault("Do Nothing", new DoNothing());
     	autonomousMode.addObject("Drive in Square", new DriveInSquare());
     	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
-    	autonomousMode.addObject("One Container", new OneContainerOneTote());
+    	autonomousMode.addObject("Clear Step", new ClearStep());
+    	autonomousMode.addObject("One Container", new GetContainerGotoAutozone());
+    	autonomousMode.addObject("Hockey Stick Shove All", new HockeyStickClearToAutoZone());
+    	autonomousMode.addObject("Move to Autozone", new MoveToAutozone());
+    	autonomousMode.addObject("One Container One Tote", new OneContainerOneTote());
+    	autonomousMode.addObject("One Tote To Auto", new OneToteToAuto());
+    	autonomousMode.addObject("Three Containers To Auto", new ThreeContainersToAuto());
     	autonomousMode.addObject("Three Totes", new ThreeTotes());
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
     }
