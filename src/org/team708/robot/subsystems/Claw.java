@@ -34,7 +34,7 @@ public class Claw extends Subsystem {
 		clawFingerSolenoid.set(Constants.OPEN);
 		clawWristSolenoid.set(Constants.HORIZONTAL);
 	
-		clawFingerMotor = new CANTalon(RobotMap.clawFingerMotorSpike);		// Makes the spike for the claw fingers
+		clawFingerMotor = new CANTalon(RobotMap.clawFingerMotor);		// Makes the spike for the claw fingers
 		
 	}
 	

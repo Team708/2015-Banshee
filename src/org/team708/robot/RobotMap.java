@@ -22,19 +22,17 @@ public class RobotMap {
 	public static final int drivetrainRightMotorMaster = 13;
 	public static final int drivetrainRightMotorSlave = 14;
 	
-	//Intake CAN Device IDs
-	public static final int intakeLeftMotor = 21;
-	public static final int intakeRightMotor = 22;		
-	
-	// Claw CAN Talon Device ID
-	public static final int clawElevatorMotor = 31;
-	
-	// Claw Elevator CAN Talon Device ID
-	public static final int clawFingerMotorSpike = 2;
-	
-	// Indexer Spike Relay Port
+	// Indexer CAN Device IDs
 	public static final int indexerMotorLeft = 21;
-	public static final int indexerMotorRight = 22;
+	public static final int indexerMotorRight = 22;	
+	
+	// Claw System CAN Talon Device ID
+	public static final int clawElevatorMotor = 31;
+	public static final int clawFingerMotor = 32;
+	
+	//Intake CAN Device IDs
+	public static final int intakeLeftMotor = 61;
+	public static final int intakeRightMotor = 62;	
 	
 	// Digital IO
 	public static final int drivetrainEncoderA = 0;
