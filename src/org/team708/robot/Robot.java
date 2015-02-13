@@ -20,6 +20,7 @@ import org.team708.robot.commands.autonomous.OneContainerOneTote;
 import org.team708.robot.commands.autonomous.OneToteToAuto;
 import org.team708.robot.commands.autonomous.ThreeContainersToAuto;
 import org.team708.robot.commands.autonomous.ThreeTotes;
+import org.team708.robot.commands.autonomous.TwoToteOneContainer;
 import org.team708.robot.commands.indexer.IndexerDown;
 import org.team708.robot.commands.indexer.IndexerUp;
 import org.team708.robot.commands.visionProcessor.FollowYellowTote;
@@ -172,6 +173,7 @@ public class Robot extends IterativeRobot {
     	autonomousMode.addObject("One Tote To Auto", new OneToteToAuto());
     	autonomousMode.addObject("Three Containers To Auto", new ThreeContainersToAuto());
     	autonomousMode.addObject("Three Totes", new ThreeTotes());
+    	autonomousMode.addObject("Two Tote One Container Gucci Player", new TwoToteOneContainer());
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
     }
     
