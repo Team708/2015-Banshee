@@ -36,7 +36,7 @@ public class OI {
 	 * Driver Button Assignment
 	 */
 	// Drivetrain Buttons
-	private static final int toggleBrakeModeButton = Gamepad.button_L_Shoulder;
+	private static final int toggleBrakeModeButton = Gamepad.button_B;
 	
 	// Hockey Stick Buttons
 	private static final int toggleHockeyStickButton = Gamepad.button_Y;
