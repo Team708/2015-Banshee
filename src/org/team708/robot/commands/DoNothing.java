@@ -3,7 +3,7 @@ package org.team708.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * this does nothing
  */
 public class DoNothing extends Command {
 
