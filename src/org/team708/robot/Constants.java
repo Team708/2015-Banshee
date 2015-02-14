@@ -49,15 +49,17 @@ public final class Constants {
 	/*
 	 * Indexer
 	 */
-	public static final double INDEXER_ENCODER_PULSES_PER_REV = 7.0;
-	public static final double INDEXER_GEARING = 0.32;
-	public static final double INDEXER_SPROCKET_DIAMETER = 2.0;
+	public static final double INDEXER_ENCODER_PULSES_PER_REV = 256.0;
+//	public static final double INDEXER_GEARING = 0.32;	//no longer needed, the encoder is on the drive shaft
+	public static final double INDEXER_SPROCKET_CIRCUMFERENCE = 5.625; // 15 tooth sprocket, 3/8 in per chain link
 	public static final int TOTE_LIMIT = 6;
 	
 	/*
 	 * Drivetrain
 	 */
 	public static final double TANK_STICK_TOLERANCE = .025;
+	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6.0;
+	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 256.0;
 	
 	/*
 	 * Vision Processor
