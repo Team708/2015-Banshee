@@ -68,9 +68,6 @@ public class Drivetrain extends PIDSubsystem {
 		gyro.reset();									// Resets the gyro so that it starts with a 0.0 value
 		encoder = new Encoder(RobotMap.drivetrainEncoderA, RobotMap.drivetrainEncoderB);
 														// Initializes the encoder
-		encoder.setDistancePerPulse((Constants.DRIVETRAIN_WHEEL_DIAMETER * Math.PI) / 
-				(Constants.DRIVETRAIN_ENCODER_PULSES_PER_REV));
-														// Sets the distance per pulse of the drivetrain encoder
 		encoder.reset();								// Resets the encoder so that it starts with a 0.0 value
 		setEncoderReading();							// Sets the encoder to read positive when moving forward
 		irSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);
