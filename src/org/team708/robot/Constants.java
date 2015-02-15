@@ -38,26 +38,27 @@ public final class Constants {
 	/*
 	 * Sensors
 	 */
-	public static final double IR_HAS_TOTE_DISTANCE = 5.0;
+	public static final double IR_HAS_TOTE_DISTANCE = 6.0;
 	public static final double ENCODER_BOTTOM_POSITION = 0.0;
 	
 	/*
 	 * Game Elements
 	 */
-	public static final double TOTE_HEIGHT = 12.1;
+	public static final double TOTE_HEIGHT = 15.0;
+	public static final double SCORE_TOTE = 6.5;
 	
 	/*
 	 * Indexer
 	 */
-	public static final double INDEXER_ENCODER_PULSES_PER_REV = 7.0;
-	public static final double INDEXER_GEARING = 0.32;
+	public static final double INDEXER_ENCODER_PULSES_PER_REV = 256.0;
+	//public static final double INDEXER_GEARING = 0.32;
 	public static final double INDEXER_SPROCKET_DIAMETER = 2.0;
-	public static final int TOTE_LIMIT = 6;
+	public static final int TOTE_LIMIT = 4;
 	
 	/*
 	 * Drivetrain
 	 */
-	public static final double TANK_STICK_TOLERANCE = .025;
+	public static final double TANK_STICK_TOLERANCE = .25;
 	public static final boolean DRIVETRAIN_USE_LEFT_ENCODER = true;	// Variable to determine which side the encoder is on
 	public static final boolean DRIVE_USE_SQUARED_INPUT = false;
 	

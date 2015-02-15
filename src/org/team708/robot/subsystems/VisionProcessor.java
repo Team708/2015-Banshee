@@ -39,13 +39,13 @@ public class VisionProcessor extends Subsystem {
 	
 	public void processData() {
 		try {
-			roboRealmInfo.retrieveValue("CROSSHAIR_COORDINATES", containerCrosshair);
-			if (containerCrosshair.size() > 0) {
+//			roboRealmInfo.retrieveValue("CROSSHAIR_COORDINATES", containerCrosshair);
+//			if (containerCrosshair.size() > 0) {
 //				containerX = containerCrosshair.get(0);
-				hasContainer = true;
-			} else {
-				hasContainer = false;
-			}
+//				hasContainer = true;
+//			} else {
+//				hasContainer = false;
+//			}
 			
 			roboRealmInfo.retrieveValue("MEQ_COORDINATES", toteBoundaries);
 			if (toteBoundaries.size() > 0) {

@@ -35,7 +35,7 @@ public class Indexer extends Subsystem {
 		
 		//Creates encoders for elevator motors
 		indexerEncoder = new Encoder(RobotMap.indexerEncoderA, RobotMap.indexerEncoderB);
-		distancePerPulse = (Constants.INDEXER_GEARING * Constants.INDEXER_SPROCKET_DIAMETER * Math.PI) / (Constants.INDEXER_ENCODER_PULSES_PER_REV);
+		distancePerPulse = (Constants.INDEXER_SPROCKET_DIAMETER * Math.PI) / (Constants.INDEXER_ENCODER_PULSES_PER_REV);
 		indexerEncoder.setDistancePerPulse(distancePerPulse);
 		indexerEncoder.setReverseDirection(true);
 	}
@@ -115,8 +115,8 @@ public class Indexer extends Subsystem {
      * Sends data about the subsystem to the Smart Dashboard
      */
     public void sendToSmartDashboard() {
-    	SmartDashboard.putNumber("Encoder Count", getEncoderCount());
-    	SmartDashboard.putNumber("Encoder Distance", getEncoderDistance());
+    	SmartDashboard.putNumber("indexer Encoder Count", getEncoderCount());
+    	SmartDashboard.putNumber("indexer Encoder Distance", getEncoderDistance());
     }
 }
 

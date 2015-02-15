@@ -34,7 +34,11 @@ public class IndexerUp extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.indexer.getEncoderDistance() >= Constants.TOTE_HEIGHT || !hasToteInitially;
+ //   	return Robot.indexer.getEncoderDistance() >= Constants.TOTE_HEIGHT || !hasToteInitially;
+    	if (Robot.indexer.toteCount>=1)
+    		return (Robot.indexer.getEncoderDistance() >= Constants.TOTE_HEIGHT) || !hasToteInitially;
+    	else
+    	    return (Robot.drivetrain.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE) || !hasToteInitially;
     }
 
     // Called once after isFinished returns true

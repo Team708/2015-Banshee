@@ -108,7 +108,7 @@ public class Claw extends Subsystem {
      * Sets the motor to intake a container
      */
     public void intake() {
-    	clawFingerMotor.set(Constants.MOTOR_REVERSE);
+    	clawFingerMotor.set(Constants.MOTOR_FORWARD);
     }
     
     /**

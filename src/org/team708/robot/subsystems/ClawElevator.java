@@ -48,7 +48,7 @@ public class ClawElevator extends Subsystem {
 	 * @return At upper limit
 	 */
 	public boolean getUpperSwitch() {
-		return upperSwitch.get();
+		return !upperSwitch.get();   // not because default is closed, stops if circuit is broken
 	}
 	
 	/**
@@ -56,7 +56,7 @@ public class ClawElevator extends Subsystem {
 	 * @return On series
 	 */
 	public boolean getSeries() {
-		return !switchSeries.get();		// Inverse because the switch series is a series circuit running true when open
+		return !switchSeries.get();	// not because default is closed, stops if circuit is broken
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class ClawElevator extends Subsystem {
 	 * @return At lower limit
 	 */
 	public boolean getLowerSwitch() {
-		return lowerSwitch.get();
+		return !lowerSwitch.get(); // not because default is closed, stops if circuit is broken
 	}
 	
 	/**

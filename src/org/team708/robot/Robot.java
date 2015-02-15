@@ -73,11 +73,11 @@ public class Robot extends IterativeRobot {
 		claw = new Claw();
 		clawElevator = new ClawElevator();
 		
-		oi = new OI();	// Initialises the OI. This MUST BE LAST or a NullPointerException will be thrown
+		oi = new OI();	// Initializes the OI. This MUST BE LAST or a NullPointerException will be thrown
 		
 		sendDashboardSubsystems();	// Sends each subsystem's currently running command to the Smart Dashboard
 		
-		autonomousMode = new SendableChooser();		// Initialises the Autonomous selection box
+		autonomousMode = new SendableChooser();		// Initializes the Autonomous selection box
 		queueAutonomousModes();						// Adds autonomous modes to the selection box
 		setPIDPreferences();						// Adds PID gain constants to the Robot Preferences
     }
