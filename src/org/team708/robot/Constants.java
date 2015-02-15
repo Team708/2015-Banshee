@@ -51,9 +51,15 @@ public final class Constants {
 	 * Indexer
 	 */
 	public static final double INDEXER_ENCODER_PULSES_PER_REV = 256.0;
+<<<<<<< HEAD
 	//public static final double INDEXER_GEARING = 0.32;
 	public static final double INDEXER_SPROCKET_DIAMETER = 2.0;
 	public static final int TOTE_LIMIT = 4;
+=======
+//	public static final double INDEXER_GEARING = 0.32;	// No longer used because the encoder is on the output shaft
+	public static final double INDEXER_SPROCKET_CIRCUMERENCE = 5.625;	// A 15 tooth sprocket that fits 3/8 inch per link chain
+	public static final int TOTE_LIMIT = 6;
+>>>>>>> origin/develop
 	
 	/*
 	 * Drivetrain
@@ -61,6 +67,8 @@ public final class Constants {
 	public static final double TANK_STICK_TOLERANCE = .25;
 	public static final boolean DRIVETRAIN_USE_LEFT_ENCODER = true;	// Variable to determine which side the encoder is on
 	public static final boolean DRIVE_USE_SQUARED_INPUT = false;
+	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6.0;
+	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 256.0;
 	
 	/*
 	 * Vision Processor

@@ -36,6 +36,7 @@ public class Drivetrain extends PIDSubsystem {
 	private HatterDrive drivetrain;		// FRC provided drivetrain class
 	
 	private Encoder encoder;							// Encoder for the drivetrain
+	private double distancePerPulse;
 	private BuiltInAccelerometer accelerometer;		// Accelerometer that is built into the roboRIO
 	private Gyro gyro;								// Gyro that is used for drift correction
 	
@@ -65,6 +66,10 @@ public class Drivetrain extends PIDSubsystem {
 		gyro.reset();									// Resets the gyro so that it starts with a 0.0 value
 		encoder = new Encoder(RobotMap.drivetrainEncoderA, RobotMap.drivetrainEncoderB);
 														// Initializes the encoder
+		distancePerPulse = (Constants.DRIVETRAIN_WHEEL_DIAMETER * Math.PI) /
+			(Constants.DRIVETRAIN_ENCODER_PULSES_PER_REV);
+														// Sets the distance per pulse of the encoder to read distance properly
+		encoder.setDistancePerPulse(distancePerPulse);
 		encoder.reset();								// Resets the encoder so that it starts with a 0.0 value
 		setEncoderReading();							// Sets the encoder to read positive when moving forward
 		irSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);

@@ -35,7 +35,11 @@ public class Indexer extends Subsystem {
 		
 		//Creates encoders for elevator motors
 		indexerEncoder = new Encoder(RobotMap.indexerEncoderA, RobotMap.indexerEncoderB);
+<<<<<<< HEAD
 		distancePerPulse = (Constants.INDEXER_SPROCKET_DIAMETER * Math.PI) / (Constants.INDEXER_ENCODER_PULSES_PER_REV);
+=======
+		distancePerPulse = (Constants.INDEXER_SPROCKET_CIRCUMERENCE) / (Constants.INDEXER_ENCODER_PULSES_PER_REV);
+>>>>>>> origin/develop
 		indexerEncoder.setDistancePerPulse(distancePerPulse);
 		indexerEncoder.setReverseDirection(true);
 	}
