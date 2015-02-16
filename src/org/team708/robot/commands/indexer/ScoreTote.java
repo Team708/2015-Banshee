@@ -1,48 +1,45 @@
-package org.team708.robot.commands.drivetrain;
+package org.team708.robot.commands.indexer;
 
-import org.team708.robot.Robot;
 import org.team708.robot.Constants;
+import org.team708.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveToIRDistance extends Command {
-	
-	private double targetDistance;
-	private double moveSpeed;
-	private double tolerance;
+public class ScoreTote extends Command {
 
-    public DriveToIRDistance(double targetDistance, double tolerance) {
+
+    public ScoreTote() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.drivetrain);
-        
-        this.targetDistance = targetDistance;
-        this.tolerance = tolerance;
+//    	requires(Robot.indexer);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.indexer.resetEncoder();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	moveSpeed = Robot.drivetrain.moveByIR(targetDistance, tolerance);
-    	Robot.drivetrain.haloDrive(moveSpeed * Constants.DRIVE_MOTOR_MAX_SPEED, 0.0);
+			Robot.indexer.raiseIndexer();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (moveSpeed == 0.0);
+    		return (Robot.indexer.getEncoderDistance() >= Constants.SCORE_TOTE);
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drivetrain.stop();
+    	Robot.indexer.stopIndexer();
+    	Robot.indexer.resetEncoder();
+    	Robot.indexer.indexerDown = false;
     }
 
     // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    // subsystems are scheduled to run
     protected void interrupted() {
     	end();
     }

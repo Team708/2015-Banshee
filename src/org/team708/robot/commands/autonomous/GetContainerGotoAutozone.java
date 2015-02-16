@@ -1,41 +1,35 @@
 package org.team708.robot.commands.autonomous;
 
+import org.team708.robot.Constants;
 import org.team708.robot.commands.claw.ToggleClawOpen;
 import org.team708.robot.commands.clawElevator.IncrementClawOne;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
+import org.team708.robot.commands.drivetrain.DriveToIRDistance;
+import org.team708.robot.commands.drivetrain.TurnToDegrees;
+import org.team708.robot.commands.indexer.IndexerUp;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
  */
 public class GetContainerGotoAutozone extends CommandGroup {
     
-	private final int driveDist = 17;
+	private final double TURN_SPEED = 0.8;
+	private final double TURN_ANGLE = 90.0;  //degrees
+	private final double DRIVE_DISTANCE = 55.0; //inches
 	
     public  GetContainerGotoAutozone() {
         // Add Commands here:
     	
-    	
     	addSequential(new ToggleClawOpen());
-    	addSequential(new DriveStraightToEncoderDistance(driveDist));
+    	addSequential(new WaitCommand(0.2));
     	addSequential(new IncrementClawOne());
-    	addSequential(new ToggleClawOpen());
-    	
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
+    	addSequential(new WaitCommand(.2));
+    	addSequential(new DriveStraightToEncoderDistance(DRIVE_DISTANCE));   
+//    	addSequential(new DecrementClawOne());
+//    	addSequential(new ToggleClawOpen());
 
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
     }
 }

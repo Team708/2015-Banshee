@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class MoveToAutozone extends CommandGroup {
 	
-	private final int DISTANCE = 17;
+	private final double DISTANCE = 100.0; // in inches 
     
     public  MoveToAutozone() {
     	

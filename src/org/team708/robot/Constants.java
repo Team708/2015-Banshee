@@ -19,6 +19,8 @@ public final class Constants {
 	public static final double MOTOR_FORWARD = 1.0;
 	public static final double MOTOR_REVERSE = -1.0;
 	public static final double MOTOR_OFF = 0.0;
+	public static final double DRIVE_MOTOR_MAX_SPEED = 0.7;
+	public static final double ROTATE_MOTOR_MAX_SPEED = 0.7;
 	
 	/*
 	 * Double Solenoids
@@ -44,22 +46,17 @@ public final class Constants {
 	/*
 	 * Game Elements
 	 */
-	public static final double TOTE_HEIGHT = 15.0;
-	public static final double SCORE_TOTE = 6.5;
+	public static final double TOTE_HEIGHT = 15.5;
+	public static final double SCORE_TOTE = 3.0;
 	
 	/*
 	 * Indexer
 	 */
 	public static final double INDEXER_ENCODER_PULSES_PER_REV = 256.0;
-<<<<<<< HEAD
+	
 	//public static final double INDEXER_GEARING = 0.32;
 	public static final double INDEXER_SPROCKET_DIAMETER = 2.0;
 	public static final int TOTE_LIMIT = 4;
-=======
-//	public static final double INDEXER_GEARING = 0.32;	// No longer used because the encoder is on the output shaft
-	public static final double INDEXER_SPROCKET_CIRCUMERENCE = 5.625;	// A 15 tooth sprocket that fits 3/8 inch per link chain
-	public static final int TOTE_LIMIT = 6;
->>>>>>> origin/develop
 	
 	/*
 	 * Drivetrain

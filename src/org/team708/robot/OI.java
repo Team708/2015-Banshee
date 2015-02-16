@@ -9,6 +9,7 @@ import org.team708.robot.commands.drivetrain.ToggleBrakeMode;
 import org.team708.robot.commands.hockeyStick.ToggleHockeyStick;
 import org.team708.robot.commands.indexer.IndexerDown;
 import org.team708.robot.commands.indexer.IndexerUp;
+import org.team708.robot.commands.indexer.ScoreTote;
 import org.team708.robot.commands.intake.ToggleDirection;
 import org.team708.robot.commands.intake.TogglePower;
 import org.team708.robot.util.Gamepad;
@@ -37,6 +38,7 @@ public class OI {
 	 */
 	// Drivetrain Buttons
 	private static final int toggleBrakeModeButton = Gamepad.button_B;
+	private static final int scoreToteButton = Gamepad.button_A;
 	
 	// Hockey Stick Buttons
 	private static final int toggleHockeyStickButton = Gamepad.button_Y;
@@ -67,7 +69,7 @@ public class OI {
 	public static final Button toggleHockeyStick = new JoystickButton(driverGamepad, toggleHockeyStickButton);			// Toggles the hockey stick
 	public static final Button toggleIntakePower = new JoystickButton(driverGamepad, toggleIntakePowerButton);			// Toggles the intake power on/off
 	public static final Button toggleIntakeDirection = new JoystickButton(driverGamepad, toggleIntakeDirectionButton);	// Toggles the intake direction
-	
+	public static final Button scoreTote = new JoystickButton(driverGamepad, scoreToteButton);                          // Raises Totes up to place on step and/or plateform
 	/*
 	 * Operator Button Commands
 	 */
@@ -90,6 +92,7 @@ public class OI {
 		toggleHockeyStick.whenPressed(new ToggleHockeyStick());
 		toggleIntakePower.whenPressed(new TogglePower());
 		toggleIntakeDirection.whenPressed(new ToggleDirection());
+		scoreTote.whenPressed(new ScoreTote());
 		
 		/*
 		 * Operator Commands to be called by button

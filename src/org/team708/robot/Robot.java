@@ -189,8 +189,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(hockeyStick);
 		SmartDashboard.putData(intake);
 		
-		SmartDashboard.putData("Move Up", new IndexerUp());
-		SmartDashboard.putData("Move Down", new IndexerDown());
+		SmartDashboard.putData("Indexer Up", new IndexerUp());
+		SmartDashboard.putData("Indexer Down", new IndexerDown());
     }
     
     /**

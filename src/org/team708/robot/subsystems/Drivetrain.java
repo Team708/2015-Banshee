@@ -75,9 +75,9 @@ public class Drivetrain extends PIDSubsystem {
 		irSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);
     	
 		setAbsoluteTolerance(tolerance);
-		setInputRange(-360.0, 360);
+		setInputRange(-360.0, 360.0);
         setSetpoint(0.0);
-        disable();
+        enable();
     }
     
     /**
@@ -95,6 +95,12 @@ public class Drivetrain extends PIDSubsystem {
      */
     public void haloDrive(double move, double rotate) {
     	// Checks whether drift correction is needed
+    	
+    	//sets multiplier for max drive speed
+    	move = move * Constants.DRIVE_MOTOR_MAX_SPEED;
+    	rotate = rotate * Constants.ROTATE_MOTOR_MAX_SPEED;
+    	
+    	
     	if (rotate == 0.0 && move != 0.0) {
     		// Enables the PID controller if it is not already
     		if (!getPIDController().isEnable()) {
@@ -179,7 +185,7 @@ public class Drivetrain extends PIDSubsystem {
      * @return
      */
     public double moveByIR(double targetDistance, double tolerance) {
-    	double difference = getIRDistance() - targetDistance;
+    	double difference =  getIRDistance() - targetDistance;
     	
     	if (Math708.isWithinThreshold(getIRDistance(), targetDistance, tolerance)) {
     		difference = 0.0;
@@ -306,6 +312,11 @@ public class Drivetrain extends PIDSubsystem {
     	
     	// PID Info
     	SmartDashboard.putNumber("PID Output", pidOutput);
-    	SmartDashboard.putNumber("IR Reading", getIRDistance());
+    	SmartDashboard.putNumber("DT IR Distance", getIRDistance());
+    	
+    	//Encoder Info
+    	SmartDashboard.putNumber("DT Encoder Raw", encoder.get());
+    	SmartDashboard.putNumber("DT Encoder Distance", encoder.getDistance());
+    	
     }
 }

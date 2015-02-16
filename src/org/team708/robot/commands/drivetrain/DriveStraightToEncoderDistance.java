@@ -1,5 +1,6 @@
 package org.team708.robot.commands.drivetrain;
 
+import org.team708.robot.Constants;
 import org.team708.robot.Robot;
 import org.team708.robot.util.Math708;
 
@@ -24,15 +25,17 @@ public class DriveStraightToEncoderDistance extends Command {
     // Enables the PIDController (if it was not already) before attempting to drive straight
     protected void initialize() {
     	Robot.drivetrain.resetEncoder();
+    	Robot.drivetrain.resetGyro();
     	Robot.drivetrain.enable();
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     
-    	Robot.drivetrain.haloDrive(Math708.getPercentError
-    			(Robot.drivetrain.getEncoderDistance(), targetDistance), rotate);
-    	
+    	Robot.drivetrain.haloDrive(Constants.DRIVE_MOTOR_MAX_SPEED, rotate);
+//    	Robot.drivetrain.haloDrive(Math708.getPercentError
+//    			(Robot.drivetrain.getEncoderDistance(), targetDistance), rotate);    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
