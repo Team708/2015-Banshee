@@ -19,14 +19,14 @@ import org.team708.robot.commands.autonomous.HockeyStickClearToAutoZone;
 import org.team708.robot.commands.autonomous.MoveToAutozone;
 import org.team708.robot.commands.autonomous.OneContainerOneTote;
 import org.team708.robot.commands.autonomous.OneToteToAuto;
-import org.team708.robot.commands.autonomous.ThreeContainersToAuto;
+//import org.team708.robot.commands.autonomous.ThreeContainersToAuto;
 import org.team708.robot.commands.autonomous.ThreeTotes;
 import org.team708.robot.commands.autonomous.TwoToteOneContainer;
 import org.team708.robot.commands.indexer.IndexerDown;
 import org.team708.robot.commands.indexer.IndexerUp;
-import org.team708.robot.commands.visionProcessor.FollowYellowTote;
+//import org.team708.robot.commands.visionProcessor.FollowYellowTote;
 import org.team708.robot.subsystems.Drivetrain;
-import org.team708.robot.subsystems.VisionProcessor;
+//import org.team708.robot.subsystems.VisionProcessor;
 import org.team708.robot.subsystems.Claw;
 import org.team708.robot.subsystems.ClawElevator;
 import org.team708.robot.subsystems.HockeyStick;
@@ -47,7 +47,7 @@ public class Robot extends IterativeRobot {
     Timer statsTimer;										// Timer used for Smart Dash statistics
     
     public static Drivetrain drivetrain;
-	public static VisionProcessor visionProcessor;
+//	public static VisionProcessor visionProcessor;
     public static Intake intake;
 	public static HockeyStick hockeyStick;
 	public static Indexer indexer;
@@ -67,7 +67,7 @@ public class Robot extends IterativeRobot {
         statsTimer.start();			// Starts the timer for the Smart Dashboard
         // Subsystem Initialisation
         drivetrain = new Drivetrain();
-		visionProcessor = new VisionProcessor();
+//		visionProcessor = new VisionProcessor();
 		intake = new Intake();
 		hockeyStick = new HockeyStick();
 		indexer = new Indexer();
@@ -153,7 +153,7 @@ public class Robot extends IterativeRobot {
 
             // Various debug information
             drivetrain.sendToDashboard();
-            visionProcessor.sendToDashboard();
+//            visionProcessor.sendToDashboard();
             intake.sendToDashboard();
             clawElevator.sendToDashboard();
             indexer.sendToSmartDashboard();
@@ -166,14 +166,14 @@ public class Robot extends IterativeRobot {
     private void queueAutonomousModes() {
     	autonomousMode.addDefault("Do Nothing", new DoNothing());
     	autonomousMode.addObject("Drive in Square", new DriveInSquare());
-    	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
+//    	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
     	autonomousMode.addObject("Clear Step", new ClearStep());
     	autonomousMode.addObject("One Container", new GetContainerGotoAutozone());
     	autonomousMode.addObject("Hockey Stick Shove All", new HockeyStickClearToAutoZone());
     	autonomousMode.addObject("Move to Autozone", new MoveToAutozone());
     	autonomousMode.addObject("One Container One Tote", new OneContainerOneTote());
     	autonomousMode.addObject("One Tote To Auto", new OneToteToAuto());
-    	autonomousMode.addObject("Three Containers To Auto", new ThreeContainersToAuto());
+//    	autonomousMode.addObject("Three Containers To Auto", new ThreeContainersToAuto());
     	autonomousMode.addObject("Three Totes", new ThreeTotes());
     	autonomousMode.addObject("TwoToteOneContainer", new TwoToteOneContainer());
     	autonomousMode.addObject("ContainerToteTote", new ContainerToteTote());
@@ -188,7 +188,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(clawElevator);
 		SmartDashboard.putData(claw);
 		SmartDashboard.putData(indexer);
-		SmartDashboard.putData(visionProcessor);
+//		SmartDashboard.putData(visionProcessor);
 		SmartDashboard.putData(hockeyStick);
 		SmartDashboard.putData(intake);
 		
