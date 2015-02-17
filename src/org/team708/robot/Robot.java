@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team708.robot.commands.DoNothing;
 import org.team708.robot.commands.autonomous.ClearStep;
+import org.team708.robot.commands.autonomous.ContainerToteTote;
 import org.team708.robot.commands.autonomous.DriveInSquare;
 import org.team708.robot.commands.autonomous.GetContainerGotoAutozone;
 import org.team708.robot.commands.autonomous.HockeyStickClearToAutoZone;
@@ -96,6 +97,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
     	autonomousCommand = (Command)autonomousMode.getSelected();
+    	indexer.toteCount = 0;
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -173,7 +175,8 @@ public class Robot extends IterativeRobot {
     	autonomousMode.addObject("One Tote To Auto", new OneToteToAuto());
     	autonomousMode.addObject("Three Containers To Auto", new ThreeContainersToAuto());
     	autonomousMode.addObject("Three Totes", new ThreeTotes());
-    	autonomousMode.addObject("Two Tote One Container Gucci Player", new TwoToteOneContainer());
+    	autonomousMode.addObject("TwoToteOneContainer", new TwoToteOneContainer());
+    	autonomousMode.addObject("ContainerToteTote", new ContainerToteTote());
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
     }
     

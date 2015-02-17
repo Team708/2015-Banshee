@@ -25,6 +25,7 @@ public class Drivetrain extends PIDSubsystem {
 	private static double Kp = 0.20;		// Proportional gain  
 	private static double Ki = 0.0;		// Integral gain		 
 	private static double Kd = 0.1;		// Derivative gain
+
 	private static double tolerance = 5;
 	
 	// Variables specific for drivetrain PID loop
@@ -77,7 +78,8 @@ public class Drivetrain extends PIDSubsystem {
 		setAbsoluteTolerance(tolerance);
 		setInputRange(-360.0, 360.0);
         setSetpoint(0.0);
-        enable();
+//		enable();
+        disable();
     }
     
     /**
@@ -106,7 +108,8 @@ public class Drivetrain extends PIDSubsystem {
     		if (!getPIDController().isEnable()) {
     			gyro.reset();
     			getPIDController().reset();
-    			enable();
+//    			enable();
+    			disable();
     		}
     		// Sets the forward move speed to the move parameter
     		moveSpeed = move;
@@ -175,7 +178,7 @@ public class Drivetrain extends PIDSubsystem {
     }
     
     public double getIRDistance() {
-    	return irSensor.getClippedDistance();
+    	return irSensor.getClippedAverageDistance();
     }
     
     /**

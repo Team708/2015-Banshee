@@ -47,7 +47,7 @@ public final class Constants {
 	 * Game Elements
 	 */
 	public static final double TOTE_HEIGHT = 15.5;
-	public static final double SCORE_TOTE = 3.0;
+	public static final double SCORE_TOTE = 1.0;
 	
 	/*
 	 * Indexer

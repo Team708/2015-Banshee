@@ -11,15 +11,17 @@ public class HatterDrive extends RobotDrive {
 										// can move
 	private boolean squaredInputs;
 	
+	private final boolean USE_SAFETY = false;
+	
 	public HatterDrive(int leftMotorChannel, int rightMotorChannel, boolean squaredInputs) {
 		super(leftMotorChannel, rightMotorChannel);
-		
+		this.setSafetyEnabled(USE_SAFETY);
 		this.squaredInputs = squaredInputs;
 	}
 
 	public HatterDrive(SpeedController leftMotor, SpeedController rightMotor, boolean squaredInputs) {
 		super(leftMotor, rightMotor);
-		
+		this.setSafetyEnabled(USE_SAFETY);
 		this.squaredInputs = squaredInputs;
 	}
 

@@ -99,7 +99,7 @@ public class OI {
 		 */
 		toggleClawOpen.whenPressed(new ToggleClawOpen());
 		toggleWristPosition.whenPressed(new ToggleWrist());
-		toteUp.whenActive(new IndexerUp());
+		toteUp.whenActive(new IndexerUp(false));
 		toteDown.whenActive(new IndexerDown());
 		clawHeightIncrement.whenPressed(new IncrementClawOne());
 		clawHeightDecrement.whenPressed(new DecrementClawOne());

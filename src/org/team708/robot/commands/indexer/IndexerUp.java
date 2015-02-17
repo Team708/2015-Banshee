@@ -12,17 +12,29 @@ public class IndexerUp extends Command {
 
 	private boolean atToteLimitMax;
 	private boolean hasToteInitially;
+	
+	private boolean useIR;
 
     public IndexerUp() {
         // Use requires() here to declare subsystem dependencies
 //    	requires(Robot.indexer);
+    	useIR = true;
+    }
+    
+    public IndexerUp(boolean useIR) {
+    	this();
+    	this.useIR = useIR;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.indexer.resetEncoder();
     	atToteLimitMax = (Robot.indexer.toteCount == Constants.TOTE_LIMIT);
-    	hasToteInitially = (Robot.drivetrain.getIRDistance() <= Constants.IR_HAS_TOTE_DISTANCE);
+    	if (useIR) {
+    		hasToteInitially = (Robot.drivetrain.getIRDistance() <= Constants.IR_HAS_TOTE_DISTANCE);
+    	} else {
+    		hasToteInitially = true;
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -38,7 +50,7 @@ public class IndexerUp extends Command {
     	if (Robot.indexer.toteCount>=1)
     		return (Robot.indexer.getEncoderDistance() >= Constants.TOTE_HEIGHT) || !hasToteInitially;
     	else
-    	    return (Robot.drivetrain.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE) || !hasToteInitially;
+    	    return ((Robot.indexer.getEncoderDistance() >= 10.0) && (Robot.drivetrain.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE)) || !hasToteInitially;
     }
 
     // Called once after isFinished returns true

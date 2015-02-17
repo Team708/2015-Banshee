@@ -22,4 +22,8 @@ public class IRSensor extends DistanceSensor{
      public double getDistance(){
          return 1/(Math708.lerp(model.getLowV(), model.getLowD(), model.getHighV(), model.getHighD(), getVoltage()) * 2.54);
      }
+     
+     public double getAverageDistance() {
+         return 1/(Math708.lerp(model.getLowV(), model.getLowD(), model.getHighV(), model.getHighD(), getAverageVoltage()) * 2.54);
+     }
 }

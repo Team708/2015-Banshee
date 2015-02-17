@@ -57,7 +57,7 @@ public class VisionProcessor extends Subsystem {
 			}
 			toteWidth = toteX[0] - toteX[1];
 		} catch (TableKeyNotDefinedException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 	

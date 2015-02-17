@@ -48,12 +48,24 @@ public abstract class DistanceSensor{
      */
     public abstract double getDistance();
     
+    public abstract double getAverageDistance();
+    
     /**
      * Returns the distance, corrected for weird voltage values
      * @return
      */
     public double getClippedDistance() {
     	double distance = getDistance();
+    	
+    	if (distance < 0.0) {
+    		return -distance;
+    	} else {
+    		return distance;
+    	}
+    }
+    
+    public double getClippedAverageDistance() {
+    	double distance = getAverageDistance();
     	
     	if (distance < 0.0) {
     		return -distance;

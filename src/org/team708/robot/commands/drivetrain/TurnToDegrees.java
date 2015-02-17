@@ -27,12 +27,20 @@ public class TurnToDegrees extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.haloDrive(0.0, -rotationSpeed);
+    	if (goalDegrees >= 0) {
+    		Robot.drivetrain.haloDrive(0.0, -rotationSpeed);
+    	} else {
+    		Robot.drivetrain.haloDrive(0.0, rotationSpeed);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.drivetrain.getAngle() >= goalDegrees);
+    	if (goalDegrees >= 0) {
+    		return (Robot.drivetrain.getAngle() >= goalDegrees);
+    	} else {
+    		return (Robot.drivetrain.getAngle() <= goalDegrees);
+    	}
     }
 
     // Called once after isFinished returns true
