@@ -59,7 +59,7 @@ public class OI {
 	public static final int toggleWristPositionButton = Gamepad.button_L_Shoulder;
 	
 	// Claw Elevator Buttons
-	public static final int clawHeightIncrementButton = Gamepad.button_Y;
+	public static final int clawHeightIncrementButton = Gamepad.button_B;
 	public static final int clawHeightDecrementButton = Gamepad.button_A;
 	
 	/*

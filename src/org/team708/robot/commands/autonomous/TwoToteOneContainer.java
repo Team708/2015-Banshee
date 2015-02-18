@@ -9,6 +9,7 @@ import org.team708.robot.commands.drivetrain.TurnToDegrees;
 import org.team708.robot.commands.indexer.IndexerUp;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  * An autonomous mode where the robot starts at a container,
@@ -20,9 +21,9 @@ public class TwoToteOneContainer extends CommandGroup {
 	private static final double ENCODER_SPEED = 0.45;
 	private static final double IR_TOLERANCE = 0.0625;
 	
-	private static final double TO_FIRST_TOTE_DISTANCE = 15.0;
-	private static final double TURN_DEGREES_TO_SECOND_TOTE = 169.0;
-	private static final double TO_SECOND_TOTE_DISTANCE = 45.0;
+	private static final double TO_FIRST_TOTE_DISTANCE = 21.0;
+	private static final double TURN_DEGREES_TO_SECOND_TOTE = 172.0;
+	private static final double TO_SECOND_TOTE_DISTANCE = 58.0;
 	
 	private static final double TURN_DEGREES_TO_AUTO_ZONE = -85.0;
 	private static final double TO_AUTO_ZONE_DISTANCE = 115.0;
@@ -39,6 +40,7 @@ public class TwoToteOneContainer extends CommandGroup {
     	
     	// Gets the second tote
     	addSequential(new TurnToDegrees(TURN_SPEED, TURN_DEGREES_TO_SECOND_TOTE));
+    	addSequential(new WaitCommand(0.1));
     	addSequential(new DriveStraightToEncoderDistance(TO_SECOND_TOTE_DISTANCE, ENCODER_SPEED));
 //    	addSequential(new DriveToIRDistance(Constants.IR_HAS_TOTE_DISTANCE, IR_TOLERANCE));
     	addSequential(new IndexerUp(false));

@@ -22,11 +22,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Drivetrain extends PIDSubsystem {
 	
 	// PID Tuning parameters
-	private static double Kp = 0.20;		// Proportional gain  
-	private static double Ki = 0.0;		// Integral gain		 
-	private static double Kd = 0.1;		// Derivative gain
+	private static double Kp = 0.0;		// Proportional gain  Was 0.1
+	private static double Ki = 0.0;		// Integral gain		  Was 0.02
+	private static double Kd = 0.0;		// Derivative gain	  Was 0.005
+	
+	private static double KpForward = 0.1;
+	private static double KiForward = 0.01;
+	private static double KdForward = 0.005;
+	
+	private static double KpBackward = 0.1;
+	private static double KiBackward = 0.02;
+	private static double KdBackward = 0.005;
 
-	private static double tolerance = 5;
+	private static double tolerance = 1;
 	
 	// Variables specific for drivetrain PID loop
 	private double moveSpeed = 0.0;
@@ -74,9 +82,9 @@ public class Drivetrain extends PIDSubsystem {
 		encoder.reset();								// Resets the encoder so that it starts with a 0.0 value
 		setEncoderReading();							// Sets the encoder to read positive when moving forward
 		irSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);
-    	
+		
+		setInputRange(-25.0, 25.0);
 		setAbsoluteTolerance(tolerance);
-		setInputRange(-360.0, 360.0);
         setSetpoint(0.0);
 //		enable();
         disable();
@@ -95,29 +103,44 @@ public class Drivetrain extends PIDSubsystem {
      * @param move
      * @param rotate
      */
-    public void haloDrive(double move, double rotate) {
+    public void haloDrive(double move, double rotate, boolean usePID) {
     	// Checks whether drift correction is needed
     	
     	//sets multiplier for max drive speed
     	move = move * Constants.DRIVE_MOTOR_MAX_SPEED;
     	rotate = rotate * Constants.ROTATE_MOTOR_MAX_SPEED;
     	
-    	
-    	if (rotate == 0.0 && move != 0.0) {
-    		// Enables the PID controller if it is not already
-    		if (!getPIDController().isEnable()) {
-    			gyro.reset();
-    			getPIDController().reset();
-//    			enable();
-    			disable();
-    		}
-    		// Sets the forward move speed to the move parameter
-    		moveSpeed = move;
+    	if (usePID) {
+	    	if (rotate == 0.0 && move > 0.0) {
+	    		// Enables the PID controller if it is not already
+	    		if (!getPIDController().isEnable()) {
+	    			getPIDController().setPID(KpForward, KiForward, KdForward);
+	    			getPIDController().reset();
+	    			gyro.reset();
+	    			enable();
+	    			gyro.reset();
+	    		}
+	    		// Sets the forward move speed to the move parameter
+	    		moveSpeed = move;
+	    	} else if (rotate == 0.0 && move < 0.0){
+	    		// Enables the PID controller if it is not already
+	    		if (!getPIDController().isEnable()) {
+	    			getPIDController().setPID(KpBackward, KiBackward, KdBackward);
+	    			getPIDController().reset();
+	    			gyro.reset();
+	    			enable();
+	    			gyro.reset();
+	    		}
+	    		// Sets the forward move speed to the move parameter
+	    		moveSpeed = move;
+	    	} else {
+	    		// Disables the PID controller if it enabled so the drivetrain can move freely
+	    		if (getPIDController().isEnable()) {
+	    			disable();
+	    		}
+	    		drivetrain.arcadeDrive(move, rotate);
+	    	}
     	} else {
-    		// Disables the PID controller if it enabled so the drivetrain can move freely
-    		if (getPIDController().isEnable()) {
-    			disable();
-    		}
     		drivetrain.arcadeDrive(move, rotate);
     	}
     }
@@ -316,6 +339,9 @@ public class Drivetrain extends PIDSubsystem {
     	// PID Info
     	SmartDashboard.putNumber("PID Output", pidOutput);
     	SmartDashboard.putNumber("DT IR Distance", getIRDistance());
+    	SmartDashboard.putNumber("P Actual", getPIDGain('p'));
+    	SmartDashboard.putNumber("I Actual", getPIDGain('i'));
+    	SmartDashboard.putNumber("D Actual", getPIDGain('d'));
     	
     	//Encoder Info
     	SmartDashboard.putNumber("DT Encoder Raw", encoder.get());

@@ -80,7 +80,7 @@ public class Robot extends IterativeRobot {
 		
 		autonomousMode = new SendableChooser();		// Initializes the Autonomous selection box
 		queueAutonomousModes();						// Adds autonomous modes to the selection box
-		setPIDPreferences();						// Adds PID gain constants to the Robot Preferences
+//		setPIDPreferences();						// Adds PID gain constants to the Robot Preferences
     }
 	
     /**
@@ -202,9 +202,9 @@ public class Robot extends IterativeRobot {
     private void setPIDPreferences() {
     	// Attempts to get robot preferences to set for PID, but throws an exception if the SmartDashboard is not found
     	try {
-    		drivetrain.setPIDGain('p', Preferences.getInstance().getDouble("P", drivetrain.getPIDGain('p')));
-    		drivetrain.setPIDGain('i', Preferences.getInstance().getDouble("I", drivetrain.getPIDGain('i')));
-    		drivetrain.setPIDGain('d', Preferences.getInstance().getDouble("D", drivetrain.getPIDGain('d')));
+    		drivetrain.setPIDGain('p', Preferences.getInstance().getDouble("P", 0.2));
+    		drivetrain.setPIDGain('i', Preferences.getInstance().getDouble("I", 0.0));
+    		drivetrain.setPIDGain('d', Preferences.getInstance().getDouble("D", 0.1));
     	} catch (NullPointerException e) {
     		e.printStackTrace();
     	}
