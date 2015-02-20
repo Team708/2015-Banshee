@@ -33,6 +33,8 @@ public class Drivetrain extends PIDSubsystem {
 	private static double KpBackward = 0.1;
 	private static double KiBackward = 0.02;
 	private static double KdBackward = 0.005;
+	
+	private boolean usePID = true;
 
 	private static double tolerance = 1;
 	
@@ -144,6 +146,10 @@ public class Drivetrain extends PIDSubsystem {
     		drivetrain.arcadeDrive(move, rotate);
     	}
     }
+	
+	public void haloDrive(double move, double rotate) {
+		haloDrive(move, rotate, this.usePID);
+	}
     
     /**
      * Drives the drivetrain using a left motor(s) value and a right motor(s) value
@@ -169,6 +175,14 @@ public class Drivetrain extends PIDSubsystem {
     		drivetrain.tankDrive(left, right);
     	}
     }
+	
+	public boolean getUsePID() {
+		return usePID;
+	}
+	
+	public void setUsePID(boolean usePID) {
+		this.usePID = usePID;
+	}
     
     public void stop() {
     	leftMaster.set(Constants.MOTOR_OFF);
@@ -346,6 +360,5 @@ public class Drivetrain extends PIDSubsystem {
     	//Encoder Info
     	SmartDashboard.putNumber("DT Encoder Raw", encoder.get());
     	SmartDashboard.putNumber("DT Encoder Distance", encoder.getDistance());
-    	
     }
 }

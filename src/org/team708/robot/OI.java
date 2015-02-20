@@ -1,23 +1,14 @@
 package org.team708.robot;
 
 
-import org.team708.robot.commands.claw.ToggleClawOpen;
-import org.team708.robot.commands.claw.ToggleWrist;
-import org.team708.robot.commands.clawElevator.DecrementClawOne;
-import org.team708.robot.commands.clawElevator.IncrementClawOne;
-import org.team708.robot.commands.drivetrain.ToggleBrakeMode;
-import org.team708.robot.commands.hockeyStick.ToggleHockeyStick;
-import org.team708.robot.commands.indexer.IndexerDown;
-import org.team708.robot.commands.indexer.IndexerUp;
-import org.team708.robot.commands.indexer.ScoreTote;
-import org.team708.robot.commands.intake.ToggleDirection;
-import org.team708.robot.commands.intake.TogglePower;
-import org.team708.robot.util.Gamepad;
-import org.team708.robot.util.triggers.AxisDown;
-import org.team708.robot.util.triggers.AxisUp;
-
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.*;
+import org.team708.robot.commands.claw.*;
+import org.team708.robot.commands.clawElevator.*;
+import org.team708.robot.commands.drivetrain.*;
+import org.team708.robot.commands.hockeyStick.*;
+import org.team708.robot.commands.indexer.*;
+import org.team708.robot.util.*;
+import org.team708.robot.util.triggers.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -39,13 +30,14 @@ public class OI {
 	// Drivetrain Buttons
 	private static final int toggleBrakeModeButton = Gamepad.button_B;
 	private static final int scoreToteButton = Gamepad.button_A;
+	private static final int HOLD_FOR_NO_PID_BUTTON = Gamepad.button_R_Shoulder;
 	
 	// Hockey Stick Buttons
 	private static final int toggleHockeyStickButton = Gamepad.button_Y;
 	
 	// Intake Buttons
-	private static final int toggleIntakePowerButton = Gamepad.button_L_Shoulder;
-	private static final int toggleIntakeDirectionButton = Gamepad.button_R_Shoulder;
+//	private static final int toggleIntakePowerButton = Gamepad.button_L_Shoulder;
+//	private static final int toggleIntakeDirectionButton = Gamepad.button_R_Shoulder;
 	
 	/*
 	 * Operator Button Assignment
@@ -67,8 +59,9 @@ public class OI {
 	 */
 	private static final Button toggleBrakeMode = new JoystickButton(driverGamepad, toggleBrakeModeButton);				// Toggles whether the drive is in all brake or all coast
 	public static final Button toggleHockeyStick = new JoystickButton(driverGamepad, toggleHockeyStickButton);			// Toggles the hockey stick
-	public static final Button toggleIntakePower = new JoystickButton(driverGamepad, toggleIntakePowerButton);			// Toggles the intake power on/off
-	public static final Button toggleIntakeDirection = new JoystickButton(driverGamepad, toggleIntakeDirectionButton);	// Toggles the intake direction
+	public static final Button holdForNoPID = new JoystickButton(driverGamepad, HOLD_FOR_NO_PID_BUTTON);
+//	public static final Button toggleIntakePower = new JoystickButton(driverGamepad, toggleIntakePowerButton);			// Toggles the intake power on/off
+//	public static final Button toggleIntakeDirection = new JoystickButton(driverGamepad, toggleIntakeDirectionButton);	// Toggles the intake direction
 	public static final Button scoreTote = new JoystickButton(driverGamepad, scoreToteButton);                          // Raises Totes up to place on step and/or plateform
 	/*
 	 * Operator Button Commands
@@ -90,8 +83,9 @@ public class OI {
 		 */
 		toggleBrakeMode.whenPressed(new ToggleBrakeMode());
 		toggleHockeyStick.whenPressed(new ToggleHockeyStick());
-		toggleIntakePower.whenPressed(new TogglePower());
-		toggleIntakeDirection.whenPressed(new ToggleDirection());
+		holdForNoPID.whileHeld(new HoldDisablePID());
+//		toggleIntakePower.whenPressed(new TogglePower());
+//		toggleIntakeDirection.whenPressed(new ToggleDirection());
 		scoreTote.whenPressed(new ScoreTote());
 		
 		/*
@@ -132,4 +126,3 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 }
-
