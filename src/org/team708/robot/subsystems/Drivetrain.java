@@ -21,22 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends PIDSubsystem {
 	
-	// PID Tuning parameters
-	private static double Kp = 0.0;		// Proportional gain  Was 0.1
-	private static double Ki = 0.0;		// Integral gain		  Was 0.02
-	private static double Kd = 0.0;		// Derivative gain	  Was 0.005
-	
-	private static double KpForward = 0.1;
-	private static double KiForward = 0.01;
-	private static double KdForward = 0.005;
-	
-	private static double KpBackward = 0.1;
-	private static double KiBackward = 0.02;
-	private static double KdBackward = 0.005;
-	
 	private boolean usePID = true;
-
-	private static double tolerance = 1;
 	
 	// Variables specific for drivetrain PID loop
 	private double moveSpeed = 0.0;
@@ -60,7 +45,7 @@ public class Drivetrain extends PIDSubsystem {
      */
     public Drivetrain() {
     	// Passes variables from this class into the superclass constructor
-    	super("Drivetrain", Kp, Ki, Kd);
+    	super("Drivetrain", Constants.Kp, Constants.Ki, Constants.Kd);
     	
     	// Initializes motor controllers with device IDs from RobotMap
 		leftMaster = new CANTalon(RobotMap.drivetrainLeftMotorMaster);
@@ -86,7 +71,7 @@ public class Drivetrain extends PIDSubsystem {
 		irSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);
 		
 		setInputRange(-25.0, 25.0);
-		setAbsoluteTolerance(tolerance);
+		setAbsoluteTolerance(Constants.pid_tolerance);
         setSetpoint(0.0);
 //		enable();
         disable();
@@ -116,7 +101,7 @@ public class Drivetrain extends PIDSubsystem {
 	    	if (rotate == 0.0 && move > 0.0) {
 	    		// Enables the PID controller if it is not already
 	    		if (!getPIDController().isEnable()) {
-	    			getPIDController().setPID(KpForward, KiForward, KdForward);
+	    			getPIDController().setPID(Constants.KpForward, Constants.KiForward, Constants.KdForward);
 	    			getPIDController().reset();
 	    			gyro.reset();
 	    			enable();
@@ -127,7 +112,7 @@ public class Drivetrain extends PIDSubsystem {
 	    	} else if (rotate == 0.0 && move < 0.0){
 	    		// Enables the PID controller if it is not already
 	    		if (!getPIDController().isEnable()) {
-	    			getPIDController().setPID(KpBackward, KiBackward, KdBackward);
+	    			getPIDController().setPID(Constants.KpBackward, Constants.KiBackward, Constants.KdBackward);
 	    			getPIDController().reset();
 	    			gyro.reset();
 	    			enable();
@@ -296,45 +281,6 @@ public class Drivetrain extends PIDSubsystem {
     }
     
     /**
-     * Returns the PID gain constant
-     * @param gain
-     * @return
-     */
-    public double getPIDGain(char gain) {
-    	switch(gain) {
-    		case 'p':
-    			return Kp;
-    		case 'i':
-    			return Ki;
-    		case 'd':
-    			return Kd;
-    		default:
-    			return 0.0;
-    	}
-    }
-    
-    /**
-     * Sets the PID gain constant to the desired value
-     * @param gain
-     * @param value
-     */
-    public void setPIDGain(char gain, double value) {
-    	switch(gain) {
-			case 'p':
-				Kp = value;
-				break;
-			case 'i':
-				Ki = value;
-				break;
-			case 'd':
-				Kd = value;
-				break;
-			default:
-				break;
-    	}
-    }
-    
-    /**
      * Sends data for this subsystem to the dashboard
      */
     public void sendToDashboard() {
@@ -353,9 +299,6 @@ public class Drivetrain extends PIDSubsystem {
     	// PID Info
     	SmartDashboard.putNumber("PID Output", pidOutput);
     	SmartDashboard.putNumber("DT IR Distance", getIRDistance());
-    	SmartDashboard.putNumber("P Actual", getPIDGain('p'));
-    	SmartDashboard.putNumber("I Actual", getPIDGain('i'));
-    	SmartDashboard.putNumber("D Actual", getPIDGain('d'));
     	
     	//Encoder Info
     	SmartDashboard.putNumber("DT Encoder Raw", encoder.get());

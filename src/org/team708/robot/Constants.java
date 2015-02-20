@@ -68,6 +68,21 @@ public final class Constants {
 	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6.0;
 	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 256.0;
 	
+	// PID Tuning parameters
+	public static final double Kp = 0.0;		// Proportional gain
+	public static final double Ki = 0.0;		// Integral gain
+	public static final double Kd = 0.0;		// Derivative gain
+
+	public static final double KpForward = 0.1;
+	public static final double KiForward = 0.01;
+	public static final double KdForward = 0.005;
+
+	public static final double KpBackward = 0.1;
+	public static final double KiBackward = 0.02;
+	public static final double KdBackward = 0.005;
+	
+	public static final double pid_tolerance = 1;
+	
 	/*
 	 * Vision Processor
 	 */
