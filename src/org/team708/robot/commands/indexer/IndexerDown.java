@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class IndexerDown extends Command {
 	
+	private final double EXTRA_TRAVEL_DISTANCE = 1.0;
 
     public IndexerDown() {
         // Use requires() here to declare subsystem dependencies
@@ -32,7 +33,7 @@ public class IndexerDown extends Command {
     protected boolean isFinished() {
 //    	return Math708.isWithinThreshold(Robot.toteElevator.getEncoderDistance(), -Robot.toteElevator.TOP_ENCODER_DISTANCE, threshold)
 //    				|| Robot.toteElevator.elevatorDown;
-    	return Robot.indexer.getEncoderDistance() <= -Constants.TOTE_HEIGHT;
+    	return Robot.indexer.getEncoderDistance() <= -(Constants.TOTE_HEIGHT + EXTRA_TRAVEL_DISTANCE);
     }
 
     // Called once after isFinished returns true

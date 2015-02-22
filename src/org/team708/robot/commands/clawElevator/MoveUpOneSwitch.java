@@ -5,13 +5,13 @@ import org.team708.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Decreases the height of the container elevator by a specified integer decrement
+ *	Increases the height of the container elevator by a specified integer increment
  */
-public class DecrementOneClawHeight extends Command {
+public class MoveUpOneSwitch extends Command {
 
-private boolean atLowerSwitch;
+	private boolean atUpperSwitch;
     
-	public DecrementOneClawHeight() {
+	public MoveUpOneSwitch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.clawElevator);
@@ -19,20 +19,20 @@ private boolean atLowerSwitch;
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	atLowerSwitch = Robot.clawElevator.getLowerSwitch();
+    	atUpperSwitch = Robot.clawElevator.getUpperSwitch();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (!atLowerSwitch) {
-    		Robot.clawElevator.moveDown();
+    	if (!atUpperSwitch) {
+    		Robot.clawElevator.moveUp();
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	// Returns true if containerHeight is equal to the target height
-    	return Robot.clawElevator.getSeries() || Robot.clawElevator.getLowerSwitch();
+    	return Robot.clawElevator.getSeries() || Robot.clawElevator.getUpperSwitch();
     }
 
     // Called once after isFinished returns true

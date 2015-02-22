@@ -10,7 +10,7 @@ public class DecrementClawOne extends CommandGroup {
     public  DecrementClawOne() {
     	
     	addSequential(new MoveDownOffSwitch());
-    	addSequential(new DecrementOneClawHeight());
+    	addSequential(new MoveDownOneSwitch());
     	
     }
 }
