@@ -93,7 +93,7 @@ public class Drivetrain extends PIDSubsystem {
     public void haloDrive(double move, double rotate, boolean usePID) {
     	// Checks whether drift correction is needed
     	
-    	//sets multiplier for max drive speed
+    	// Sets multiplier for max drive speed
     	move = move * Constants.DRIVE_MOTOR_MAX_SPEED;
     	rotate = rotate * Constants.ROTATE_MOTOR_MAX_SPEED;
     	
