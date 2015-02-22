@@ -12,13 +12,17 @@ public class DriveToIRDistance extends Command {
 	private double targetDistance;
 	private double moveSpeed;
 	private double tolerance;
+	private double minValue;
+	private double maxValue;
 
-    public DriveToIRDistance(double targetDistance, double tolerance) {
+    public DriveToIRDistance(double targetDistance, double minValue, double maxValue, double tolerance) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.drivetrain);
         
         this.targetDistance = targetDistance;
         this.tolerance = tolerance;
+        this.minValue = minValue;
+        this.maxValue = maxValue;
     }
 
     // Called just before this Command runs the first time
@@ -27,8 +31,8 @@ public class DriveToIRDistance extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	moveSpeed = Robot.drivetrain.moveByIR(targetDistance, tolerance);
-    	Robot.drivetrain.haloDrive(moveSpeed * Constants.DRIVE_MOTOR_MAX_SPEED, 0.0, true);
+    	moveSpeed = Robot.drivetrain.moveByIR(targetDistance, tolerance, minValue, maxValue);
+    	Robot.drivetrain.haloDrive(moveSpeed, 0.0, true);
     }
 
     // Make this return true when this Command no longer needs to run execute()

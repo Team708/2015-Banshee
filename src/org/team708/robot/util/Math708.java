@@ -117,6 +117,28 @@ public class Math708 {
     }
     
     /**
+     * Gets the percent error of a sensor reading with a desired value,
+     * but clips it to prevent the error being too low to overcome torque
+     * or so high that the error proposes mechanical issues
+     * @param currentValue
+     * @param goalValue
+     * @param minimumValue
+     * @param maximumValue
+     * @return
+     */
+    public static double getClippedPercentError(double currentValue, double goalValue, double minimumValue, double maximumValue) {
+    	return makeWithin(getPercentError(currentValue, goalValue), minimumValue, maximumValue);
+    }
+    
+    public static double getClippedPercentErrorWithTolerance(double currentValue, double goalValue, double minimumValue, double maximumValue, double tolerance) {
+    	if (isWithinThreshold(currentValue, goalValue, tolerance)) {
+    		currentValue = 0.0;
+    	}
+    	
+    	return getClippedPercentError(currentValue, goalValue, minimumValue, maximumValue);
+    }
+    
+    /**
      * Checks if a sensor reading is within a threshold of a desired value
      * @param currentValue
      * @param goalValue

@@ -209,14 +209,8 @@ public class Drivetrain extends PIDSubsystem {
      * @param targetDistance
      * @return
      */
-    public double moveByIR(double targetDistance, double tolerance) {
-    	double difference =  getIRDistance() - targetDistance;
-    	
-    	if (Math708.isWithinThreshold(getIRDistance(), targetDistance, tolerance)) {
-    		difference = 0.0;
-    	}
-    	
-    	return difference / targetDistance;
+    public double moveByIR(double targetDistance, double maxSpeed, double minSpeed, double tolerance) {
+    	return Math708.getClippedPercentErrorWithTolerance(getIRDistance(), targetDistance, minSpeed, maxSpeed, tolerance);
     }
     
     /**
