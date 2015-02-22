@@ -50,7 +50,7 @@ public class IndexerUp extends Command {
     	if (Robot.indexer.toteCount>=1)
     		return (Robot.indexer.getEncoderDistance() >= Constants.TOTE_HEIGHT) || !hasToteInitially;
     	else
-    	    return ((Robot.indexer.getEncoderDistance() >= 10.0) && (Robot.drivetrain.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE)) || !hasToteInitially;
+    	    return ((Robot.indexer.getEncoderDistance() >= 10.0) && (Robot.indexer.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE)) || !hasToteInitially;
     }
 
     // Called once after isFinished returns true
