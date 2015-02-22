@@ -45,7 +45,8 @@ public class RobotMap {
 
 	// Analog sensor IDs
 	public static final int gyro = 0;
-	public static final int drivetrainIRSensor = 1;
+	public static final int indexerIRSensor = 1;
+	public static final int drivetrainIRSensor = 2;
 	
 	// Claw PCM Ports
 	public static final int clawDoubleSolenoidA      = 0;

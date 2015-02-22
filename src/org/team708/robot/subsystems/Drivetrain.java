@@ -36,7 +36,7 @@ public class Drivetrain extends PIDSubsystem {
 	private BuiltInAccelerometer accelerometer;		// Accelerometer that is built into the roboRIO
 	private Gyro gyro;								// Gyro that is used for drift correction
 	
-	private IRSensor irSensor;						// IR Sensor that is used for short distancing
+	private IRSensor drivetrainIRSensor;						// IR Sensor that is used for short distancing
 	
 	private boolean brake = true;		// Whether the talons should be in coast or brake mode (this could be important if a jerky robot causes things to topple
 	
@@ -68,7 +68,7 @@ public class Drivetrain extends PIDSubsystem {
 		encoder.setDistancePerPulse(distancePerPulse);
 		encoder.reset();								// Resets the encoder so that it starts with a 0.0 value
 		setEncoderReading();							// Sets the encoder to read positive when moving forward
-		irSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);
+		drivetrainIRSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);
 		
 		setInputRange(-25.0, 25.0);
 		setAbsoluteTolerance(Constants.pid_tolerance);
@@ -200,7 +200,7 @@ public class Drivetrain extends PIDSubsystem {
     }
     
     public double getIRDistance() {
-    	return irSensor.getClippedAverageDistance();
+    	return drivetrainIRSensor.getClippedAverageDistance();
     }
     
     /**

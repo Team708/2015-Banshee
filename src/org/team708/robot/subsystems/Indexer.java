@@ -2,6 +2,7 @@ package org.team708.robot.subsystems;
 
 import org.team708.robot.Constants;
 import org.team708.robot.RobotMap;
+import org.team708.robot.util.IRSensor;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
@@ -24,9 +25,12 @@ public class Indexer extends Subsystem {
 	//number of tote heights/totes indexed
 	public int toteCount;
 	
-	//Digital sensors
+	//Encoder
 	private Encoder indexerEncoder;
 	private double distancePerPulse;
+	
+	//IR Sensor
+	private IRSensor indexerIR;
 	
 	public Indexer() {
 		//Creates motors that run elevator
@@ -40,6 +44,8 @@ public class Indexer extends Subsystem {
 
 		indexerEncoder.setDistancePerPulse(distancePerPulse);
 		indexerEncoder.setReverseDirection(true);
+		
+		indexerIR = new IRSensor(RobotMap.indexerIRSensor, IRSensor.GP2Y0A21YK0F);
 	}
 	
 	/*
@@ -65,6 +71,10 @@ public class Indexer extends Subsystem {
 	 */
 	public void resetEncoder() {
 		indexerEncoder.reset();
+	}
+	
+	public double getIRDistance() {
+		return indexerIR.getClippedAverageDistance();
 	}
 	
 	/**
