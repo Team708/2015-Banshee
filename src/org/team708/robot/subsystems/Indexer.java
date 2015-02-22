@@ -127,9 +127,13 @@ public class Indexer extends Subsystem {
      * Sends data about the subsystem to the Smart Dashboard
      */
     public void sendToSmartDashboard() {
-    	SmartDashboard.putNumber("indexer Encoder Count", getEncoderCount());
+    	if (Constants.DEBUG) {
+    		SmartDashboard.putNumber("indexer Encoder Count", getEncoderCount());
+    	}
+    	
     	SmartDashboard.putNumber("indexer Encoder Distance", getEncoderDistance());
     	SmartDashboard.putNumber("indexer Tote Count", getToteCount());
+    	SmartDashboard.putNumber("indexer IR Distance", getIRDistance());
     }
 }
 

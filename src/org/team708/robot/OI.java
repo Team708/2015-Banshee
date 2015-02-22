@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.buttons.*;
 import org.team708.robot.commands.claw.*;
 import org.team708.robot.commands.clawElevator.*;
 import org.team708.robot.commands.drivetrain.*;
-import org.team708.robot.commands.hockeyStick.*;
+//import org.team708.robot.commands.hockeyStick.*;
 import org.team708.robot.commands.indexer.*;
 import org.team708.robot.util.*;
 import org.team708.robot.util.triggers.*;
@@ -82,7 +82,7 @@ public class OI {
 		 * Driver Commands to be called by button
 		 */
 		toggleBrakeMode.whenPressed(new ToggleBrakeMode());
-		toggleHockeyStick.whenPressed(new ToggleHockeyStick());
+//		toggleHockeyStick.whenPressed(new ToggleHockeyStick());
 		holdForNoPID.whileHeld(new HoldDisablePID());
 //		toggleIntakePower.whenPressed(new TogglePower());
 //		toggleIntakeDirection.whenPressed(new ToggleDirection());

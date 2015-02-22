@@ -123,11 +123,15 @@ public class Drivetrain extends PIDSubsystem {
 	    	} else {
 	    		// Disables the PID controller if it enabled so the drivetrain can move freely
 	    		if (getPIDController().isEnable()) {
-	    			disable();
+	    			getPIDController().reset();
 	    		}
 	    		drivetrain.arcadeDrive(move, rotate);
 	    	}
     	} else {
+    		// Disables the PID controller if it enabled so the drivetrain can move freely
+    		if (getPIDController().isEnable()) {
+    			getPIDController().reset();
+    		}
     		drivetrain.arcadeDrive(move, rotate);
     	}
     }
@@ -278,24 +282,20 @@ public class Drivetrain extends PIDSubsystem {
      * Sends data for this subsystem to the dashboard
      */
     public void sendToDashboard() {
-    	// Accelerometer Info
-    	SmartDashboard.putNumber("Accelerometer X", accelerometer.getX());
-    	SmartDashboard.putNumber("Accelerometer Y", accelerometer.getY());
-    	SmartDashboard.putNumber("Accelerometer Z", accelerometer.getZ());
+    	if (Constants.DEBUG) {
+	    	// Accelerometer Info
+	    	SmartDashboard.putNumber("Accelerometer X", accelerometer.getX());
+	    	SmartDashboard.putNumber("Accelerometer Y", accelerometer.getY());
+	    	SmartDashboard.putNumber("Accelerometer Z", accelerometer.getZ());
+	    	
+	    	SmartDashboard.putNumber("Gyro Rate", gyro.getRate());			// Gyro rate
+	    	SmartDashboard.putNumber("PID Output", pidOutput);				// PID Info
+	    	SmartDashboard.putNumber("DT Encoder Raw", encoder.get());		// Encoder raw count
+    	}
     	
-    	// Gyro Info
-    	SmartDashboard.putNumber("Gyro angle", gyro.getAngle());
-    	SmartDashboard.putNumber("Gyro Rate", gyro.getRate());
-    	
-    	// Drivetrain states
-    	SmartDashboard.putBoolean("Brake", brake);
-    	
-    	// PID Info
-    	SmartDashboard.putNumber("PID Output", pidOutput);
-    	SmartDashboard.putNumber("DT IR Distance", getIRDistance());
-    	
-    	//Encoder Info
-    	SmartDashboard.putNumber("DT Encoder Raw", encoder.get());
-    	SmartDashboard.putNumber("DT Encoder Distance", encoder.getDistance());
+    	SmartDashboard.putNumber("Gyro angle", gyro.getAngle());				// Gyro angle
+    	SmartDashboard.putBoolean("Brake", brake);								// Brake or Coast
+    	SmartDashboard.putNumber("DT IR Distance", getIRDistance());			// IR distance reading
+    	SmartDashboard.putNumber("DT Encoder Distance", encoder.getDistance());	// Encoder reading
     }
 }

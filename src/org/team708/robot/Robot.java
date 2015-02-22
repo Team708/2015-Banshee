@@ -2,7 +2,6 @@
 package org.team708.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -11,11 +10,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team708.robot.commands.DoNothing;
-import org.team708.robot.commands.autonomous.ClearStep;
+//import org.team708.robot.commands.autonomous.ClearStep;
 import org.team708.robot.commands.autonomous.ContainerToteTote;
 import org.team708.robot.commands.autonomous.DriveInSquare;
 import org.team708.robot.commands.autonomous.GetContainerGotoAutozone;
-import org.team708.robot.commands.autonomous.HockeyStickClearToAutoZone;
+//import org.team708.robot.commands.autonomous.HockeyStickClearToAutoZone;
 import org.team708.robot.commands.autonomous.MoveToAutozone;
 import org.team708.robot.commands.autonomous.OneContainerOneTote;
 import org.team708.robot.commands.autonomous.OneToteToAuto;
@@ -29,8 +28,8 @@ import org.team708.robot.subsystems.Drivetrain;
 //import org.team708.robot.subsystems.VisionProcessor;
 import org.team708.robot.subsystems.Claw;
 import org.team708.robot.subsystems.ClawElevator;
-import org.team708.robot.subsystems.HockeyStick;
-import org.team708.robot.subsystems.Intake;
+//import org.team708.robot.subsystems.HockeyStick;
+//import org.team708.robot.subsystems.Intake;
 import org.team708.robot.subsystems.Indexer;
 
 /**
@@ -48,8 +47,8 @@ public class Robot extends IterativeRobot {
     
     public static Drivetrain drivetrain;
 //	public static VisionProcessor visionProcessor;
-    public static Intake intake;
-	public static HockeyStick hockeyStick;
+//    public static Intake intake;
+//	public static HockeyStick hockeyStick;
 	public static Indexer indexer;
 	public static Claw claw;
 	public static ClawElevator clawElevator;
@@ -68,8 +67,8 @@ public class Robot extends IterativeRobot {
         // Subsystem Initialisation
         drivetrain = new Drivetrain();
 //		visionProcessor = new VisionProcessor();
-		intake = new Intake();
-		hockeyStick = new HockeyStick();
+//		intake = new Intake();
+//		hockeyStick = new HockeyStick();
 		indexer = new Indexer();
 		claw = new Claw();
 		clawElevator = new ClawElevator();
@@ -153,7 +152,7 @@ public class Robot extends IterativeRobot {
             // Various debug information
             drivetrain.sendToDashboard();
 //            visionProcessor.sendToDashboard();
-            intake.sendToDashboard();
+//            intake.sendToDashboard();
             clawElevator.sendToDashboard();
             indexer.sendToSmartDashboard();
         }
@@ -166,9 +165,9 @@ public class Robot extends IterativeRobot {
     	autonomousMode.addDefault("Do Nothing", new DoNothing());
     	autonomousMode.addObject("Drive in Square", new DriveInSquare());
 //    	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
-    	autonomousMode.addObject("Clear Step", new ClearStep());
+//    	autonomousMode.addObject("Clear Step", new ClearStep());
     	autonomousMode.addObject("One Container", new GetContainerGotoAutozone());
-    	autonomousMode.addObject("Hockey Stick Shove All", new HockeyStickClearToAutoZone());
+//    	autonomousMode.addObject("Hockey Stick Shove All", new HockeyStickClearToAutoZone());
     	autonomousMode.addObject("Move to Autozone", new MoveToAutozone());
     	autonomousMode.addObject("One Container One Tote", new OneContainerOneTote());
     	autonomousMode.addObject("One Tote To Auto", new OneToteToAuto());
@@ -188,10 +187,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(claw);
 		SmartDashboard.putData(indexer);
 //		SmartDashboard.putData(visionProcessor);
-		SmartDashboard.putData(hockeyStick);
-		SmartDashboard.putData(intake);
-		
-		SmartDashboard.putData("Indexer Up", new IndexerUp());
-		SmartDashboard.putData("Indexer Down", new IndexerDown());
+//		SmartDashboard.putData(hockeyStick);
+//		SmartDashboard.putData(intake);
     }
 }
