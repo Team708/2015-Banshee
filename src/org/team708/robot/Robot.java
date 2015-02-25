@@ -162,19 +162,19 @@ public class Robot extends IterativeRobot {
      * Adds every autonomous mode to the selection box and adds the box to the Smart Dashboard
      */
     private void queueAutonomousModes() {
-    	autonomousMode.addDefault("Do Nothing", new DoNothing());
-    	autonomousMode.addObject("Drive in Square", new DriveInSquare());
+    	autonomousMode.addDefault("1) Do Nothing", new DoNothing());
+		autonomousMode.addObject("2) Move to Autozone", new MoveToAutozone());
+		autonomousMode.addObject("3) One Tote", new OneToteToAuto());
+    	autonomousMode.addObject("4) One Container", new GetContainerGotoAutozone());
+    	autonomousMode.addObject("5) One Container One Tote", new OneContainerOneTote());
+    	autonomousMode.addObject("6) Container Tote Spin Tote", new TwoToteOneContainer());
+    	autonomousMode.addObject("7) Container Tote Tote", new ContainerToteTote());
+//    	autonomousMode.addObject("Drive in Square", new DriveInSquare());
 //    	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
 //    	autonomousMode.addObject("Clear Step", new ClearStep());
-    	autonomousMode.addObject("One Container", new GetContainerGotoAutozone());
+//    	autonomousMode.addObject("Three Totes", new ThreeTotes());
 //    	autonomousMode.addObject("Hockey Stick Shove All", new HockeyStickClearToAutoZone());
-    	autonomousMode.addObject("Move to Autozone", new MoveToAutozone());
-    	autonomousMode.addObject("One Container One Tote", new OneContainerOneTote());
-    	autonomousMode.addObject("One Tote To Auto", new OneToteToAuto());
 //    	autonomousMode.addObject("Three Containers To Auto", new ThreeContainersToAuto());
-    	autonomousMode.addObject("Three Totes", new ThreeTotes());
-    	autonomousMode.addObject("TwoToteOneContainer", new TwoToteOneContainer());
-    	autonomousMode.addObject("ContainerToteTote", new ContainerToteTote());
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
     }
     

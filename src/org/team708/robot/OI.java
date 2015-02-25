@@ -30,7 +30,7 @@ public class OI {
 	// Drivetrain Buttons
 	private static final int TOGGLE_BRAKE_MODE_BUTTON = Gamepad.button_B;
 	private static final int SCORE_TOTE_BUTTON = Gamepad.button_A;
-	private static final int HOLD_FOR_NO_PID_BUTTON = Gamepad.button_R_Shoulder;
+//	private static final int HOLD_FOR_NO_PID_BUTTON = Gamepad.button_R_Shoulder;
 	
 	// Hockey Stick Buttons
 	private static final int TOGGLE_HOCKEY_STICK_BUTTON = Gamepad.button_Y;
@@ -58,7 +58,7 @@ public class OI {
 	 */
 	private static final Button toggleBrakeMode = new JoystickButton(driverGamepad, TOGGLE_BRAKE_MODE_BUTTON);				// Toggles whether the drive is in all brake or all coast
 	public static final Button toggleHockeyStick = new JoystickButton(driverGamepad, TOGGLE_HOCKEY_STICK_BUTTON);			// Toggles the hockey stick
-	public static final Button holdForNoPID = new JoystickButton(driverGamepad, HOLD_FOR_NO_PID_BUTTON);
+//	public static final Button holdForNoPID = new JoystickButton(driverGamepad, HOLD_FOR_NO_PID_BUTTON);
 //	public static final Button toggleIntakePower = new JoystickButton(driverGamepad, toggleIntakePowerButton);			// Toggles the intake power on/off
 //	public static final Button toggleIntakeDirection = new JoystickButton(driverGamepad, toggleIntakeDirectionButton);	// Toggles the intake direction
 	public static final Button scoreTote = new JoystickButton(driverGamepad, SCORE_TOTE_BUTTON);                          // Raises Totes up to place on step and/or plateform
@@ -82,7 +82,7 @@ public class OI {
 		 */
 		toggleBrakeMode.whenPressed(new ToggleBrakeMode());
 //		toggleHockeyStick.whenPressed(new ToggleHockeyStick());
-		holdForNoPID.whileHeld(new HoldDisablePID());
+//		holdForNoPID.whileHeld(new HoldDisablePID());
 //		toggleIntakePower.whenPressed(new TogglePower());
 //		toggleIntakeDirection.whenPressed(new ToggleDirection());
 		scoreTote.whenPressed(new ScoreTote());
