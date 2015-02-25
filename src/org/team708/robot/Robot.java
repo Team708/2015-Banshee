@@ -19,7 +19,7 @@ import org.team708.robot.commands.autonomous.MoveToAutozone;
 import org.team708.robot.commands.autonomous.OneContainerOneTote;
 import org.team708.robot.commands.autonomous.OneToteToAuto;
 //import org.team708.robot.commands.autonomous.ThreeContainersToAuto;
-import org.team708.robot.commands.autonomous.ThreeTotes;
+//import org.team708.robot.commands.autonomous.ThreeTotes;
 import org.team708.robot.commands.autonomous.TwoToteOneContainer;
 import org.team708.robot.commands.indexer.IndexerDown;
 import org.team708.robot.commands.indexer.IndexerUp;
