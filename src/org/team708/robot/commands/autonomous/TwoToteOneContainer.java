@@ -26,7 +26,7 @@ public class TwoToteOneContainer extends CommandGroup {
 	private static final double TO_SECOND_TOTE_DISTANCE = 58.0;
 	
 	private static final double TURN_DEGREES_TO_AUTO_ZONE = -85.0;
-	private static final double TO_AUTO_ZONE_DISTANCE = 107.0;
+	private static final double TO_AUTO_ZONE_DISTANCE = 80.0;
     
     public  TwoToteOneContainer() {
     	

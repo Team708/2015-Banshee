@@ -162,9 +162,9 @@ public class Robot extends IterativeRobot {
      * Adds every autonomous mode to the selection box and adds the box to the Smart Dashboard
      */
     private void queueAutonomousModes() {
-    	autonomousMode.addDefault("1) Do Nothing", new DoNothing());
+    	autonomousMode.addObject("1) Do Nothing", new DoNothing());
 		autonomousMode.addObject("2) Move to Autozone", new MoveToAutozone());
-		autonomousMode.addObject("3) One Tote", new OneToteToAuto());
+		autonomousMode.addDefault("3) One Tote", new OneToteToAuto());
     	autonomousMode.addObject("4) One Container", new GetContainerGotoAutozone());
     	autonomousMode.addObject("5) One Container One Tote", new OneContainerOneTote());
     	autonomousMode.addObject("6) Container Tote Spin Tote", new TwoToteOneContainer());
