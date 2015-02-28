@@ -17,7 +17,7 @@ public class OneToteToAuto extends CommandGroup {
 	
 	private final double TURN_SPEED = 0.6;
 	private final double TURN_ANGLE = 85.0;  //degrees
-	private final double DRIVE_DISTANCE = 80.00; //inches
+	private final double DRIVE_DISTANCE = 80.0; //inches
 	
 	private double MIN_VAL = 0.45;
 	private double MAX_VAL = 0.55;

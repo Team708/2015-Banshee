@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class GetContainerGotoAutozone extends CommandGroup {
     
-	private final double DRIVE_DISTANCE = 85.0; //inches
+	private final double DRIVE_DISTANCE = 70.0; //inches
 	
     public  GetContainerGotoAutozone() {
     	addSequential(new IncrementClawOne());
