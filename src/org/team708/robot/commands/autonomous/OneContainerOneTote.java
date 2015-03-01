@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class OneContainerOneTote extends CommandGroup {
 	
 	private final double TURN_SPEED     = 0.6;
-	private final double TURN_TO_TOTE_ANGLE     = 172.0;  //degrees
+	private final double TURN_TO_TOTE_ANGLE     = 167.0;  //degrees
 	private final double TURN_TO_AUTO_ZONE_ANGLE = -85.0;
 	
 	private final double TO_TOTE_DISTANCE = 38.0;
 	private final double ENCODER_SPEED = 0.45;
 	
-	private final double TO_AUTO_ZONE_DISTANCE = 80.0;  //inches
+	private final double TO_AUTO_ZONE_DISTANCE = 84.0;  //inches
 	
 //	private double irTolerance = 5;  //inches
         
