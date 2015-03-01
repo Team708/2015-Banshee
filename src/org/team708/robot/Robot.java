@@ -21,6 +21,7 @@ import org.team708.robot.commands.autonomous.OneToteToAuto;
 //import org.team708.robot.commands.autonomous.ThreeContainersToAuto;
 //import org.team708.robot.commands.autonomous.ThreeTotes;
 import org.team708.robot.commands.autonomous.TwoToteOneContainer;
+import org.team708.robot.commands.drivetrain.DriveToIRDistance;
 import org.team708.robot.commands.indexer.IndexerDown;
 import org.team708.robot.commands.indexer.IndexerUp;
 //import org.team708.robot.commands.visionProcessor.FollowYellowTote;
@@ -169,6 +170,8 @@ public class Robot extends IterativeRobot {
     	autonomousMode.addObject("5) One Container One Tote", new OneContainerOneTote());
     	autonomousMode.addObject("6) Container Tote Spin Tote", new TwoToteOneContainer());
     	autonomousMode.addObject("7) Container Tote Tote", new ContainerToteTote());
+    	autonomousMode.addObject("Drive By IR", new DriveToIRDistance(3.0,
+            		0.5, 0.7, 0.1));
 //    	autonomousMode.addObject("Drive in Square", new DriveInSquare());
 //    	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
 //    	autonomousMode.addObject("Clear Step", new ClearStep());

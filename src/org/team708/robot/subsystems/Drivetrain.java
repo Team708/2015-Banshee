@@ -212,7 +212,7 @@ public class Drivetrain extends PIDSubsystem {
      * @param targetDistance
      * @return
      */
-    public double moveByIR(double targetDistance, double maxSpeed, double minSpeed, double tolerance) {
+    public double moveByIR(double targetDistance, double minSpeed, double maxSpeed, double tolerance) {
     	return Math708.getClippedPercentErrorWithTolerance(getIRDistance(), targetDistance, minSpeed, maxSpeed, tolerance);
     }
     
@@ -296,5 +296,8 @@ public class Drivetrain extends PIDSubsystem {
     	SmartDashboard.putBoolean("Brake", brake);								// Brake or Coast
     	SmartDashboard.putNumber("DT IR Distance", getIRDistance());			// IR distance reading
     	SmartDashboard.putNumber("DT Encoder Distance", encoder.getDistance());	// Encoder reading
+    	
+    	SmartDashboard.putNumber("Move By IR Value", moveByIR(3.0,
+            		0.5, 0.7, 0.1));
     }
 }
