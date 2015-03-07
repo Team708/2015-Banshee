@@ -1,6 +1,7 @@
 package org.team708.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.*;
+
 import org.team708.robot.commands.clawElevator.*;
 import org.team708.robot.commands.drivetrain.*;
 import org.team708.robot.commands.indexer.*;
@@ -22,6 +23,7 @@ public class TwoToteOneContainer extends CommandGroup {
 	
 	private static final double TURN_DEGREES_TO_AUTO_ZONE = -85.0;
 	private static final double TO_AUTO_ZONE_DISTANCE = 84.0;
+	private final double FINAL_TURN_ANGLE = -90.0; //degrees
     
     public  TwoToteOneContainer() {
     	
@@ -43,6 +45,9 @@ public class TwoToteOneContainer extends CommandGroup {
     	// Go to auto zone
     	addSequential(new TurnToDegrees(TURN_SPEED, TURN_DEGREES_TO_AUTO_ZONE));
     	addSequential(new DriveStraightToEncoderDistance(TO_AUTO_ZONE_DISTANCE));
+    	
+    	//Turn 90 degrees counterclockwise
+    	addSequential(new TurnToDegrees(TURN_SPEED, FINAL_TURN_ANGLE));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

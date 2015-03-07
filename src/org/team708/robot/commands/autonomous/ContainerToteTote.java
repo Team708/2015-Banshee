@@ -20,6 +20,7 @@ public class ContainerToteTote extends CommandGroup {
 	private final double DRIVE_DISTANCE = 102.0;  //inches
 	private final double DRIVE_TO_TOTE1  = 14.0;  //inches
 	private final double DRIVE_TO_TOTE2  = 88.0;  //inches
+	private final double FINAL_TURN_ANGLE = -90.0; //degrees
 	
 	private final double ENCODER_SPEED 	 = 0.45;
 	
@@ -43,6 +44,8 @@ public class ContainerToteTote extends CommandGroup {
     	
     	addSequential(new TurnToDegrees(TURN_SPEED, TURN_ANGLE));
     	addSequential(new DriveStraightToEncoderDistance(DRIVE_DISTANCE));
+    	
+    	addSequential(new TurnToDegrees(TURN_SPEED, FINAL_TURN_ANGLE));
 //    	
 ////need to drop the tote for it to count
 //    	addSequential(new TurnToDegrees(TURN_SPEED, TURN_ANGLE));

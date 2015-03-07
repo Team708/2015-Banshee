@@ -18,6 +18,7 @@ public class OneToteToAuto extends CommandGroup {
 	private final double TURN_SPEED = 0.6;
 	private final double TURN_ANGLE = 85.0;  //degrees
 	private final double DRIVE_DISTANCE = 84; //inches
+	private final double FINAL_TURN_ANGLE = -90.0; //degrees
 	
 	private double MIN_VAL = 0.45;
 	private double MAX_VAL = 0.55;
@@ -35,7 +36,8 @@ public class OneToteToAuto extends CommandGroup {
     	addSequential(new TurnToDegrees(TURN_SPEED, TURN_ANGLE));
     	addSequential(new WaitCommand(0.1));
     	addSequential(new DriveStraightToEncoderDistance(DRIVE_DISTANCE));
-
+    	
+    	addSequential(new TurnToDegrees(TURN_SPEED, FINAL_TURN_ANGLE));
     	//needs to stop and then drop tote    	
 //    	addSequential(new IndexerDown());
     }
