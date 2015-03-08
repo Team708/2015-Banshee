@@ -5,7 +5,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.CANTalon;
 
 import org.team708.robot.RobotMap;
-import org.team708.robot.commands.intake.IntepretIntake;
+//import org.team708.robot.commands.intake.IntepretIntake;
+import org.team708.robot.commands.intake.JoystickIntake;
 
 /**
  * This is the subsystem for the tote intake system.
@@ -27,32 +28,33 @@ public class Intake extends Subsystem {
 	}
 
 	protected void initDefaultCommand() {
-		setDefaultCommand(new IntepretIntake());
+//		setDefaultCommand(new IntepretIntake());
+		setDefaultCommand(new JoystickIntake());
 	}
 	
 	public void set(double input){
-		leftMotor.set(input);
-		rightMotor.set(-input);
+		leftMotor.set(-input);
+		rightMotor.set(input);
 	}
 	
-	public boolean isOn() {
-		return on;
-	}
-	
-	public boolean isIn() {
-		return in;
-	}
-	
-	public void setOn(boolean on) {
-		this.on = on;
-	}
-	
-	public void setIn(boolean in) {
-		this.in = in;
-	}
+//	public boolean isOn() {
+//		return on;
+//	}
+//	
+//	public boolean isIn() {
+//		return in;
+//	}
+//	
+//	public void setOn(boolean on) {
+//		this.on = on;
+//	}
+//	
+//	public void setIn(boolean in) {
+//		this.in = in;
+//	}
 	
 	public void sendToDashboard() {
-		SmartDashboard.putBoolean("Intake Power", isOn());
-		SmartDashboard.putBoolean("Intake In", isIn());
+//		SmartDashboard.putBoolean("Intake Power", isOn());
+//		SmartDashboard.putBoolean("Intake In", isIn());
 	}
 }
