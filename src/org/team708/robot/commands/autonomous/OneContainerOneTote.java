@@ -20,6 +20,8 @@ public class OneContainerOneTote extends CommandGroup {
 	
 	private final double TO_AUTO_ZONE_DISTANCE = 84.0;  //inches
 	
+	private final double FINAL_TURN_ANGLE = -90.0; //degrees
+	
 //	private double irTolerance = 5;  //inches
         
     public  OneContainerOneTote() {
@@ -36,5 +38,8 @@ public class OneContainerOneTote extends CommandGroup {
     	// Go to auto zone
     	addSequential(new TurnToDegrees(TURN_SPEED, TURN_TO_AUTO_ZONE_ANGLE));
     	addSequential(new DriveStraightToEncoderDistance(TO_AUTO_ZONE_DISTANCE, ENCODER_SPEED));
+    	
+    	//Turn 90 degrees counterclockwise
+    	addSequential(new TurnToDegrees(TURN_SPEED, FINAL_TURN_ANGLE));
     }
 }
