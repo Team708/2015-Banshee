@@ -10,16 +10,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team708.robot.commands.DoNothing;
+import org.team708.robot.commands.autonomous.ContainerToAutoZoneByOptical;
+import org.team708.robot.commands.autonomous.ContainerToteByOptical;
+import org.team708.robot.commands.autonomous.ContainerToteSpinToteByOptical;
 //import org.team708.robot.commands.autonomous.ClearStep;
 import org.team708.robot.commands.autonomous.ContainerToteTote;
-import org.team708.robot.commands.autonomous.GetContainerGotoAutozone;
+import org.team708.robot.commands.autonomous.ContainerToAutoZone;
+import org.team708.robot.commands.autonomous.ContainerToteToteByOptical;
 //import org.team708.robot.commands.autonomous.HockeyStickClearToAutoZone;
-import org.team708.robot.commands.autonomous.MoveToAutozone;
-import org.team708.robot.commands.autonomous.OneContainerOneTote;
-import org.team708.robot.commands.autonomous.OneToteToAuto;
+import org.team708.robot.commands.autonomous.RobotToAutozone;
+import org.team708.robot.commands.autonomous.ContainerTote;
+import org.team708.robot.commands.autonomous.RobotToAutozoneByOptical;
+import org.team708.robot.commands.autonomous.ToteToAutozone;
 //import org.team708.robot.commands.autonomous.ThreeContainersToAuto;
 //import org.team708.robot.commands.autonomous.ThreeTotes;
-import org.team708.robot.commands.autonomous.TwoToteOneContainer;
+import org.team708.robot.commands.autonomous.ContainerToteSpinTote;
+import org.team708.robot.commands.autonomous.ToteToAutozoneByOptical;
 import org.team708.robot.commands.drivetrain.DriveToIRDistance;
 //import org.team708.robot.commands.visionProcessor.FollowYellowTote;
 import org.team708.robot.subsystems.Drivetrain;
@@ -162,12 +168,12 @@ public class Robot extends IterativeRobot {
      */
     private void queueAutonomousModes() {
     	autonomousMode.addObject("1) Do Nothing", new DoNothing());
-		autonomousMode.addObject("2) Move to Autozone", new MoveToAutozone());
-		autonomousMode.addDefault("3) One Tote", new OneToteToAuto());
-    	autonomousMode.addObject("4) One Container", new GetContainerGotoAutozone());
-    	autonomousMode.addObject("5) One Container One Tote", new OneContainerOneTote());
-    	autonomousMode.addObject("6) Container Tote Spin Tote", new TwoToteOneContainer());
-    	autonomousMode.addObject("7) Container Tote Tote", new ContainerToteTote());
+		autonomousMode.addObject("2) Move to Autozone", new RobotToAutozone());
+		autonomousMode.addDefault("3) One Tote", new ToteToAutozoneByOptical());
+    	autonomousMode.addObject("4) One Container", new ContainerToAutoZoneByOptical());
+    	autonomousMode.addObject("5) One Container One Tote", new ContainerToteByOptical());
+    	autonomousMode.addObject("6) Container Tote Spin Tote", new ContainerToteSpinToteByOptical());
+    	autonomousMode.addObject("7) Container Tote Tote", new ContainerToteToteByOptical());
     	autonomousMode.addObject("Drive By IR", new DriveToIRDistance(3.0,
             		0.5, 0.7, 0.1));
 //    	autonomousMode.addObject("Drive in Square", new DriveInSquare());

@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class ThreeTotes extends CommandGroup {
+public class ThreeTotesByOptical extends CommandGroup {
     
-    public  ThreeTotes() {
+    public  ThreeTotesByOptical() {
     	//pick up first tote and move to second
     	addSequential(new IndexerUp());
     	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_DISTANCE, AutoConstants.ENCODER_SPEED));
@@ -24,7 +24,8 @@ public class ThreeTotes extends CommandGroup {
     	//pick up third tote and move to auto
     	addSequential(new IndexerUp());
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.NINETY_DEGREE_TURN));
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_TO_AUTOZONE_DISTANCE, AutoConstants.ENCODER_SPEED));
+    	addSequential(new DriveByOpticalToAuto());
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.CLAW_LENGTH, AutoConstants.ENCODER_SPEED));
     	
     	//turn 90 degrees counterclockwise
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));

@@ -1,5 +1,6 @@
 package org.team708.robot.commands.autonomous;
 
+import org.team708.robot.AutoConstants;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
 
@@ -8,18 +9,19 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class MoveToAutozone extends CommandGroup {
-	
-	private final double DISTANCE = 52.0; // in inches 		Was 40
-	private final double TURN_SPEED     = 0.6;
-	private final double FINAL_TURN_ANGLE = -90.0; //degrees
-	
-    public  MoveToAutozone() {
+public class RobotToAutozoneByOptical extends CommandGroup {
+    
+    public  RobotToAutozoneByOptical() {
+        
+    	// Drive to the auto zone
+    	addSequential(new DriveByOpticalToAuto());
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.CLAW_LENGTH));
     	
-    	addSequential(new DriveStraightToEncoderDistance(DISTANCE));
+    	// Turn 90 degrees counterclockwise
+    	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));
     	
-    	addSequential(new TurnToDegrees(TURN_SPEED, FINAL_TURN_ANGLE));
-        // Add Commands here:
+    	
+    	// Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.

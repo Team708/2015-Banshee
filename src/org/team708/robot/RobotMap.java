@@ -24,7 +24,7 @@ public class RobotMap {
 	
 	// Indexer CAN Device IDs
 	public static final int indexerMotorLeft  = 21;
-	public static final int indexerMotorRight = 22;	
+//	public static final int indexerMotorRight = 22;	
 	
 	// Claw System CAN Talon Device ID
 	public static final int clawElevatorMotor = 31;

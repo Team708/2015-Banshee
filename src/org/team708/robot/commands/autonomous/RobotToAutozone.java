@@ -3,33 +3,19 @@ package org.team708.robot.commands.autonomous;
 import org.team708.robot.AutoConstants;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
-import org.team708.robot.commands.indexer.IndexerUp;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class ThreeTotes extends CommandGroup {
-    
-    public  ThreeTotes() {
-    	//pick up first tote and move to second
-    	addSequential(new IndexerUp());
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_DISTANCE, AutoConstants.ENCODER_SPEED));
+public class RobotToAutozone extends CommandGroup {
+	
+    public  RobotToAutozone() {
     	
-    	//pick up second tote and move to third
-    	addSequential(new IndexerUp());
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_DISTANCE, AutoConstants.ENCODER_SPEED));
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.ROBOT_TO_ZONE_DISTANCE));
     	
-    	//pick up third tote and move to auto
-    	addSequential(new IndexerUp());
-    	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.NINETY_DEGREE_TURN));
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_TO_AUTOZONE_DISTANCE, AutoConstants.ENCODER_SPEED));
-    	
-    	//turn 90 degrees counterclockwise
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));
-    	
-    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

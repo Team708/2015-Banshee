@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Indexer extends Subsystem {
 
 	private CANTalon indexerMotorLeft;		// Spike for the indexer motor
-	private CANTalon indexerMotorRight;
+//	private CANTalon indexerMotorRight;
 	
 	//Whether elevator has been lowered
 	public boolean indexerDown = false;
@@ -35,7 +35,7 @@ public class Indexer extends Subsystem {
 	public Indexer() {
 		//Creates motors that run elevator
 		indexerMotorLeft = new CANTalon(RobotMap.indexerMotorLeft);
-		indexerMotorRight = new CANTalon(RobotMap.indexerMotorRight);
+//		indexerMotorRight = new CANTalon(RobotMap.indexerMotorRight);
 		
 		//Creates encoders for elevator motors
 		indexerEncoder = new Encoder(RobotMap.indexerEncoderA, RobotMap.indexerEncoderB);
@@ -83,7 +83,7 @@ public class Indexer extends Subsystem {
 	public void raiseIndexer() {
 		// NOTE: The motors on the indexer's gearbox run reverse of each other
 		indexerMotorLeft.set(Constants.MOTOR_REVERSE);
-		indexerMotorRight.set(Constants.MOTOR_FORWARD);
+//		indexerMotorRight.set(Constants.MOTOR_FORWARD);
 	}
 	
 	/**
@@ -92,7 +92,7 @@ public class Indexer extends Subsystem {
 	public void lowerIndexer() {
 		// NOTE: The motors on the indexer's gearbox run reverse of each other
 		indexerMotorLeft.set(Constants.MOTOR_FORWARD);
-		indexerMotorRight.set(Constants.MOTOR_REVERSE);
+//		indexerMotorRight.set(Constants.MOTOR_REVERSE);
 	}
 	
 	/**
@@ -100,7 +100,7 @@ public class Indexer extends Subsystem {
 	 */
 	public void stopIndexer() {
 		indexerMotorLeft.set(Constants.MOTOR_OFF);
-		indexerMotorRight.set(Constants.MOTOR_OFF);
+//		indexerMotorRight.set(Constants.MOTOR_OFF);
 	}
 	
 	/**
