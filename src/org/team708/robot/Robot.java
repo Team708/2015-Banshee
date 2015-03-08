@@ -24,6 +24,8 @@ import org.team708.robot.commands.autonomous.TwoToteOneContainer;
 import org.team708.robot.commands.drivetrain.DriveToIRDistance;
 import org.team708.robot.commands.indexer.IndexerDown;
 import org.team708.robot.commands.indexer.IndexerUp;
+import org.team708.robot.commands.intake.ToggleDirection;
+import org.team708.robot.commands.intake.TogglePower;
 //import org.team708.robot.commands.visionProcessor.FollowYellowTote;
 import org.team708.robot.subsystems.Drivetrain;
 //import org.team708.robot.subsystems.VisionProcessor;
@@ -32,6 +34,7 @@ import org.team708.robot.subsystems.ClawElevator;
 //import org.team708.robot.subsystems.HockeyStick;
 //import org.team708.robot.subsystems.Intake;
 import org.team708.robot.subsystems.Indexer;
+import org.team708.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -48,7 +51,7 @@ public class Robot extends IterativeRobot {
     
     public static Drivetrain drivetrain;
 //	public static VisionProcessor visionProcessor;
-//    public static Intake intake;
+    public static Intake intake;
 //	public static HockeyStick hockeyStick;
 	public static Indexer indexer;
 	public static Claw claw;
@@ -68,7 +71,7 @@ public class Robot extends IterativeRobot {
         // Subsystem Initialisation
         drivetrain = new Drivetrain();
 //		visionProcessor = new VisionProcessor();
-//		intake = new Intake();
+		intake = new Intake();
 //		hockeyStick = new HockeyStick();
 		indexer = new Indexer();
 		claw = new Claw();
@@ -191,6 +194,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(indexer);
 //		SmartDashboard.putData(visionProcessor);
 //		SmartDashboard.putData(hockeyStick);
-//		SmartDashboard.putData(intake);
+		SmartDashboard.putData(intake);
     }
 }
