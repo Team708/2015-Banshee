@@ -9,6 +9,7 @@ import org.team708.robot.util.Math708;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -29,14 +30,15 @@ public class Drivetrain extends PIDSubsystem {
 	
 	private CANTalon leftMaster, leftSlave, rightMaster, rightSlave;		// Motor Controllers
 	
-	private HatterDrive drivetrain;		// FRC provided drivetrain class
+	private HatterDrive drivetrain;											// FRC provided drivetrain class
 	
-	private Encoder encoder;							// Encoder for the drivetrain
+	private Encoder encoder;												// Encoder for the drivetrain
 	private double distancePerPulse;
-	private BuiltInAccelerometer accelerometer;		// Accelerometer that is built into the roboRIO
-	private Gyro gyro;								// Gyro that is used for drift correction
+	private BuiltInAccelerometer accelerometer;								// Accelerometer that is built into the roboRIO
+	private Gyro gyro;														// Gyro that is used for drift correction
 	
-	private IRSensor drivetrainIRSensor;						// IR Sensor that is used for short distancing
+	private IRSensor drivetrainIRSensor;									// IR Sensor that is used for short distancing
+	private DigitalInput opticalSensor;
 	
 	private boolean brake = true;		// Whether the talons should be in coast or brake mode (this could be important if a jerky robot causes things to topple
 	
@@ -55,7 +57,7 @@ public class Drivetrain extends PIDSubsystem {
 		
 		drivetrain = new HatterDrive(leftMaster, rightMaster, Constants.DRIVE_USE_SQUARED_INPUT);		// Initializes drivetrain class
 		
-		setupMasterSlave();			// Sets up master and slave
+		setupMasterSlave();								// Sets up master and slave
 		
 		accelerometer = new BuiltInAccelerometer();		// Initializes the accelerometer from the roboRIO
 		gyro = new Gyro(RobotMap.gyro);					// Initializes the gyro
@@ -67,7 +69,9 @@ public class Drivetrain extends PIDSubsystem {
 														// Sets the distance per pulse of the encoder to read distance properly
 		encoder.setDistancePerPulse(distancePerPulse);
 		encoder.reset();								// Resets the encoder so that it starts with a 0.0 value
+		
 		drivetrainIRSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);
+		opticalSensor = new DigitalInput(RobotMap.drivetrainOpticalSensor);
 		
 		setInputRange(-25.0, 25.0);
 		setAbsoluteTolerance(Constants.pid_tolerance);
@@ -263,6 +267,14 @@ public class Drivetrain extends PIDSubsystem {
     }
     
     /**
+     * Returns if the optical sensor detects the colour white
+     * @return
+     */
+    public boolean isOpticalSensorWhite() {
+    	return opticalSensor.get();
+    }
+    
+    /**
      * Returns a process variable to the PIDSubsystem for correction
      */
     protected double returnPIDInput() {
@@ -290,6 +302,8 @@ public class Drivetrain extends PIDSubsystem {
 	    	SmartDashboard.putNumber("Gyro Rate", gyro.getRate());			// Gyro rate
 	    	SmartDashboard.putNumber("PID Output", pidOutput);				// PID Info
 	    	SmartDashboard.putNumber("DT Encoder Raw", encoder.get());		// Encoder raw count
+	    	
+	    	SmartDashboard.putBoolean("Over Scoring Platform", isOpticalSensorWhite());
     	}
     	
     	SmartDashboard.putNumber("Gyro angle", gyro.getAngle());				// Gyro angle

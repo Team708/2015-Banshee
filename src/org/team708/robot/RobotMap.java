@@ -28,25 +28,25 @@ public class RobotMap {
 	
 	// Claw System CAN Talon Device ID
 	public static final int clawElevatorMotor = 31;
-	public static final int clawFingerMotor   = 32;
 	
 	//Intake CAN Device IDs
-	public static final int intakeLeftMotor  = 61;
-	public static final int intakeRightMotor = 62;	
+	public static final int intakeLeftMotor  = 41;
+	public static final int intakeRightMotor = 42;	
 	
 	// Digital IO
-	public static final int drivetrainEncoderA     = 0;
-	public static final int drivetrainEncoderB     = 1;
-	public static final int indexerEncoderA        = 2;
-	public static final int indexerEncoderB        = 3;
-	public static final int clawElevatorLowerLimit = 4;
-	public static final int clawElevatorSeries     = 5;
-	public static final int clawElevatorUpperLimit = 6;
+	public static final int drivetrainEncoderA		= 0;
+	public static final int drivetrainEncoderB		= 1;
+	public static final int indexerEncoderA			= 2;
+	public static final int indexerEncoderB			= 3;
+	public static final int clawElevatorLowerLimit	= 4;
+	public static final int clawElevatorSeries		= 5;
+	public static final int clawElevatorUpperLimit	= 6;
+	public static final int drivetrainOpticalSensor	= 7;
 
 	// Analog sensor IDs
-	public static final int gyro = 0;
-	public static final int indexerIRSensor = 1;
-	public static final int drivetrainIRSensor = 2;
+	public static final int gyro				= 0;
+	public static final int indexerIRSensor		= 1;
+	public static final int drivetrainIRSensor	= 2;
 	
 	// Claw PCM Ports
 	public static final int clawDoubleSolenoidA      = 0;

@@ -2,9 +2,9 @@ package org.team708.robot.subsystems;
 
 import org.team708.robot.Constants;
 import org.team708.robot.RobotMap;
-import org.team708.robot.commands.claw.ClawMotorControl;
+//import org.team708.robot.commands.claw.ClawMotorControl;
 
-import edu.wpi.first.wpilibj.CANTalon;
+//import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -20,7 +20,7 @@ public class Claw extends Subsystem {
 	private DoubleSolenoid clawFingerSolenoid;	// Pistons that open and close the claw
 	private DoubleSolenoid clawWristSolenoid;	// Rotary piston that changes the orientation of the claw
 	
-	private CANTalon clawFingerMotor;			// Talon controlled motor to move the bands along the fingers of the claw
+//	private CANTalon clawFingerMotor;			// Talon controlled motor to move the bands along the fingers of the claw
 	
 	/**
 	 * Constructor
@@ -34,14 +34,14 @@ public class Claw extends Subsystem {
 		clawFingerSolenoid.set(Constants.OPEN);
 		clawWristSolenoid.set(Constants.HORIZONTAL);
 	
-		clawFingerMotor = new CANTalon(RobotMap.clawFingerMotor);		// Makes the spike for the claw fingers
+//		clawFingerMotor = new CANTalon(RobotMap.clawFingerMotor);		// Makes the spike for the claw fingers
 		
 	}
 	
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    	setDefaultCommand(new ClawMotorControl());
+//    	setDefaultCommand(new ClawMotorControl());
     }
     
     /**
@@ -104,26 +104,26 @@ public class Claw extends Subsystem {
     	return clawWristSolenoid.get().equals(Constants.HORIZONTAL);
     }
     
-    /**
-     * Sets the motor to intake a container
-     */
-    public void intake() {
-    	clawFingerMotor.set(Constants.MOTOR_FORWARD);
-    }
-    
-    /**
-     * Sets the motor to dispense a container
-     */
-    public void dispense() {
-    	
-    	clawFingerMotor.set(Constants.MOTOR_REVERSE);
-    	
-    }
-    
-    /**
-     * Stops the motor
-     */
-    public void stopFingerMotor() {
-    	clawFingerMotor.set(Constants.MOTOR_OFF);
-    }
+//    /**
+//     * Sets the motor to intake a container
+//     */
+//    public void intake() {
+//    	clawFingerMotor.set(Constants.MOTOR_FORWARD);
+//    }
+//    
+//    /**
+//     * Sets the motor to dispense a container
+//     */
+//    public void dispense() {
+//    	
+//    	clawFingerMotor.set(Constants.MOTOR_REVERSE);
+//    	
+//    }
+//    
+//    /**
+//     * Stops the motor
+//     */
+//    public void stopFingerMotor() {
+//    	clawFingerMotor.set(Constants.MOTOR_OFF);
+//    }
 }
