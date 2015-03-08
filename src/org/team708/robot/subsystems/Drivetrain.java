@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -217,7 +218,12 @@ public class Drivetrain extends PIDSubsystem {
      * @return
      */
     public double moveByIR(double targetDistance, double minSpeed, double maxSpeed, double tolerance) {
-    	return Math708.getClippedPercentErrorWithTolerance(getIRDistance(), targetDistance, minSpeed, maxSpeed, tolerance);
+    	double value = Math708.getClippedPercentError(getIRDistance(), targetDistance, minSpeed, maxSpeed);
+    	
+    	if (value <= 0.0) {
+    		return 0.0;
+    	}
+    	return value;
     }
     
     /**
@@ -311,7 +317,7 @@ public class Drivetrain extends PIDSubsystem {
     	SmartDashboard.putNumber("DT IR Distance", getIRDistance());			// IR distance reading
     	SmartDashboard.putNumber("DT Encoder Distance", encoder.getDistance());	// Encoder reading
     	
-    	SmartDashboard.putNumber("Move By IR Value", moveByIR(3.0,
-            		0.5, 0.7, 0.1));
+    	SmartDashboard.putNumber("Move By IR Value", moveByIR(6.0,
+            		0.0, 0.9, 0.1));
     }
 }

@@ -113,7 +113,7 @@ public class Math708 {
      */
     public static double getPercentError(double currentValue, double goalValue)
     {
-    	return (goalValue - currentValue) / goalValue;
+    	return (currentValue - goalValue) / goalValue;
     }
     
     /**
@@ -128,14 +128,6 @@ public class Math708 {
      */
     public static double getClippedPercentError(double currentValue, double goalValue, double minimumValue, double maximumValue) {
     	return makeWithin(getPercentError(currentValue, goalValue), minimumValue, maximumValue);
-    }
-    
-    public static double getClippedPercentErrorWithTolerance(double currentValue, double goalValue, double minimumValue, double maximumValue, double tolerance) {
-    	if (isWithinThreshold(currentValue, goalValue, tolerance)) {
-    		currentValue = 0.0;
-    	}
-    	
-    	return getClippedPercentError(currentValue, goalValue, minimumValue, maximumValue);
     }
     
     /**

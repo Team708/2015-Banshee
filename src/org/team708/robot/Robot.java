@@ -157,7 +157,7 @@ public class Robot extends IterativeRobot {
             // Various debug information
             drivetrain.sendToDashboard();
 //            visionProcessor.sendToDashboard();
-//            intake.sendToDashboard();
+            intake.sendToDashboard();
             clawElevator.sendToDashboard();
             indexer.sendToSmartDashboard();
         }
@@ -174,8 +174,8 @@ public class Robot extends IterativeRobot {
     	autonomousMode.addObject("5) One Container One Tote", new ContainerToteByOptical());
     	autonomousMode.addObject("6) Container Tote Spin Tote", new ContainerToteSpinToteByOptical());
     	autonomousMode.addObject("7) Container Tote Tote", new ContainerToteToteByOptical());
-    	autonomousMode.addObject("Drive By IR", new DriveToIRDistance(3.0,
-            		0.5, 0.7, 0.1));
+//    	autonomousMode.addObject("Drive By IR", new DriveToIRDistance(5.0,
+//            		0.0, 0.9, 0.1));
 //    	autonomousMode.addObject("Drive in Square", new DriveInSquare());
 //    	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
 //    	autonomousMode.addObject("Clear Step", new ClearStep());

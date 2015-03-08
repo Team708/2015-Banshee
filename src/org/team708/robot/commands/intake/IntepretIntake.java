@@ -21,7 +21,7 @@ public class IntepretIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Robot.intake.isOn() /*&& !(Robot.drivetrain.getIRDistance() <= Constants.IR_HAS_TOTE_DISTANCE)*/) {
+    	if (Robot.intake.isOn() && !(Robot.drivetrain.getIRDistance() <= Constants.IR_HAS_TOTE_DISTANCE)) {
 			if (Robot.intake.isIn()) {
 				Robot.intake.set(Constants.MOTOR_FORWARD);
 			} else {
@@ -29,6 +29,8 @@ public class IntepretIntake extends Command {
 			}
     	} else {
     		Robot.intake.set(0.0);
+    		
+    		Robot.intake.setOn(!(Robot.drivetrain.getIRDistance() <= Constants.IR_HAS_TOTE_DISTANCE));
     	}
     }
 
