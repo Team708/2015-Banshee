@@ -1,4 +1,4 @@
-package org.team708.robot.commands.autonomous;
+package org.team708.robot.commands.autonomous.encoder;
 
 import org.team708.robot.AutoConstants;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;

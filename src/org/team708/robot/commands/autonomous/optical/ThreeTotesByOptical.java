@@ -1,7 +1,7 @@
-package org.team708.robot.commands.autonomous;
+package org.team708.robot.commands.autonomous.optical;
 
 import org.team708.robot.AutoConstants;
-import org.team708.robot.commands.autonomous.steps.DealWithContainer;
+import org.team708.robot.commands.autonomous.steps.DriveByOpticalToAuto;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
 import org.team708.robot.commands.indexer.IndexerUp;
@@ -11,21 +11,22 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class ThreeTotes extends CommandGroup {
+public class ThreeTotesByOptical extends CommandGroup {
     
-    public  ThreeTotes() {
+    public  ThreeTotesByOptical() {
     	//pick up first tote and move to second
     	addSequential(new IndexerUp());
-    	addSequential(new DealWithContainer(AutoConstants.DEAL_WITH_CONTAINER_DISTANCE));
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_DISTANCE, AutoConstants.ENCODER_SPEED));
     	
     	//pick up second tote and move to third
     	addSequential(new IndexerUp());
-    	addSequential(new DealWithContainer(AutoConstants.DEAL_WITH_CONTAINER_DISTANCE));
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_DISTANCE, AutoConstants.ENCODER_SPEED));
     	
     	//pick up third tote and move to auto
     	addSequential(new IndexerUp());
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.NINETY_DEGREE_TURN));
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_TO_AUTOZONE_DISTANCE, AutoConstants.ENCODER_SPEED));
+    	addSequential(new DriveByOpticalToAuto());
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.CLAW_LENGTH, AutoConstants.ENCODER_SPEED));
     	
     	//turn 90 degrees counterclockwise
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));

@@ -1,7 +1,6 @@
-package org.team708.robot.commands.autonomous;
+package org.team708.robot.commands.autonomous.encoder;
 
 import org.team708.robot.AutoConstants;
-import org.team708.robot.commands.autonomous.steps.DriveOpticalAndEncoder;
 import org.team708.robot.commands.clawElevator.IncrementClawOne;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 //import org.team708.robot.commands.drivetrain.DriveToIRDistance;
@@ -12,34 +11,29 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 
-public class ContainerToteToteByOptical extends CommandGroup {
+public class ContainerToteTote extends CommandGroup {
 		
 //	private double irTolerance = 5;  //inches (was .0625)?
         	
-    public  ContainerToteToteByOptical() {
+    public  ContainerToteTote() {
     	
-	    // Pick up a container
-    	addSequential(new IncrementClawOne());
+	    addSequential(new IncrementClawOne());
 	    addSequential(new WaitCommand(0.2));
 	    
-	    // Drive to and pick up a tote
     	addSequential(new DriveStraightToEncoderDistance(AutoConstants.CONTAINER_TOTE_TOTE_FIRST, AutoConstants.ENCODER_SPEED));
 //    	addSequential(new WaitCommand(0.1));
 //    	addSequential(new DriveToIRDistance(Constants.IR_HAS_TOTE_DISTANCE, irTolerance));
 //    	addSequential(new WaitCommand(0.1));
     	addSequential(new IndexerUp(false));
-
-    	// Drive to and pick up another tote
+//
     	addSequential(new DriveStraightToEncoderDistance(AutoConstants.CONTAINER_TOTE_TOTE_SECOND, AutoConstants.ENCODER_SPEED));  
 //    	addSequential(new DriveToIRDistance(Constants.IR_HAS_TOTE_DISTANCE, irTolerance));
 //    	addSequential(new WaitCommand(0.1));
     	addSequential(new IndexerUp(false));
     	
-    	// Turn and drives to the auto zone
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.NINETY_DEGREE_TURN));
-    	addSequential(new DriveOpticalAndEncoder(AutoConstants.TOTE_TO_AUTOZONE_DISTANCE));
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_TO_AUTOZONE_DISTANCE));
     	
-    	// Turn 90 degrees counterclockwise
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));
 //    	
 ////need to drop the tote for it to count

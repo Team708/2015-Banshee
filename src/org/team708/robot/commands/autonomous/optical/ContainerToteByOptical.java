@@ -1,5 +1,5 @@
 
-package org.team708.robot.commands.autonomous;
+package org.team708.robot.commands.autonomous.optical;
 
 import org.team708.robot.AutoConstants;
 import org.team708.robot.commands.autonomous.steps.DriveOpticalAndEncoder;
