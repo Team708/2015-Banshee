@@ -107,7 +107,7 @@ public class Claw extends Subsystem {
     }
     
     public void sendToDashboard() {
-    	SmartDashboard.putBoolean("Claw Open", (clawFingerSolenoid.get() == Constants.OPEN));
+    	SmartDashboard.putBoolean("Claw Open", isClawOpen());
     }
     
 //    /**
