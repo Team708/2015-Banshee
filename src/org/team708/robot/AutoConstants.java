@@ -27,13 +27,13 @@ public final class AutoConstants {
 	/*
 	 * Container Tote
 	 */
-	public static final double CONTAINER_TOTE_DISTANCE = 14.0;
+	public static final double CONTAINER_TOTE_DISTANCE = 12.0;
 	
 	/*
 	 * Container Tote Spin Tote
 	 */
 	public static final double TOTE_DISTANCE_ONE = 21.0;
-	public static final double TOTE_TWO_TURN_ANGLE = 161.0;
+	public static final double TOTE_TWO_TURN_ANGLE = 159.0;
 	public static final double TOTE_DISTANCE_SECOND = 58.0;
 	
 	/*

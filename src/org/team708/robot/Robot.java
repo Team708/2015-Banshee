@@ -22,6 +22,7 @@ import org.team708.robot.commands.autonomous.encoder.RobotToAutozone;
 import org.team708.robot.commands.autonomous.encoder.ToteToAutozone;
 import org.team708.robot.commands.autonomous.optical.ContainerToAutoZoneByOptical;
 import org.team708.robot.commands.autonomous.optical.ContainerSpinToteByOptical;
+import org.team708.robot.commands.autonomous.optical.ContainerToteByOptical;
 import org.team708.robot.commands.autonomous.optical.ContainerToteSpinToteByOptical;
 import org.team708.robot.commands.autonomous.optical.ContainerToteToteByOptical;
 import org.team708.robot.commands.autonomous.optical.RobotToAutozoneByOptical;
@@ -172,7 +173,8 @@ public class Robot extends IterativeRobot {
 		autonomousMode.addObject("2) Move to Autozone", new RobotToAutozone());
 		autonomousMode.addDefault("3) One Tote", new ToteToAutozoneByOptical());
     	autonomousMode.addObject("4) One Container", new ContainerToAutoZoneByOptical());
-    	autonomousMode.addObject("5) One Container One Tote", new ContainerSpinToteByOptical());
+    	autonomousMode.addObject("5) One Container Spin One Tote", new ContainerSpinToteByOptical());
+    	autonomousMode.addObject("Container Tote", new ContainerToteByOptical());
     	autonomousMode.addObject("6) Container Tote Spin Tote", new ContainerToteSpinToteByOptical());
     	autonomousMode.addObject("7) Container Tote Tote", new ContainerToteToteByOptical());
 //    	autonomousMode.addObject("Drive By IR", new DriveToIRDistance(5.0,
