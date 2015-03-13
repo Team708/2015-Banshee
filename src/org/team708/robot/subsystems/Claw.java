@@ -4,9 +4,11 @@ import org.team708.robot.Constants;
 import org.team708.robot.RobotMap;
 //import org.team708.robot.commands.claw.ClawMotorControl;
 
+
 //import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * A claw that picks up recycling containers with a motor, 
@@ -102,6 +104,10 @@ public class Claw extends Subsystem {
      */
     public boolean isClawHorizontal() {
     	return clawWristSolenoid.get().equals(Constants.HORIZONTAL);
+    }
+    
+    public void sendToDashboard() {
+    	SmartDashboard.putBoolean("Claw Open", (clawFingerSolenoid.get() == Constants.OPEN));
     }
     
 //    /**

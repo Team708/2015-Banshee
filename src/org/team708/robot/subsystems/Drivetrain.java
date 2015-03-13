@@ -38,7 +38,7 @@ public class Drivetrain extends PIDSubsystem {
 	private BuiltInAccelerometer accelerometer;								// Accelerometer that is built into the roboRIO
 	private Gyro gyro;														// Gyro that is used for drift correction
 	
-	private IRSensor drivetrainIRSensor;									// IR Sensor that is used for short distancing
+//	private IRSensor drivetrainIRSensor;									// IR Sensor that is used for short distancing
 	private DigitalInput opticalSensor;
 	
 	private boolean brake = true;		// Whether the talons should be in coast or brake mode (this could be important if a jerky robot causes things to topple
@@ -71,7 +71,7 @@ public class Drivetrain extends PIDSubsystem {
 		encoder.setDistancePerPulse(distancePerPulse);
 		encoder.reset();								// Resets the encoder so that it starts with a 0.0 value
 		
-		drivetrainIRSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);
+//		drivetrainIRSensor = new IRSensor(RobotMap.drivetrainIRSensor, IRSensor.GP2Y0A21YK0F);
 		opticalSensor = new DigitalInput(RobotMap.drivetrainOpticalSensor);
 		
 		setInputRange(-25.0, 25.0);
@@ -197,34 +197,34 @@ public class Drivetrain extends PIDSubsystem {
     	gyro.reset();
     }
     
-    public double rotateByGyro(double targetAngle, double tolerance) {
-    	double difference = getAngle() - targetAngle;
-    	
-    	if (Math708.isWithinThreshold(getIRDistance(), targetAngle, tolerance)) {
-    		difference = 0.0;
-    	}
-    	
-    	return difference / targetAngle;
-    }
+//    public double rotateByGyro(double targetAngle, double tolerance) {
+//    	double difference = getAngle() - targetAngle;
+//    	
+//    	if (Math708.isWithinThreshold(getIRDistance(), targetAngle, tolerance)) {
+//    		difference = 0.0;
+//    	}
+//    	
+//    	return difference / targetAngle;
+//    }
     
-    public double getIRDistance() {
-    	return drivetrainIRSensor.getClippedAverageDistance();
-    }
+//    public double getIRDistance() {
+//    	return drivetrainIRSensor.getClippedAverageDistance();
+//    }
     
-    /**
-     * Returns the move speed of the robot needed to get to a certain IR distance reading.
-     * This assumes that the IR sensor is in the front of the robot.
-     * @param targetDistance
-     * @return
-     */
-    public double moveByIR(double targetDistance, double minSpeed, double maxSpeed, double tolerance) {
-    	double value = Math708.getClippedPercentError(getIRDistance(), targetDistance, minSpeed, maxSpeed);
-    	
-    	if (value <= 0.0) {
-    		return 0.0;
-    	}
-    	return value;
-    }
+//    /**
+//     * Returns the move speed of the robot needed to get to a certain IR distance reading.
+//     * This assumes that the IR sensor is in the front of the robot.
+//     * @param targetDistance
+//     * @return
+//     */
+//    public double moveByIR(double targetDistance, double minSpeed, double maxSpeed, double tolerance) {
+//    	double value = Math708.getClippedPercentError(getIRDistance(), targetDistance, minSpeed, maxSpeed);
+//    	
+//    	if (value <= 0.0) {
+//    		return 0.0;
+//    	}
+//    	return value;
+//    }
     
     /**
      * Sets up the drivetrain motors to have a master that is controlled by the 
@@ -314,10 +314,10 @@ public class Drivetrain extends PIDSubsystem {
     	
     	SmartDashboard.putNumber("Gyro angle", gyro.getAngle());				// Gyro angle
     	SmartDashboard.putBoolean("Brake", brake);								// Brake or Coast
-    	SmartDashboard.putNumber("DT IR Distance", getIRDistance());			// IR distance reading
+//    	SmartDashboard.putNumber("DT IR Distance", getIRDistance());			// IR distance reading
     	SmartDashboard.putNumber("DT Encoder Distance", encoder.getDistance());	// Encoder reading
     	
-    	SmartDashboard.putNumber("Move By IR Value", moveByIR(6.0,
-            		0.0, 0.9, 0.1));
+//    	SmartDashboard.putNumber("Move By IR Value", moveByIR(6.0,
+//            		0.0, 0.9, 0.1));
     }
 }

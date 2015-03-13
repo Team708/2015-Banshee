@@ -31,7 +31,7 @@ public class IndexerUp extends Command {
     	Robot.indexer.resetEncoder();
     	atToteLimitMax = (Robot.indexer.toteCount == Constants.TOTE_LIMIT);
     	if (useIR) {
-    		hasToteInitially = (Robot.drivetrain.getIRDistance() <= Constants.IR_HAS_TOTE_DISTANCE);
+//    		hasToteInitially = (Robot.drivetrain.getIRDistance() <= Constants.IR_HAS_TOTE_DISTANCE);
     	} else {
     		hasToteInitially = true;
     	}
@@ -50,14 +50,13 @@ public class IndexerUp extends Command {
     	if (Robot.indexer.toteCount>=1)
     		return (Robot.indexer.getEncoderDistance() >= Constants.TOTE_HEIGHT) || !hasToteInitially;
     	else
-    	    return ((Robot.drivetrain.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE) && (Robot.indexer.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE)) || !hasToteInitially;
+    	    return (/*(Robot.drivetrain.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE) &&*/ (Robot.indexer.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE)) || !hasToteInitially;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.indexer.stopIndexer();
     	Robot.indexer.setToteCount(Robot.indexer.getToteCount() + 1);
-    	Robot.indexer.resetEncoder();
     	Robot.indexer.indexerDown = false;
     }
 

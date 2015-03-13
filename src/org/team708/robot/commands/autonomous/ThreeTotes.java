@@ -15,11 +15,11 @@ public class ThreeTotes extends CommandGroup {
     public  ThreeTotes() {
     	//pick up first tote and move to second
     	addSequential(new IndexerUp());
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_DISTANCE, AutoConstants.ENCODER_SPEED));
+    	addSequential(new DealWithContainer(AutoConstants.DEAL_WITH_CONTAINER_DISTANCE));
     	
     	//pick up second tote and move to third
     	addSequential(new IndexerUp());
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_DISTANCE, AutoConstants.ENCODER_SPEED));
+    	addSequential(new DealWithContainer(AutoConstants.DEAL_WITH_CONTAINER_DISTANCE));
     	
     	//pick up third tote and move to auto
     	addSequential(new IndexerUp());

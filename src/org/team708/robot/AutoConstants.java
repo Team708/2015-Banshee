@@ -45,4 +45,10 @@ public final class AutoConstants {
 	 * Three Totes
 	 */
 	public static final double THREE_TOTE_DISTANCE = 36.0;
+	
+	/*
+	 * Deal With Container
+	 */
+	public static final double DEAL_WITH_CONTAINER_SPEED = 1.0;
+	public static final double DEAL_WITH_CONTAINER_DISTANCE = 26.0;
 }

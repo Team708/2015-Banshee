@@ -26,7 +26,7 @@ import org.team708.robot.commands.autonomous.ToteToAutozone;
 //import org.team708.robot.commands.autonomous.ThreeTotes;
 import org.team708.robot.commands.autonomous.ContainerToteSpinTote;
 import org.team708.robot.commands.autonomous.ToteToAutozoneByOptical;
-import org.team708.robot.commands.drivetrain.DriveToIRDistance;
+//import org.team708.robot.commands.drivetrain.DriveToIRDistance;
 //import org.team708.robot.commands.visionProcessor.FollowYellowTote;
 import org.team708.robot.subsystems.Drivetrain;
 //import org.team708.robot.subsystems.VisionProcessor;
@@ -159,7 +159,8 @@ public class Robot extends IterativeRobot {
 //            visionProcessor.sendToDashboard();
             intake.sendToDashboard();
             clawElevator.sendToDashboard();
-            indexer.sendToSmartDashboard();
+            indexer.sendToDashboard();
+            claw.sendToDashboard();
         }
     }
     
