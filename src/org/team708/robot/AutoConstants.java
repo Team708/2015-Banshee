@@ -19,10 +19,15 @@ public final class AutoConstants {
 	public static final double CONTAINER_TO_AUTOZONE_DISTANCE = 73.0; //inches
 	
 	/*
-	 * Container Tote
+	 * Container Spin Tote
 	 */
 	public static final double CONTAINER_TOTE_TURN_ANGLE = 167.0;
 	public static final double CONTAINER_TOTE_TO_TOTE_DISTANCE = 38.0;
+	
+	/*
+	 * Container Tote
+	 */
+	public static final double CONTAINER_TOTE_DISTANCE = 14.0;
 	
 	/*
 	 * Container Tote Spin Tote
