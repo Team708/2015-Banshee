@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.*;
 
 import org.team708.robot.AutoConstants;
 import org.team708.robot.commands.autonomous.steps.DriveOpticalAndEncoder;
+import org.team708.robot.commands.claw.CloseClaw;
 import org.team708.robot.commands.clawElevator.*;
 import org.team708.robot.commands.drivetrain.*;
 import org.team708.robot.commands.indexer.*;
@@ -19,6 +20,7 @@ public class ContainerToteSpinToteByOptical extends CommandGroup {
     public  ContainerToteSpinToteByOptical() {
     	
     	// Picks up one container
+    	addSequential(new CloseClaw());
     	addSequential(new IncrementClawOne());
     	
     	// Gets the first tote

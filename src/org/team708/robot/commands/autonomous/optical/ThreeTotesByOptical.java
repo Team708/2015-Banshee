@@ -2,6 +2,7 @@ package org.team708.robot.commands.autonomous.optical;
 
 import org.team708.robot.AutoConstants;
 import org.team708.robot.commands.autonomous.steps.DriveByOpticalToAuto;
+import org.team708.robot.commands.claw.CloseClaw;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
 import org.team708.robot.commands.indexer.IndexerUp;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ThreeTotesByOptical extends CommandGroup {
     
     public  ThreeTotesByOptical() {
+    	addParallel(new CloseClaw());
     	//pick up first tote and move to second
     	addSequential(new IndexerUp());
     	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_DISTANCE, AutoConstants.ENCODER_SPEED));

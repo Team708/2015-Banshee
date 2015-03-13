@@ -1,11 +1,13 @@
 package org.team708.robot.commands.autonomous.encoder;
 
 import org.team708.robot.AutoConstants;
+import org.team708.robot.commands.claw.CloseClaw;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 //import org.team708.robot.commands.drivetrain.DriveToIRDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
 import org.team708.robot.commands.indexer.IndexerUp;
 import org.team708.robot.commands.indexer.IndexerDown;
+
 
 //import org.team708.robot.commands.intake.IntakeTote;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -27,6 +29,7 @@ public class ToteToAutozone extends CommandGroup {
     	
 //    	addSequential(new IntakeTote());
     	
+    	addParallel(new CloseClaw());
     	addSequential(new IndexerUp());
     	addSequential(new WaitCommand(0.1));
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.NINETY_DEGREE_TURN));

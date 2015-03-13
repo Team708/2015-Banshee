@@ -25,8 +25,8 @@ public final class Constants {
 	/*
 	 * Double Solenoids
 	 */
-	public static final DoubleSolenoid.Value OPEN = DoubleSolenoid.Value.kForward;
-	public static final DoubleSolenoid.Value CLOSED = DoubleSolenoid.Value.kReverse;
+	public static final DoubleSolenoid.Value OPEN = DoubleSolenoid.Value.kReverse;
+	public static final DoubleSolenoid.Value CLOSED = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value VERTICAL = DoubleSolenoid.Value.kReverse;
 	public static final DoubleSolenoid.Value HORIZONTAL = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;

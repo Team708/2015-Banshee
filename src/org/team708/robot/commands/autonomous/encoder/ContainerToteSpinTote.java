@@ -3,6 +3,7 @@ package org.team708.robot.commands.autonomous.encoder;
 import edu.wpi.first.wpilibj.command.*;
 
 import org.team708.robot.AutoConstants;
+import org.team708.robot.commands.claw.CloseClaw;
 import org.team708.robot.commands.clawElevator.*;
 import org.team708.robot.commands.drivetrain.*;
 import org.team708.robot.commands.indexer.*;
@@ -18,6 +19,7 @@ public class ContainerToteSpinTote extends CommandGroup {
     public  ContainerToteSpinTote() {
     	
     	// Picks up one container
+    	addSequential(new CloseClaw());
     	addSequential(new IncrementClawOne());
     	
     	// Gets the first tote

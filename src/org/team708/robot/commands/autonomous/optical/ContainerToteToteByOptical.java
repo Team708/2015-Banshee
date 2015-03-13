@@ -2,6 +2,7 @@ package org.team708.robot.commands.autonomous.optical;
 
 import org.team708.robot.AutoConstants;
 import org.team708.robot.commands.autonomous.steps.DriveOpticalAndEncoder;
+import org.team708.robot.commands.claw.CloseClaw;
 import org.team708.robot.commands.clawElevator.IncrementClawOne;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 //import org.team708.robot.commands.drivetrain.DriveToIRDistance;
@@ -19,6 +20,7 @@ public class ContainerToteToteByOptical extends CommandGroup {
     public  ContainerToteToteByOptical() {
     	
 	    // Pick up a container
+    	addSequential(new CloseClaw());
     	addSequential(new IncrementClawOne());
 	    addSequential(new WaitCommand(0.2));
 	    

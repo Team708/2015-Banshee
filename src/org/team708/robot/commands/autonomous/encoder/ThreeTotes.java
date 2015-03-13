@@ -2,6 +2,7 @@ package org.team708.robot.commands.autonomous.encoder;
 
 import org.team708.robot.AutoConstants;
 import org.team708.robot.commands.autonomous.steps.DealWithContainer;
+import org.team708.robot.commands.claw.CloseClaw;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
 import org.team708.robot.commands.indexer.IndexerUp;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ThreeTotes extends CommandGroup {
     
     public  ThreeTotes() {
+    	addParallel(new CloseClaw());
     	//pick up first tote and move to second
     	addSequential(new IndexerUp());
     	addSequential(new DealWithContainer(AutoConstants.DEAL_WITH_CONTAINER_DISTANCE));
