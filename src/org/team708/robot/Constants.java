@@ -47,7 +47,7 @@ public final class Constants {
 	/*
 	 * Game Elements
 	 */
-	public static final double TOTE_HEIGHT = 14.75;
+	public static final double TOTE_HEIGHT = 13.5;
 	public static final double SCORE_TOTE = 1.0;
 	
 	/*
@@ -56,7 +56,7 @@ public final class Constants {
 	public static final double INDEXER_ENCODER_PULSES_PER_REV = 256.0;
 	
 	//public static final double INDEXER_GEARING = 0.32;
-	public static final double INDEXER_SPROCKET_DIAMETER = 2.0;
+	public static final double INDEXER_SPROCKET_DIAMETER = 1.8;
 	public static final int TOTE_LIMIT = 4;
 	
 	/*
