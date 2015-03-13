@@ -2,6 +2,7 @@
 package org.team708.robot.commands.autonomous;
 
 import org.team708.robot.AutoConstants;
+import org.team708.robot.commands.autonomous.steps.DriveOpticalAndEncoder;
 import org.team708.robot.commands.clawElevator.IncrementClawOne;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
@@ -29,8 +30,7 @@ public class ContainerToteByOptical extends CommandGroup {
     	
     	// Go to auto zone
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));
-    	addSequential(new DriveByOpticalToAuto());
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.CLAW_LENGTH, AutoConstants.ENCODER_SPEED));
+    	addSequential(new DriveOpticalAndEncoder(AutoConstants.TOTE_TO_AUTOZONE_DISTANCE));
     	
     	//Turn 90 degrees counterclockwise
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));

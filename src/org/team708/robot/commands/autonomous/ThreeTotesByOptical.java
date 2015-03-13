@@ -1,6 +1,7 @@
 package org.team708.robot.commands.autonomous;
 
 import org.team708.robot.AutoConstants;
+import org.team708.robot.commands.autonomous.steps.DriveByOpticalToAuto;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
 import org.team708.robot.commands.indexer.IndexerUp;

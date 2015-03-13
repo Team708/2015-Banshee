@@ -1,11 +1,14 @@
 package org.team708.robot.commands.autonomous;
 
 import org.team708.robot.AutoConstants;
+import org.team708.robot.commands.autonomous.steps.DriveOpticalAndEncoder;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 //import org.team708.robot.commands.drivetrain.DriveToIRDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
 import org.team708.robot.commands.indexer.IndexerUp;
 import org.team708.robot.commands.indexer.IndexerDown;
+
+
 
 //import org.team708.robot.commands.intake.IntakeTote;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -31,8 +34,7 @@ public class ToteToAutozoneByOptical extends CommandGroup {
     	addSequential(new WaitCommand(0.1));
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.NINETY_DEGREE_TURN));
     	addSequential(new WaitCommand(0.1));
-    	addSequential(new DriveByOpticalToAuto());
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.CLAW_LENGTH));
+    	addSequential(new DriveOpticalAndEncoder(AutoConstants.TOTE_TO_AUTOZONE_DISTANCE));
     	
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));
     	//needs to stop and then drop tote    	

@@ -1,4 +1,4 @@
-package org.team708.robot.commands.autonomous;
+package org.team708.robot.commands.autonomous.steps;
 
 import org.team708.robot.commands.drivetrain.DriveWithOpticalSensor;
 
