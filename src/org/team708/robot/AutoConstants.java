@@ -7,7 +7,7 @@ public final class AutoConstants {
 	 */
 	public static final double NINETY_DEGREE_TURN = 85.0;
 	public static final double TURN_SPEED     = 0.6;
-	public static final double CLAW_LENGTH = 13.0; // The length, in inches, of the claw
+	public static final double CLAW_LENGTH = 15.0; // The length, in inches, of the claw
 	public static final double TOTE_TO_AUTOZONE_DISTANCE = 84.0; // inches
 	public static final double ENCODER_SPEED = 0.45;
 	public static final double INDEXER_UP_DISTANCE = 13.0;
