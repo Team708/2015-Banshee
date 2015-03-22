@@ -20,7 +20,7 @@ public class ContainerToteSpinTote extends CommandGroup {
     	
     	// Picks up one container
     	addSequential(new CloseClaw());
-    	addSequential(new IncrementClawOne());
+    	addParallel(new IncrementClawOne());
     	
     	// Gets the first tote
 //    	addSequential(new DriveToIRDistance(Constants.IR_HAS_TOTE_DISTANCE, IR_TOLERANCE));
@@ -32,7 +32,7 @@ public class ContainerToteSpinTote extends CommandGroup {
     	addSequential(new WaitCommand(0.1));
     	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_DISTANCE_SECOND, AutoConstants.ENCODER_SPEED));
 //    	addSequential(new DriveToIRDistance(Constants.IR_HAS_TOTE_DISTANCE, IR_TOLERANCE));
-    	addSequential(new IndexerUpAuto(AutoConstants.INDEXER_UP_DISTANCE, false));
+    	addParallel(new IndexerUpAuto(AutoConstants.INDEXER_UP_DISTANCE, false));
     	
     	// Go to auto zone
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));
