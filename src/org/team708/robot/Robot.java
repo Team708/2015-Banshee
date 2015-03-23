@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team708.robot.commands.DoNothing;
+import org.team708.robot.commands.autonomous.ShoveAll;
 //import org.team708.robot.commands.autonomous.ClearStep;
 //import org.team708.robot.commands.autonomous.HockeyStickClearToAutoZone;
 //import org.team708.robot.commands.autonomous.ThreeContainersToAuto;
@@ -177,6 +178,7 @@ public class Robot extends IterativeRobot {
     	autonomousMode.addObject("Container Tote", new ContainerToteByOptical());
     	autonomousMode.addObject("6) Container Tote Spin Tote", new ContainerToteSpinToteByOptical());
     	autonomousMode.addObject("7) Container Tote Tote", new ContainerToteToteByOptical());
+    	autonomousMode.addObject("8) Shove All", new ShoveAll());
 //    	autonomousMode.addObject("Drive By IR", new DriveToIRDistance(5.0,
 //            		0.0, 0.9, 0.1));
 //    	autonomousMode.addObject("Drive in Square", new DriveInSquare());

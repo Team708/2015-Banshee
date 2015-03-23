@@ -12,6 +12,11 @@ public class TurnToDegrees extends Command {
 	private double rotationSpeed;
 	private double goalDegrees;
 
+	/**
+	 * Constructor
+	 * @param rotationSpeed
+	 * @param goalDegrees
+	 */
     public TurnToDegrees(double rotationSpeed, double goalDegrees) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.drivetrain);

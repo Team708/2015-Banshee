@@ -2,6 +2,7 @@ package org.team708.robot.commands.autonomous.optical;
 
 import org.team708.robot.AutoConstants;
 import org.team708.robot.commands.autonomous.steps.DriveByOpticalToAuto;
+import org.team708.robot.commands.autonomous.steps.DriveOpticalAndEncoder;
 import org.team708.robot.commands.claw.CloseClaw;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
@@ -17,18 +18,23 @@ public class ThreeTotesByOptical extends CommandGroup {
     public  ThreeTotesByOptical() {
     	addParallel(new CloseClaw());
     	//pick up first tote and move to second
-    	addSequential(new IndexerUp());
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_DISTANCE, AutoConstants.ENCODER_SPEED));
+    	addParallel(new IndexerUp());
+    	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.THREE_TOTE_SMACK_ANGLE));
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_CONTAINER_DISTANCE, AutoConstants.ENCODER_SPEED));
+    	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.THREE_TOTE_SMACK_ANGLE));
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_TOTE_DISTANCE));
     	
     	//pick up second tote and move to third
-    	addSequential(new IndexerUp());
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_DISTANCE, AutoConstants.ENCODER_SPEED));
+    	addParallel(new IndexerUp());
+    	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.THREE_TOTE_SMACK_ANGLE));
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_CONTAINER_DISTANCE, AutoConstants.ENCODER_SPEED));
+    	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.THREE_TOTE_SMACK_ANGLE));
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.THREE_TOTE_TOTE_DISTANCE));
     	
     	//pick up third tote and move to auto
-    	addSequential(new IndexerUp());
+    	addParallel(new IndexerUp());
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.NINETY_DEGREE_TURN));
-    	addSequential(new DriveByOpticalToAuto());
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.CLAW_LENGTH, AutoConstants.ENCODER_SPEED));
+    	addSequential(new DriveOpticalAndEncoder(AutoConstants.TOTE_TO_AUTOZONE_DISTANCE));
     	
     	//turn 90 degrees counterclockwise
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));
