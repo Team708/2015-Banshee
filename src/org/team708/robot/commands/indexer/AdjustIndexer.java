@@ -8,13 +8,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IndexerDown extends Command {
-	
-	private final double EXTRA_TRAVEL_DISTANCE = 2.0;
+public class AdjustIndexer extends Command {
 
-    public IndexerDown() {
+	private boolean directionUp;
+
+    public AdjustIndexer(boolean directionUp) {
         // Use requires() here to declare subsystem dependencies
 //    	requires(Robot.indexer);
+    	
+    	this.directionUp = directionUp;
     }
 
     // Called just before this Command runs the first time
@@ -24,24 +26,27 @@ public class IndexerDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	if (!Robot.indexer.indexerDown) {
+    	if (directionUp) {
+			Robot.indexer.raiseIndexer();
+    	} else {
     		Robot.indexer.lowerIndexer();
-//    	}
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-//    	return Math708.isWithinThreshold(Robot.toteElevator.getEncoderDistance(), -Robot.toteElevator.TOP_ENCODER_DISTANCE, threshold)
-//    				|| Robot.toteElevator.elevatorDown;
-    	return Robot.indexer.getEncoderDistance() <= -(Constants.TOTE_HEIGHT + EXTRA_TRAVEL_DISTANCE);
+    	if (directionUp) {
+    		return (Robot.indexer.getEncoderDistance() >= Constants.ADJUST_UP);
+    	} else {
+    		return (Robot.indexer.getEncoderDistance() <= -Constants.ADJUST_DOWN);
+    	}
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.indexer.stopIndexer();
-    	Robot.indexer.indexerDown = true;
-    	Robot.indexer.setToteCount(0);
     	Robot.indexer.resetEncoder();
+    	Robot.indexer.indexerDown = false;
     }
 
     // Called when another command which requires one or more of the same
