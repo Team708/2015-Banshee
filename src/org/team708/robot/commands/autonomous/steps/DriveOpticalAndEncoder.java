@@ -15,12 +15,28 @@ public class DriveOpticalAndEncoder extends Command {
 	private boolean leftPlatform = false;
 	
 	private double distance;
+	
+	private boolean goForward;
+	
+	double moveSpeed;
 
-    public DriveOpticalAndEncoder(double distance) {
-        // Use requires() here to declare subsystem dependencies
+	public DriveOpticalAndEncoder(double distance, boolean goForward) {
+		// Use requires() here to declare subsystem dependencies
         requires(Robot.drivetrain);
         
-        this.distance = distance;
+        if (goForward) {
+        	this.distance = distance;
+        	moveSpeed = AutoConstants.ENCODER_SPEED;
+        } else {
+        	this.distance = -distance;
+        	moveSpeed = -AutoConstants.ENCODER_SPEED;
+        }
+        
+		this.goForward = goForward;
+	}
+	
+    public DriveOpticalAndEncoder(double distance) {
+        this(distance, true);
     }
 
     // Called just before this Command runs the first time
@@ -38,22 +54,43 @@ public class DriveOpticalAndEncoder extends Command {
     		}
     	}
     	
-    	Robot.drivetrain.haloDrive(AutoConstants.ENCODER_SPEED, 0.0, false);
+    	Robot.drivetrain.haloDrive(moveSpeed, 0.0, false);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.drivetrain.getEncoderDistance() >= distance) || (reachedPlatform && leftPlatform);
+    	if (goForward) {
+    		return (Robot.drivetrain.getEncoderDistance() >= distance) || (reachedPlatform && leftPlatform);
+    	} else {
+    		return (Robot.drivetrain.getEncoderDistance() <= distance) || (reachedPlatform && leftPlatform);
+    	}
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	if ((reachedPlatform && leftPlatform) && (Robot.drivetrain.getEncoderDistance() < distance)) {
-    		while(Robot.drivetrain.getEncoderDistance() < AutoConstants.CLAW_LENGTH) {
-    			if (Robot.drivetrain.getEncoderDistance() >= distance) {
-    				break;
-    			}
-    			Robot.drivetrain.haloDrive(AutoConstants.ENCODER_SPEED, 0.0, false);
+    	boolean needsEncoderMove;
+    	
+    	if (goForward) {
+    		needsEncoderMove = (Robot.drivetrain.getEncoderDistance() < distance);
+    	} else {
+    		needsEncoderMove = (Robot.drivetrain.getEncoderDistance() > distance);
+    	}
+    	
+    	if ((reachedPlatform && leftPlatform) && needsEncoderMove) {
+    		if (goForward) {
+	    		while(Robot.drivetrain.getEncoderDistance() < AutoConstants.CLAW_LENGTH) {
+	    			if (Robot.drivetrain.getEncoderDistance() >= distance) {
+	    				break;
+	    			}
+	    			Robot.drivetrain.haloDrive(moveSpeed, 0.0, false);
+	    		}
+    		} else {
+    			while(Robot.drivetrain.getEncoderDistance() > -AutoConstants.CLAW_LENGTH) {
+	    			if (Robot.drivetrain.getEncoderDistance() >= distance) {
+	    				break;
+	    			}
+	    			Robot.drivetrain.haloDrive(moveSpeed, 0.0, false);
+	    		}
     		}
     		Robot.drivetrain.stop();
     	} else {

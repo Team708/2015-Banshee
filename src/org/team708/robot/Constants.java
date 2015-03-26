@@ -48,7 +48,6 @@ public final class Constants {
 	 * Game Elements
 	 */
 	public static final double TOTE_HEIGHT = 14.0;
-	public static final double SCORE_TOTE = 1.0;
 	
 	/*
 	 * Indexer
@@ -58,6 +57,9 @@ public final class Constants {
 	//public static final double INDEXER_GEARING = 0.32;
 	public static final double INDEXER_SPROCKET_DIAMETER = 1.8;
 	public static final int TOTE_LIMIT = 4;
+	
+	public static final double ADJUST_UP = 1.0;
+	public static final double ADJUST_DOWN = 0.5;
 	
 	/*
 	 * Drivetrain

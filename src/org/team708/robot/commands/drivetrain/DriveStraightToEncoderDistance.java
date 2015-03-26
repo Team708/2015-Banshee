@@ -11,21 +11,33 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveStraightToEncoderDistance extends Command {
 
-	private double targetDistance = 0;
-	private final double rotate = 0;
+	private double targetDistance;
+	private final double rotate = 0.0;
 	private double speed;
 	
+	private boolean goForward;
+	
     public DriveStraightToEncoderDistance(double distance) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.drivetrain);
-    	targetDistance = distance;
-    	this.speed = Constants.DRIVE_MOTOR_MAX_SPEED;
+    	this(distance, Constants.DRIVE_MOTOR_MAX_SPEED);
     }
     
     public DriveStraightToEncoderDistance(double distance, double speed) {
-    	this(distance);
-    	this.speed = speed;
+    	this(distance, speed, true);
+    }
+    
+    public DriveStraightToEncoderDistance(double distance, double speed, boolean goForward) {
+    	// Use requires() here to declare subsystem dependencies
+    	requires(Robot.drivetrain);
+    	
+    	if(goForward) {
+    		targetDistance = distance;
+    		this.speed = speed;
+    	} else {
+    		targetDistance = -distance;
+    		this.speed = -speed;
+    	}
+    	
+    	this.goForward = goForward;
     }
 
     // Called just before this Command runs the first time
@@ -46,7 +58,11 @@ public class DriveStraightToEncoderDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.drivetrain.getEncoderDistance() >= targetDistance);
+        if(goForward) {
+        	return (Robot.drivetrain.getEncoderDistance() >= targetDistance);
+        } else {
+        	return (Robot.drivetrain.getEncoderDistance() <= targetDistance);
+        }
     }
 
     // Called once after isFinished returns true
@@ -59,7 +75,6 @@ public class DriveStraightToEncoderDistance extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.drivetrain.stop();
-    	Robot.drivetrain.resetEncoder();
+    	end();
     }
 }
