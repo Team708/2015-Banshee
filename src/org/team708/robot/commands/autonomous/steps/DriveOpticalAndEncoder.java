@@ -85,7 +85,7 @@ public class DriveOpticalAndEncoder extends Command {
 	    			Robot.drivetrain.haloDrive(moveSpeed, 0.0, false);
 	    		}
     		} else {
-    			while(Robot.drivetrain.getEncoderDistance() > -AutoConstants.CLAW_LENGTH) {
+    			while(Robot.drivetrain.getEncoderDistance() > -AutoConstants.ROBOT_LENGTH) {
 	    			if (Robot.drivetrain.getEncoderDistance() >= distance) {
 	    				break;
 	    			}

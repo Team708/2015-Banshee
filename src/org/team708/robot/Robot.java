@@ -175,11 +175,11 @@ public class Robot extends IterativeRobot {
 		autonomousMode.addObject("2) Move to Autozone", new RobotToAutozone());
 		autonomousMode.addDefault("3) One Tote", new ToteToAutozoneByOptical());
     	autonomousMode.addObject("4) One Container", new ContainerToAutoZoneByOptical());
-    	autonomousMode.addObject("5) One Container Spin One Tote", new ContainerSpinToteByOptical());
-    	autonomousMode.addObject("Container Tote", new ContainerToteByOptical());
-    	autonomousMode.addObject("6) Container Tote Spin Tote", new ContainerToteSpinToteByOptical());
-    	autonomousMode.addObject("7) Container Tote Tote", new ContainerToteToteByOptical());
-    	autonomousMode.addObject("8) Shove All", new ShoveAll());
+    	autonomousMode.addObject("5) One Container One Tote", new ContainerSpinToteByOptical());
+//    	autonomousMode.addObject("Container Tote", new ContainerToteByOptical());
+    	autonomousMode.addObject("6) Container Tote Tote", new ContainerToteSpinToteByOptical());
+//    	autonomousMode.addObject("7) Container Tote Tote", new ContainerToteToteByOptical());
+    	autonomousMode.addObject("7) Shove All", new ShoveAll());
 //    	autonomousMode.addObject("Drive By IR", new DriveToIRDistance(5.0,
 //            		0.0, 0.9, 0.1));
 //    	autonomousMode.addObject("Drive in Square", new DriveInSquare());
