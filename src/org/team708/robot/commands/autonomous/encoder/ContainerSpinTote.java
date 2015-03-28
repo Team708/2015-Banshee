@@ -32,7 +32,7 @@ public class ContainerSpinTote extends CommandGroup {
     	
     	// Go to auto zone
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_TO_AUTOZONE_DISTANCE, AutoConstants.ENCODER_SPEED, false));
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_TO_AUTOZONE_DISTANCE, AutoConstants.SWAGTONOMOUS_ENCODER_SPEED, false));
     	
     	//Turn 90 degrees counterclockwise
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.NINETY_DEGREE_TURN));

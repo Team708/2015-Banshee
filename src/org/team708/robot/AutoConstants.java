@@ -19,6 +19,11 @@ public final class AutoConstants {
 	public static final double FIELD_WIDTH = 310;
 	
 	/*
+	 * Swagtonomous Constants
+	 */
+	public static final double SWAGTONOMOUS_ENCODER_SPEED = 0.75;
+	
+	/*
 	 * Container To Autozone
 	 */
 	public static final double CONTAINER_TO_AUTOZONE_DISTANCE = 83.0; //inches

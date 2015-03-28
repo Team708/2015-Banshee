@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class IndexerDown extends Command {
 	
-	private final double EXTRA_TRAVEL_DISTANCE = 2.0;
+	private final double EXTRA_TRAVEL_DISTANCE = 5;
 
     public IndexerDown() {
         // Use requires() here to declare subsystem dependencies
