@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.*;
 
 import org.team708.robot.AutoConstants;
 import org.team708.robot.commands.claw.CloseClaw;
+import org.team708.robot.commands.claw.OpenClaw;
 import org.team708.robot.commands.clawElevator.*;
 import org.team708.robot.commands.drivetrain.*;
 import org.team708.robot.commands.indexer.*;
@@ -17,29 +18,31 @@ public class ContainerToteSpinTote extends CommandGroup {
 //	private static final double IR_TOLERANCE = 0.0625;
     
     public  ContainerToteSpinTote() {
-    	
     	// Picks up one container
     	addSequential(new CloseClaw());
-    	addParallel(new IncrementClawOne());
+    	addSequential(new IncrementClawOne());
     	
     	// Gets the first tote
 //    	addSequential(new DriveToIRDistance(Constants.IR_HAS_TOTE_DISTANCE, IR_TOLERANCE));
+    	addParallel(new IncrementClawOne());
     	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_DISTANCE_ONE, AutoConstants.ENCODER_SPEED));
-    	addSequential(new IndexerUpAuto(AutoConstants.INDEXER_UP_DISTANCE, false));
+    	addParallel(new IndexerUpAuto(AutoConstants.INDEXER_UP_DISTANCE, false));
+    	addSequential(new WaitCommand(0.5));
     	
     	// Gets the second tote
-    	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.TOTE_TWO_TURN_ANGLE));
-    	addSequential(new WaitCommand(0.1));
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_DISTANCE_SECOND, AutoConstants.ENCODER_SPEED));
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_DISTANCE_SECOND, AutoConstants.ENCODER_SPEED, false));
 //    	addSequential(new DriveToIRDistance(Constants.IR_HAS_TOTE_DISTANCE, IR_TOLERANCE));
-    	addParallel(new IndexerUpAuto(AutoConstants.INDEXER_UP_DISTANCE, false));
+    	addSequential(new DecrementClawOne());
+    	addParallel(new OpenClaw());
+    	addSequential(new DecrementClawOne());
+    	addSequential(new CloseClaw());
     	
     	// Go to auto zone
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));
-    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_TO_AUTOZONE_DISTANCE));
+    	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_TO_AUTOZONE_DISTANCE, AutoConstants.ENCODER_SPEED, false));
     	
     	//Turn 90 degrees counterclockwise
-    	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));
+    	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.NINETY_DEGREE_TURN));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

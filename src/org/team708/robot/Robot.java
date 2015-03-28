@@ -174,23 +174,16 @@ public class Robot extends IterativeRobot {
     private void queueAutonomousModes() {
     	autonomousMode.addObject("1) Do Nothing", new DoNothing());
 		autonomousMode.addObject("2) Move to Autozone", new RobotToAutozone());
-		autonomousMode.addDefault("3) One Tote", new ToteToAutozoneByOptical());
-    	autonomousMode.addObject("4) One Container", new ContainerToAutoZoneByOptical());
-    	autonomousMode.addObject("5) One Container One Tote", new ContainerSpinToteByOptical());
-//    	autonomousMode.addObject("Container Tote", new ContainerToteByOptical());
-    	autonomousMode.addObject("6) Container Tote Tote", new ContainerToteSpinToteByOptical());
-//    	autonomousMode.addObject("7) Container Tote Tote", new ContainerToteToteByOptical());
-    	autonomousMode.addObject("7) Shove All", new ShoveAll());
-//    	autonomousMode.addObject("Drive By IR", new DriveToIRDistance(5.0,
-//            		0.0, 0.9, 0.1));
-//    	autonomousMode.addObject("Drive in Square", new DriveInSquare());
-//    	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
-//    	autonomousMode.addObject("Clear Step", new ClearStep());
-    	autonomousMode.addObject("Three Totes", new ThreeTotes());
-    	autonomousMode.addObject("Platform forward", new DriveOpticalAndEncoder(AutoConstants.CLAW_LENGTH, true));
-    	autonomousMode.addObject("Platform backward", new DriveOpticalAndEncoder(AutoConstants.ROBOT_LENGTH, false));
-//    	autonomousMode.addObject("Hockey Stick Shove All", new HockeyStickClearToAutoZone());
-//    	autonomousMode.addObject("Three Containers To Auto", new ThreeContainersToAuto());
+//		autonomousMode.addDefault("3) One Tote", new ToteToAutozoneByOptical());
+//    	autonomousMode.addObject("4) One Container", new ContainerToAutoZoneByOptical());
+//    	autonomousMode.addObject("5) One Container One Tote", new ContainerSpinToteByOptical());
+//    	autonomousMode.addObject("6) Container Tote Tote", new ContainerToteSpinToteByOptical());
+		autonomousMode.addDefault("3) One Tote", new ToteToAutozone());
+    	autonomousMode.addObject("4) One Container", new ContainerToAutoZone());
+    	autonomousMode.addObject("5) One Container One Tote", new ContainerSpinTote());
+    	autonomousMode.addObject("6) Container Tote Tote", new ContainerToteSpinTote());
+//    	autonomousMode.addObject("Platform forward", new DriveOpticalAndEncoder(AutoConstants.CLAW_LENGTH, true));
+//    	autonomousMode.addObject("Platform backward", new DriveOpticalAndEncoder(AutoConstants.ROBOT_LENGTH, false));
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
     }
     
