@@ -4,6 +4,7 @@ import org.team708.robot.AutoConstants;
 import org.team708.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -53,6 +54,7 @@ public class DriveOpticalAndEncoder extends Command {
     			leftPlatform = !Robot.drivetrain.isOpticalSensorWhite();
     		}
     	}
+    	Robot.drivetrain.haloDrive(moveSpeed, 0.0, false);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -63,14 +65,18 @@ public class DriveOpticalAndEncoder extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	if ((reachedPlatform && leftPlatform) && Math.abs(Robot.drivetrain.getEncoderDistance()) < distance) {
+    		double initialDistance = Math.abs(Robot.drivetrain.getEncoderDistance());
+    		
     		Robot.drivetrain.resetEncoder();
     		
     		boolean continueWhileLoop = true;
     		
     		while (continueWhileLoop) {
-    			if (Math.abs(Robot.drivetrain.getEncoderDistance()) >= distance) {
+    			if ((initialDistance + Math.abs(Robot.drivetrain.getEncoderDistance())) >= distance) {
     				break;
     			}
+    			
+    			Robot.drivetrain.haloDrive(moveSpeed, 0.0, false);
     			
     			if (goForward) {
     				continueWhileLoop = Robot.drivetrain.getEncoderDistance() < AutoConstants.CLAW_LENGTH;

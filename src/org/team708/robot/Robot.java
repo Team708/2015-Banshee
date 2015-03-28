@@ -29,6 +29,7 @@ import org.team708.robot.commands.autonomous.optical.ContainerToteSpinToteByOpti
 import org.team708.robot.commands.autonomous.optical.ContainerToteToteByOptical;
 import org.team708.robot.commands.autonomous.optical.RobotToAutozoneByOptical;
 import org.team708.robot.commands.autonomous.optical.ToteToAutozoneByOptical;
+import org.team708.robot.commands.autonomous.steps.DriveOpticalAndEncoder;
 //import org.team708.robot.commands.drivetrain.DriveToIRDistance;
 //import org.team708.robot.commands.visionProcessor.FollowYellowTote;
 import org.team708.robot.subsystems.Drivetrain;
@@ -186,6 +187,8 @@ public class Robot extends IterativeRobot {
 //    	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
 //    	autonomousMode.addObject("Clear Step", new ClearStep());
     	autonomousMode.addObject("Three Totes", new ThreeTotes());
+    	autonomousMode.addObject("Platform forward", new DriveOpticalAndEncoder(AutoConstants.CLAW_LENGTH, true));
+    	autonomousMode.addObject("Platform backward", new DriveOpticalAndEncoder(AutoConstants.ROBOT_LENGTH, false));
 //    	autonomousMode.addObject("Hockey Stick Shove All", new HockeyStickClearToAutoZone());
 //    	autonomousMode.addObject("Three Containers To Auto", new ThreeContainersToAuto());
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
