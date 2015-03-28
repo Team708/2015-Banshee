@@ -22,6 +22,7 @@ public final class AutoConstants {
 	 * Swagtonomous Constants
 	 */
 	public static final double SWAGTONOMOUS_ENCODER_SPEED = 0.75;
+	public static final double SWAGTONOMOUS_TO_AUTO_DISTANCE = 89.0;
 	
 	/*
 	 * Container To Autozone
@@ -42,9 +43,9 @@ public final class AutoConstants {
 	/*
 	 * Container Tote Spin Tote
 	 */
-	public static final double TOTE_DISTANCE_ONE = 21.0;
+	public static final double TOTE_DISTANCE_ONE = 11.0;
 	public static final double TOTE_TWO_TURN_ANGLE = 152.0;
-	public static final double TOTE_DISTANCE_SECOND = 53.0;
+	public static final double TOTE_DISTANCE_SECOND = 25.0;
 	
 	/*
 	 * Container Tote Tote
