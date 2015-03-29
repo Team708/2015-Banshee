@@ -31,9 +31,6 @@ public class OI {
 	private static final int ADJUST_UP_BUTTON = Gamepad.button_A;
 //	private static final int HOLD_FOR_NO_PID_BUTTON = Gamepad.button_R_Shoulder;
 	
-	// Hockey Stick Buttons
-	private static final int TOGGLE_HOCKEY_STICK_BUTTON = Gamepad.button_Y;
-	
 	/*
 	 * Operator Button Assignment
 	 */
@@ -42,7 +39,7 @@ public class OI {
 	
 	// Claw Buttons
 	public static final int TOGGLE_CLAW_OPEN_BUTTON = Gamepad.button_R_Shoulder;
-	public static final int TOGGLE_WRIST_POSITION_BUTTON = Gamepad.button_L_Shoulder;
+	public static final int INTERRUPT_CLAW_BUTTON = Gamepad.button_L_Shoulder;
 	
 	// Claw Elevator Buttons
 	public static final int clawHeightIncrementButton = Gamepad.button_B;
@@ -52,7 +49,6 @@ public class OI {
 	 * Driver Button Commands
 	 */
 	private static final Button adjustDown = new JoystickButton(driverGamepad, ADJUST_DOWN_BUTTON);				// Toggles whether the drive is in all brake or all coast
-	public static final Button toggleHockeyStick = new JoystickButton(driverGamepad, TOGGLE_HOCKEY_STICK_BUTTON);			// Toggles the hockey stick
 //	public static final Button holdForNoPID = new JoystickButton(driverGamepad, HOLD_FOR_NO_PID_BUTTON);
 	public static final Button adjustUp = new JoystickButton(driverGamepad, ADJUST_UP_BUTTON);                          // Raises Totes up to place on step and/or plateform
 	/*
@@ -61,7 +57,7 @@ public class OI {
 	private static final AxisUp toteUp = new AxisUp(operatorGamepad, TOTE_AXIS);										// Increments one tote height up, picking up a tote along the way
 	private static final AxisDown toteDown = new AxisDown(operatorGamepad, TOTE_AXIS);								// Moves the indexer down to release the tote stack
 	public static final Button toggleClawOpen = new JoystickButton(operatorGamepad, TOGGLE_CLAW_OPEN_BUTTON);				// Opens and closes the claw on a toggle
-	public static final Button toggleWristPosition = new JoystickButton(operatorGamepad, TOGGLE_WRIST_POSITION_BUTTON);	// Toggles the wrist position (horizontal/vertical)
+	public static final Button interruptClaw = new JoystickButton(operatorGamepad, INTERRUPT_CLAW_BUTTON);	// Toggles the wrist position (horizontal/vertical)
 	public static final Button clawHeightIncrement = new JoystickButton(operatorGamepad, clawHeightIncrementButton);	// Increases the claw height by the height of a tote
 	public static final Button clawHeightDecrement = new JoystickButton(operatorGamepad, clawHeightDecrementButton);	// Decreases the claw height by the height of a tote
 	
@@ -81,7 +77,7 @@ public class OI {
 		 * Operator Commands to be called by button
 		 */
 		toggleClawOpen.whenPressed(new ToggleClawOpen());
-		toggleWristPosition.whenPressed(new ToggleWrist());
+		interruptClaw.whenPressed(new StopClawElevator());
 		toteUp.whenActive(new IndexerUp(false));
 		toteDown.whenActive(new IndexerDown());
 		clawHeightIncrement.whenPressed(new IncrementClawOne());
