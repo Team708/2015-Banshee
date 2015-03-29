@@ -30,8 +30,8 @@ public class RobotMap {
 	public static final int clawElevatorMotor = 31;
 	
 	//Gucci Grabber CAN Device IDs
-	public static final int gucciGrabberLeftMotor  = 41;
-	public static final int gucciGrabberRightMotor = 42;	
+	public static final int gucciGrabberMotor  = 41;
+//	public static final int gucciGrabberRightMotor = 42;	
 	
 	// Digital IO
 	public static final int drivetrainEncoderA		= 0;
