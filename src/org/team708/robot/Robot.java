@@ -36,10 +36,7 @@ import org.team708.robot.subsystems.Drivetrain;
 //import org.team708.robot.subsystems.VisionProcessor;
 import org.team708.robot.subsystems.Claw;
 import org.team708.robot.subsystems.ClawElevator;
-//import org.team708.robot.subsystems.HockeyStick;
-//import org.team708.robot.subsystems.Intake;
 import org.team708.robot.subsystems.Indexer;
-import org.team708.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -56,8 +53,6 @@ public class Robot extends IterativeRobot {
     
     public static Drivetrain drivetrain;
 //	public static VisionProcessor visionProcessor;
-    public static Intake intake;
-//	public static HockeyStick hockeyStick;
 	public static Indexer indexer;
 	public static Claw claw;
 	public static ClawElevator clawElevator;
@@ -76,8 +71,6 @@ public class Robot extends IterativeRobot {
         // Subsystem Initialisation
         drivetrain = new Drivetrain();
 //		visionProcessor = new VisionProcessor();
-		intake = new Intake();
-//		hockeyStick = new HockeyStick();
 		indexer = new Indexer();
 		claw = new Claw();
 		clawElevator = new ClawElevator();
@@ -160,8 +153,7 @@ public class Robot extends IterativeRobot {
 
             // Various debug information
             drivetrain.sendToDashboard();
-//            visionProcessor.sendToDashboard();
-            intake.sendToDashboard();
+//          visionProcessor.sendToDashboard();
             clawElevator.sendToDashboard();
             indexer.sendToDashboard();
             claw.sendToDashboard();
@@ -196,7 +188,5 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(claw);
 		SmartDashboard.putData(indexer);
 //		SmartDashboard.putData(visionProcessor);
-//		SmartDashboard.putData(hockeyStick);
-		SmartDashboard.putData(intake);
     }
 }

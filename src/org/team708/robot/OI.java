@@ -5,9 +5,7 @@ import edu.wpi.first.wpilibj.buttons.*;
 import org.team708.robot.commands.claw.*;
 import org.team708.robot.commands.clawElevator.*;
 import org.team708.robot.commands.drivetrain.*;
-//import org.team708.robot.commands.hockeyStick.*;
 import org.team708.robot.commands.indexer.*;
-import org.team708.robot.commands.intake.*;
 import org.team708.robot.util.*;
 import org.team708.robot.util.triggers.*;
 
@@ -36,10 +34,6 @@ public class OI {
 	// Hockey Stick Buttons
 	private static final int TOGGLE_HOCKEY_STICK_BUTTON = Gamepad.button_Y;
 	
-	// Intake Buttons
-//	private static final int toggleIntakePowerButton = Gamepad.button_L_Shoulder;
-//	private static final int toggleIntakeDirectionButton = Gamepad.button_R_Shoulder;
-	
 	/*
 	 * Operator Button Assignment
 	 */
@@ -60,8 +54,6 @@ public class OI {
 	private static final Button adjustDown = new JoystickButton(driverGamepad, ADJUST_DOWN_BUTTON);				// Toggles whether the drive is in all brake or all coast
 	public static final Button toggleHockeyStick = new JoystickButton(driverGamepad, TOGGLE_HOCKEY_STICK_BUTTON);			// Toggles the hockey stick
 //	public static final Button holdForNoPID = new JoystickButton(driverGamepad, HOLD_FOR_NO_PID_BUTTON);
-//	public static final Button toggleIntakePower = new JoystickButton(driverGamepad, toggleIntakePowerButton);			// Toggles the intake power on/off
-//	public static final Button toggleIntakeDirection = new JoystickButton(driverGamepad, toggleIntakeDirectionButton);	// Toggles the intake direction
 	public static final Button adjustUp = new JoystickButton(driverGamepad, ADJUST_UP_BUTTON);                          // Raises Totes up to place on step and/or plateform
 	/*
 	 * Operator Button Commands
@@ -82,10 +74,7 @@ public class OI {
 		 * Driver Commands to be called by button
 		 */
 		adjustDown.whenPressed(new AdjustIndexer(false));
-//		toggleHockeyStick.whenPressed(new ToggleHockeyStick());
 //		holdForNoPID.whileHeld(new HoldDisablePID());
-//		toggleIntakePower.whenPressed(new TogglePower());
-//		toggleIntakeDirection.whenPressed(new ToggleDirection());
 		adjustUp.whenPressed(new AdjustIndexer(true));
 		
 		/*

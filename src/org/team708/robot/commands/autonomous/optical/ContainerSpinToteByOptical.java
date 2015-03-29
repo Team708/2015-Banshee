@@ -10,7 +10,6 @@ import org.team708.robot.commands.clawElevator.IncrementClawOne;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
 import org.team708.robot.commands.indexer.IndexerUp;
-import org.team708.robot.commands.intake.IntakeByTime;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
