@@ -7,36 +7,26 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveDownOffSwitch extends Command {
-	
-	private boolean atLowerLimit;
-	private boolean atUpperLimit;
+public class StopClawElevator extends Command {
 
-    public MoveDownOffSwitch() {
+    public StopClawElevator() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.clawElevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	atLowerLimit = Robot.clawElevator.getLowerSwitch();
-    	atUpperLimit = Robot.clawElevator.getUpperSwitch();
+    	Robot.clawElevator.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (!atLowerLimit) {
-    		Robot.clawElevator.moveDown();
-    	}
+    	Robot.clawElevator.stop();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (atUpperLimit) {
-    		return !Robot.clawElevator.getUpperSwitch();
-    	} else {
-    		return !Robot.clawElevator.getSeries();
-    	}
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -47,6 +37,6 @@ public class MoveDownOffSwitch extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+    	Robot.clawElevator.stop();
     }
 }
