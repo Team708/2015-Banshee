@@ -13,6 +13,8 @@ public class IndexerUp extends Command {
 	private boolean atToteLimitMax;
 	private boolean hasToteInitially;
 	
+	private boolean irHasTote = false;
+	
 	private boolean useIR;
 
     public IndexerUp() {
@@ -39,6 +41,10 @@ public class IndexerUp extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if (Robot.indexer.toteCount == 0 && !irHasTote) {
+    		irHasTote = (Robot.indexer.getIRDistance() <= Constants.IR_HAS_TOTE_DISTANCE);
+    	}
+    	
 //		if (!atToteLimitMax && hasToteInitially) {
 			Robot.indexer.raiseIndexer();
 //		}
@@ -50,7 +56,7 @@ public class IndexerUp extends Command {
     	if (Robot.indexer.toteCount>=1)
     		return (Robot.indexer.getEncoderDistance() >= Constants.TOTE_HEIGHT) || !hasToteInitially;
     	else
-    	    return (/*(Robot.drivetrain.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE) &&*/ (Robot.indexer.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE)) || !hasToteInitially;
+    	    return (irHasTote && (Robot.indexer.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE)) || !hasToteInitially;
     }
 
     // Called once after isFinished returns true
@@ -58,6 +64,7 @@ public class IndexerUp extends Command {
     	Robot.indexer.stopIndexer();
     	Robot.indexer.setToteCount(Robot.indexer.getToteCount() + 1);
     	Robot.indexer.indexerDown = false;
+    	irHasTote = false;
     }
 
     // Called when another command which requires one or more of the same

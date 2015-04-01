@@ -1,5 +1,7 @@
 package org.team708.robot.commands.clawElevator;
 
+import org.team708.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -8,6 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class IncrementClawOne extends CommandGroup {
     
     public  IncrementClawOne() {
+    	requires(Robot.clawElevator);
     	
     	addSequential(new MoveUpOffSwitch());
     	addSequential(new MoveUpOneSwitch());
@@ -28,5 +31,10 @@ public class IncrementClawOne extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    }
+    
+    @Override
+    public void interrupted() {
+    	Robot.clawElevator.stop();
     }
 }

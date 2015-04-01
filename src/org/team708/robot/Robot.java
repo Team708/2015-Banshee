@@ -29,16 +29,14 @@ import org.team708.robot.commands.autonomous.optical.ContainerToteSpinToteByOpti
 import org.team708.robot.commands.autonomous.optical.ContainerToteToteByOptical;
 import org.team708.robot.commands.autonomous.optical.RobotToAutozoneByOptical;
 import org.team708.robot.commands.autonomous.optical.ToteToAutozoneByOptical;
+import org.team708.robot.commands.autonomous.steps.DriveOpticalAndEncoder;
 //import org.team708.robot.commands.drivetrain.DriveToIRDistance;
 //import org.team708.robot.commands.visionProcessor.FollowYellowTote;
 import org.team708.robot.subsystems.Drivetrain;
 //import org.team708.robot.subsystems.VisionProcessor;
 import org.team708.robot.subsystems.Claw;
 import org.team708.robot.subsystems.ClawElevator;
-//import org.team708.robot.subsystems.HockeyStick;
-//import org.team708.robot.subsystems.Intake;
 import org.team708.robot.subsystems.Indexer;
-import org.team708.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -55,8 +53,6 @@ public class Robot extends IterativeRobot {
     
     public static Drivetrain drivetrain;
 //	public static VisionProcessor visionProcessor;
-    public static Intake intake;
-//	public static HockeyStick hockeyStick;
 	public static Indexer indexer;
 	public static Claw claw;
 	public static ClawElevator clawElevator;
@@ -75,8 +71,6 @@ public class Robot extends IterativeRobot {
         // Subsystem Initialisation
         drivetrain = new Drivetrain();
 //		visionProcessor = new VisionProcessor();
-		intake = new Intake();
-//		hockeyStick = new HockeyStick();
 		indexer = new Indexer();
 		claw = new Claw();
 		clawElevator = new ClawElevator();
@@ -159,8 +153,7 @@ public class Robot extends IterativeRobot {
 
             // Various debug information
             drivetrain.sendToDashboard();
-//            visionProcessor.sendToDashboard();
-            intake.sendToDashboard();
+//          visionProcessor.sendToDashboard();
             clawElevator.sendToDashboard();
             indexer.sendToDashboard();
             claw.sendToDashboard();
@@ -173,21 +166,16 @@ public class Robot extends IterativeRobot {
     private void queueAutonomousModes() {
     	autonomousMode.addObject("1) Do Nothing", new DoNothing());
 		autonomousMode.addObject("2) Move to Autozone", new RobotToAutozone());
-		autonomousMode.addDefault("3) One Tote", new ToteToAutozoneByOptical());
-    	autonomousMode.addObject("4) One Container", new ContainerToAutoZoneByOptical());
-    	autonomousMode.addObject("5) One Container Spin One Tote", new ContainerSpinToteByOptical());
-    	autonomousMode.addObject("Container Tote", new ContainerToteByOptical());
-    	autonomousMode.addObject("6) Container Tote Spin Tote", new ContainerToteSpinToteByOptical());
-    	autonomousMode.addObject("7) Container Tote Tote", new ContainerToteToteByOptical());
-    	autonomousMode.addObject("8) Shove All", new ShoveAll());
-//    	autonomousMode.addObject("Drive By IR", new DriveToIRDistance(5.0,
-//            		0.0, 0.9, 0.1));
-//    	autonomousMode.addObject("Drive in Square", new DriveInSquare());
-//    	autonomousMode.addObject("Follow Tote", new FollowYellowTote());
-//    	autonomousMode.addObject("Clear Step", new ClearStep());
-    	autonomousMode.addObject("Three Totes", new ThreeTotes());
-//    	autonomousMode.addObject("Hockey Stick Shove All", new HockeyStickClearToAutoZone());
-//    	autonomousMode.addObject("Three Containers To Auto", new ThreeContainersToAuto());
+//		autonomousMode.addDefault("3) One Tote", new ToteToAutozoneByOptical());
+//    	autonomousMode.addObject("4) One Container", new ContainerToAutoZoneByOptical());
+//    	autonomousMode.addObject("5) One Container One Tote", new ContainerSpinToteByOptical());
+//    	autonomousMode.addObject("6) Container Tote Tote", new ContainerToteSpinToteByOptical());
+		autonomousMode.addDefault("3) One Tote", new ToteToAutozone());
+    	autonomousMode.addObject("4) One Container", new ContainerToAutoZone());
+    	autonomousMode.addObject("5) One Container One Tote", new ContainerSpinTote());
+    	autonomousMode.addObject("6) Container Tote Tote", new ContainerToteSpinTote());
+//    	autonomousMode.addObject("Platform forward", new DriveOpticalAndEncoder(AutoConstants.CLAW_LENGTH, true));
+//    	autonomousMode.addObject("Platform backward", new DriveOpticalAndEncoder(AutoConstants.ROBOT_LENGTH, false));
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
     }
     
@@ -200,7 +188,5 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(claw);
 		SmartDashboard.putData(indexer);
 //		SmartDashboard.putData(visionProcessor);
-//		SmartDashboard.putData(hockeyStick);
-		SmartDashboard.putData(intake);
     }
 }
