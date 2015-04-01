@@ -1,7 +1,6 @@
 package org.team708.robot.commands.autonomous.encoder;
 
 import org.team708.robot.AutoConstants;
-import org.team708.robot.commands.autonomous.steps.DealWithContainer;
 import org.team708.robot.commands.claw.CloseClaw;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
@@ -18,11 +17,9 @@ public class ThreeTotes extends CommandGroup {
     	addParallel(new CloseClaw());
     	//pick up first tote and move to second
     	addSequential(new IndexerUp());
-    	addSequential(new DealWithContainer(AutoConstants.DEAL_WITH_CONTAINER_DISTANCE));
     	
     	//pick up second tote and move to third
     	addSequential(new IndexerUp());
-    	addSequential(new DealWithContainer(AutoConstants.DEAL_WITH_CONTAINER_DISTANCE));
     	
     	//pick up third tote and move to auto
     	addSequential(new IndexerUp());
