@@ -9,9 +9,9 @@ public final class AutoConstants {
 	public static final double TURN_SPEED     = 0.6;
 	
 	public static final double CLAW_LENGTH = 22.0; // The length, in inches, of the claw
-	public static final double ROBOT_LENGTH = 49.0;
+	public static final double ROBOT_LENGTH = 52.0;
 	
-	public static final double TOTE_TO_AUTOZONE_DISTANCE = 84.0; // inches
+	public static final double TOTE_TO_AUTOZONE_DISTANCE = 94.0; // inches
 	public static final double ENCODER_SPEED = 0.45;
 	
 	public static final double INDEXER_UP_DISTANCE = 13.0;
@@ -19,9 +19,15 @@ public final class AutoConstants {
 	public static final double FIELD_WIDTH = 310;
 	
 	/*
+	 * Swagtonomous Constants
+	 */
+	public static final double SWAGTONOMOUS_ENCODER_SPEED = 0.75;
+	public static final double SWAGTONOMOUS_TO_AUTO_DISTANCE = 89.0;
+	
+	/*
 	 * Container To Autozone
 	 */
-	public static final double CONTAINER_TO_AUTOZONE_DISTANCE = 73.0; //inches
+	public static final double CONTAINER_TO_AUTOZONE_DISTANCE = 83.0; //inches
 	
 	/*
 	 * Container Spin Tote
@@ -37,9 +43,9 @@ public final class AutoConstants {
 	/*
 	 * Container Tote Spin Tote
 	 */
-	public static final double TOTE_DISTANCE_ONE = 21.0;
+	public static final double TOTE_DISTANCE_ONE = 17.0;
 	public static final double TOTE_TWO_TURN_ANGLE = 152.0;
-	public static final double TOTE_DISTANCE_SECOND = 53.0;
+	public static final double TOTE_DISTANCE_SECOND = 37.0;
 	
 	/*
 	 * Container Tote Tote
