@@ -2,9 +2,11 @@ package org.team708.robot.subsystems;
 
 import org.team708.robot.Constants;
 import org.team708.robot.RobotMap;
+import org.team708.robot.commands.clawElevator.JoystickMoveClawElevator;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -17,9 +19,10 @@ public class ClawElevator extends Subsystem {
 	
 	private int containerHeight;		// The current height of the claw
 	
-	private DigitalInput upperSwitch;	// Top limit of the elevator
-	private DigitalInput switchSeries;	// Multiple limit switches set in parallel
-	private DigitalInput lowerSwitch;	// Lower limit of the elevator
+	private Encoder clawElevatorEncoder;			// Encoder for intermediate travel
+	private double distancePerPulse;
+	
+	private DigitalInput upperSwitch, lowerSwitch;	// Limit switches for the top and bottom of the travel
 	
 	private static CANTalon clawElevatorMotor;		// Motor for the lead screw
 	
@@ -27,11 +30,15 @@ public class ClawElevator extends Subsystem {
 	 * Constructor
 	 */
 	public ClawElevator() {
+		// Initializes the encoder
+		clawElevatorEncoder = new Encoder(RobotMap.clawElevatorEncoderA, RobotMap.clawElevatorEncoderB);
+		distancePerPulse = 1 / Constants.GRAYHILL_ENCODER_PULSES_PER_REVOLUTION;
+		clawElevatorEncoder.setDistancePerPulse(distancePerPulse);
+		clawElevatorEncoder.reset();
 		
-		// Initializes the limit switches
-		upperSwitch = new DigitalInput(RobotMap.clawElevatorUpperLimit);
-		switchSeries = new DigitalInput(RobotMap.clawElevatorSeries);
-		lowerSwitch = new DigitalInput(RobotMap.clawElevatorLowerLimit);
+		// Initialises the switches
+		upperSwitch = new DigitalInput(RobotMap.clawElevatorUpperSwitch);
+		lowerSwitch = new DigitalInput(RobotMap.clawElevatorLowerSwitch);
 		
 		// Initializes the motor
 		clawElevatorMotor = new CANTalon(RobotMap.clawElevatorMotor);
@@ -40,7 +47,7 @@ public class ClawElevator extends Subsystem {
 
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+//        setDefaultCommand(new JoystickMoveClawElevator());
     }
 	
 	/**
@@ -52,14 +59,6 @@ public class ClawElevator extends Subsystem {
 	}
 	
 	/**
-	 * Returns true if any of the switches in the series are pressed
-	 * @return On series
-	 */
-	public boolean getSeries() {
-		return !switchSeries.get();	// not because default is closed, stops if circuit is broken
-	}
-	
-	/**
 	 * Returns true if the lower switch is pressed
 	 * @return At lower limit
 	 */
@@ -68,11 +67,47 @@ public class ClawElevator extends Subsystem {
 	}
 	
 	/**
+	 * Resets the encoder on the claw elevator
+	 */
+	public void resetEncoder() {
+		clawElevatorEncoder.reset();
+	}
+	
+	/**
+	 * Returns the encoder reading for the distance traveled
+	 * @return
+	 */
+	public double getTravelDistance() {
+		return clawElevatorEncoder.getDistance();
+	}
+	
+	/**
+	 * Returns the raw encoder count
+	 * @return
+	 */
+	public double getEncoderCount() {
+		return clawElevatorEncoder.get();
+	}
+	
+	/**
+	 * Returns if the claw elevator has reached the stopping point
+	 * @param point
+	 * @return
+	 */
+	public boolean isAtIntemediateStop(int point) {
+		return Math.abs(getTravelDistance()) >= Constants.CLAW_ELEVATOR_UP_TRAVEL_DISTANCES[point];
+	}
+	
+	/**
 	 * Returns the height of the claw in regards to totes
 	 * @return The current height of the claw, as measured by the limit switches
 	 */
 	public int getContainerHeight() {
 		return containerHeight;
+	}
+	
+	public void setContainerHeight(int containerHeight) {
+		this.containerHeight = containerHeight;
 	}
 	
 	/**
@@ -105,6 +140,10 @@ public class ClawElevator extends Subsystem {
 		clawElevatorMotor.set(Constants.MOTOR_REVERSE);
 	}
 	
+	public void manualMove(double speed) {
+		clawElevatorMotor.set(speed);
+	}
+	
 	/**
 	 * Stops the elevator
 	 */
@@ -117,8 +156,9 @@ public class ClawElevator extends Subsystem {
 	 */
 	public void sendToDashboard() {
 		SmartDashboard.putBoolean("Lower Switch", getLowerSwitch());
-		SmartDashboard.putBoolean("Switch Series", getSeries());
 		SmartDashboard.putBoolean("Upper Switch", getUpperSwitch());
+		SmartDashboard.putNumber("Claw Elevator Encoder Distance", getTravelDistance());
+		SmartDashboard.putNumber("Claw Elevator Encoder Count", getEncoderCount());
 	}
 }
 

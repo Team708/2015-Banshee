@@ -43,6 +43,7 @@ public final class Constants {
 	 */
 	public static final double IR_HAS_TOTE_DISTANCE = 6.0;
 	public static final double ENCODER_BOTTOM_POSITION = 0.0;
+	public static final double GRAYHILL_ENCODER_PULSES_PER_REVOLUTION = 256.0;
 	
 	/*
 	 * Game Elements
@@ -52,14 +53,22 @@ public final class Constants {
 	/*
 	 * Indexer
 	 */
-	public static final double INDEXER_ENCODER_PULSES_PER_REV = 256.0;
-	
-	//public static final double INDEXER_GEARING = 0.32;
 	public static final double INDEXER_SPROCKET_DIAMETER = 1.8;
 	public static final int TOTE_LIMIT = 4;
-	
 	public static final double ADJUST_UP = 1.0;
 	public static final double ADJUST_DOWN = 0.5;
+	
+	public static final double[] CLAW_ELEVATOR_UP_TRAVEL_DISTANCES = {
+		11.0,
+		7.5,
+		15.5
+	};
+	
+	public static final double[] CLAW_ELEVATOR_DOWN_TRAVEL_DISTANCE = {
+		37.0,
+		15.0,
+		5.5
+	};
 	
 	/*
 	 * Drivetrain

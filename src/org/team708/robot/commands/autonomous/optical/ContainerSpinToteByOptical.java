@@ -5,8 +5,8 @@ import org.team708.robot.AutoConstants;
 import org.team708.robot.commands.autonomous.steps.DriveOpticalAndEncoder;
 import org.team708.robot.commands.claw.CloseClaw;
 import org.team708.robot.commands.claw.OpenClaw;
-import org.team708.robot.commands.clawElevator.DecrementClawOne;
-import org.team708.robot.commands.clawElevator.IncrementClawOne;
+import org.team708.robot.commands.clawElevator.ClawDown;
+import org.team708.robot.commands.clawElevator.ClawUp;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
 import org.team708.robot.commands.indexer.IndexerUp;
@@ -21,14 +21,14 @@ public class ContainerSpinToteByOptical extends CommandGroup {
     public  ContainerSpinToteByOptical() {
     	// Picks up one container
     	addSequential(new CloseClaw());
-    	addSequential(new IncrementClawOne());
+    	addSequential(new ClawUp());
     	
     	// Drops the container on the tote
-    	addSequential(new IncrementClawOne());
+    	addSequential(new ClawUp());
     	addSequential(new DriveStraightToEncoderDistance(AutoConstants.CONTAINER_TOTE_TO_TOTE_DISTANCE, AutoConstants.ENCODER_SPEED, false));
-    	addSequential(new DecrementClawOne());
+    	addSequential(new ClawDown());
     	addParallel(new OpenClaw());
-    	addSequential(new DecrementClawOne());
+    	addSequential(new ClawDown());
     	addSequential(new CloseClaw());
     	
     	// Go to auto zone

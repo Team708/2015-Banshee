@@ -23,8 +23,7 @@ public class RobotMap {
 	public static final int drivetrainRightMotorSlave  = 14;
 	
 	// Indexer CAN Device IDs
-	public static final int indexerMotorLeft  = 21;
-//	public static final int indexerMotorRight = 22;	
+	public static final int indexerMotor  = 21;
 	
 	// Claw System CAN Talon Device ID
 	public static final int clawElevatorMotor = 31;
@@ -38,10 +37,11 @@ public class RobotMap {
 	public static final int drivetrainEncoderB		= 1;
 	public static final int indexerEncoderA			= 2;
 	public static final int indexerEncoderB			= 3;
-	public static final int clawElevatorLowerLimit	= 4;
-	public static final int clawElevatorSeries		= 5;
-	public static final int clawElevatorUpperLimit	= 6;
-	public static final int drivetrainOpticalSensor	= 7;
+	public static final int clawElevatorEncoderA	= 4;
+	public static final int clawElevatorEncoderB	= 5;
+	public static final int clawElevatorUpperSwitch	= 6;
+	public static final int clawElevatorLowerSwitch	= 7;
+	public static final int drivetrainOpticalSensor	= 8;
 
 	// Analog sensor IDs
 	public static final int gyro				= 0;

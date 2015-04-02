@@ -22,11 +22,11 @@ public class ContainerToteSpinToteByOptical extends CommandGroup {
     	
     	// Picks up one container
     	addSequential(new CloseClaw());
-    	addSequential(new IncrementClawOne());
+    	addSequential(new ClawUp());
     	
     	// Gets the first tote
 //    	addSequential(new DriveToIRDistance(Constants.IR_HAS_TOTE_DISTANCE, IR_TOLERANCE));
-    	addParallel(new IncrementClawOne());
+    	addParallel(new ClawUp());
     	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_DISTANCE_ONE, AutoConstants.ENCODER_SPEED));
     	addParallel(new IndexerUpAuto(AutoConstants.INDEXER_UP_DISTANCE, false));
     	addSequential(new WaitCommand(0.5));
@@ -34,9 +34,9 @@ public class ContainerToteSpinToteByOptical extends CommandGroup {
     	// Gets the second tote
     	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_DISTANCE_SECOND, AutoConstants.ENCODER_SPEED, false));
 //    	addSequential(new DriveToIRDistance(Constants.IR_HAS_TOTE_DISTANCE, IR_TOLERANCE));
-    	addSequential(new DecrementClawOne());
+    	addSequential(new ClawDown());
     	addParallel(new OpenClaw());
-    	addSequential(new DecrementClawOne());
+    	addSequential(new ClawDown());
     	addSequential(new CloseClaw());
     	
     	// Go to auto zone

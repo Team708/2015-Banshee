@@ -34,13 +34,13 @@ public class Indexer extends Subsystem {
 	
 	public Indexer() {
 		//Creates motors that run elevator
-		indexerMotorLeft = new CANTalon(RobotMap.indexerMotorLeft);
+		indexerMotorLeft = new CANTalon(RobotMap.indexerMotor);
 //		indexerMotorRight = new CANTalon(RobotMap.indexerMotorRight);
 		
 		//Creates encoders for elevator motors
 		indexerEncoder = new Encoder(RobotMap.indexerEncoderA, RobotMap.indexerEncoderB);
 
-		distancePerPulse = (Constants.INDEXER_SPROCKET_DIAMETER * Math.PI) / (Constants.INDEXER_ENCODER_PULSES_PER_REV);
+		distancePerPulse = (Constants.INDEXER_SPROCKET_DIAMETER * Math.PI) / (Constants.GRAYHILL_ENCODER_PULSES_PER_REVOLUTION);
 
 		indexerEncoder.setDistancePerPulse(distancePerPulse);
 		indexerEncoder.setReverseDirection(true);

@@ -3,8 +3,8 @@ package org.team708.robot.commands.autonomous.encoder;
 
 import org.team708.robot.AutoConstants;
 import org.team708.robot.commands.claw.CloseClaw;
+import org.team708.robot.commands.clawElevator.ClawUp;
 //import org.team708.robot.commands.claw.ToggleClawOpen;
-import org.team708.robot.commands.clawElevator.IncrementClawOne;
 import org.team708.robot.commands.drivetrain.DriveStraightToEncoderDistance;
 import org.team708.robot.commands.drivetrain.TurnToDegrees;
 import org.team708.robot.commands.indexer.IndexerDown;
@@ -16,7 +16,7 @@ public class ContainerTote extends CommandGroup {
         
     public  ContainerTote() {
     		addSequential(new CloseClaw());
-    	    addSequential(new IncrementClawOne());
+    	    addSequential(new ClawUp());
         	addSequential(new DriveStraightToEncoderDistance(AutoConstants.CONTAINER_TOTE_DISTANCE));  
 
         	addSequential(new IndexerUp());
