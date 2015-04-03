@@ -71,9 +71,9 @@ public final class Constants {
 	};
 	
 	public static final double[] CLAW_ELEVATOR_DOWN_TRAVEL_DISTANCE = {
-		37.0,
 		15.0,
-		5.5
+		7.5,
+		11.0
 	};
 	
 	/*

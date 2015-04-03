@@ -97,8 +97,12 @@ public class ClawElevator extends Subsystem {
 	 * @param point
 	 * @return
 	 */
-	public boolean isAtIntemediateStop(int point) {
-		return Math.abs(getTravelDistance()) >= Constants.CLAW_ELEVATOR_UP_TRAVEL_DISTANCES[point];
+	public boolean isAtIntemediateStop(int point, boolean goingUp) {
+		if (goingUp) {
+			return Math.abs(getTravelDistance()) >= Constants.CLAW_ELEVATOR_UP_TRAVEL_DISTANCES[point];
+		} else {
+			return Math.abs(getTravelDistance()) >= Constants.CLAW_ELEVATOR_DOWN_TRAVEL_DISTANCE[point];
+		}
 	}
 	
 	/**

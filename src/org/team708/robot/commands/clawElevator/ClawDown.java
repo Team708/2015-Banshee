@@ -12,10 +12,18 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ClawDown extends Command {
 	
 	private boolean isAtLimit;
+	
+	private boolean useSmoothing;
 
     public ClawDown() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.clawElevator);
+        this(false);
+    }
+    
+    public ClawDown(boolean useSmoothing) {
+    	// Use requires() here to declare subsystem dependencies
+    	requires(Robot.clawElevator);
+    	
+    	this.useSmoothing = useSmoothing;
     }
 
     // Called just before this Command runs the first time
@@ -37,14 +45,16 @@ public class ClawDown extends Command {
     protected void execute() {
     	double moveValue = -1.0;
     	
-    	if (Robot.clawElevator.getContainerHeight() == 0) {
-    		// TODO Something or other
-    	} else {
-    		double percentError = Math708.getPercentError(Robot.clawElevator.getTravelDistance(), Math.abs(Robot.clawElevator.getContainerHeight() - 3));
-    		
-    		if (percentError <= 0.5) {
-        		moveValue = Math708.makeWithin(percentError, moveValue, -Constants.CLAW_ELEVATOR_MOTOR_MINIMUM);
-        	}
+    	if (useSmoothing) {
+	    	if (Robot.clawElevator.getContainerHeight() == 0) {
+	    		// TODO Something or other
+	    	} else {
+	    		double percentError = Math708.getPercentError(Robot.clawElevator.getTravelDistance(), Constants.CLAW_ELEVATOR_DOWN_TRAVEL_DISTANCE[Math.abs(Robot.clawElevator.getContainerHeight() - 3)]);
+	    		
+	    		if (percentError <= 0.5) {
+	        		moveValue = Math708.makeWithin(percentError, moveValue, -Constants.CLAW_ELEVATOR_MOTOR_MINIMUM);
+	        	}
+	    	}
     	}
     	
     	Robot.clawElevator.manualMove(moveValue);
@@ -55,7 +65,7 @@ public class ClawDown extends Command {
     	if (Robot.clawElevator.getContainerHeight() == 0) {
     		return Robot.clawElevator.getLowerSwitch();
     	} else {
-    		return Robot.clawElevator.getLowerSwitch() || Robot.clawElevator.isAtIntemediateStop(Math.abs(Robot.clawElevator.getContainerHeight() - 3));
+    		return Robot.clawElevator.getLowerSwitch() || Robot.clawElevator.isAtIntemediateStop(Math.abs(Robot.clawElevator.getContainerHeight() - 3), false);
     	}
     }
 
