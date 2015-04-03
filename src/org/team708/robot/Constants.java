@@ -58,6 +58,12 @@ public final class Constants {
 	public static final double ADJUST_UP = 1.0;
 	public static final double ADJUST_DOWN = 0.5;
 	
+	/*
+	 * Claw Elevator
+	 */
+	public static final double CLAW_ELEVATOR_MOTOR_MINIMUM = 0.3;
+	public static final double CLAW_ELEVATOR_SPROCKET_DIAMETER = 1.4;
+	
 	public static final double[] CLAW_ELEVATOR_UP_TRAVEL_DISTANCES = {
 		11.0,
 		7.5,

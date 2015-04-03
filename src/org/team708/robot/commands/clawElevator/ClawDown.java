@@ -1,6 +1,8 @@
 package org.team708.robot.commands.clawElevator;
 
+import org.team708.robot.Constants;
 import org.team708.robot.Robot;
+import org.team708.robot.util.Math708;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -25,12 +27,27 @@ public class ClawDown extends Command {
     	}
     	
     	Robot.clawElevator.resetEncoder();
-    	Robot.clawElevator.decrementContainerHeight();
+    	
+//    	if (Robot.clawElevator.getContainerHeight() == 0) {
+    		Robot.clawElevator.decrementContainerHeight();
+//    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.clawElevator.moveDown();
+    	double moveValue = -1.0;
+    	
+    	if (Robot.clawElevator.getContainerHeight() == 0) {
+    		// TODO Something or other
+    	} else {
+    		double percentError = Math708.getPercentError(Robot.clawElevator.getTravelDistance(), Math.abs(Robot.clawElevator.getContainerHeight() - 3));
+    		
+    		if (percentError <= 0.5) {
+        		moveValue = Math708.makeWithin(percentError, moveValue, -Constants.CLAW_ELEVATOR_MOTOR_MINIMUM);
+        	}
+    	}
+    	
+    	Robot.clawElevator.manualMove(moveValue);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -7,6 +7,7 @@ import org.team708.robot.commands.clawElevator.JoystickMoveClawElevator;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -24,7 +25,8 @@ public class ClawElevator extends Subsystem {
 	
 	private DigitalInput upperSwitch, lowerSwitch;	// Limit switches for the top and bottom of the travel
 	
-	private static CANTalon clawElevatorMotor;		// Motor for the lead screw
+//	private static CANTalon clawElevatorMotor;		// Motor for the lead screw
+	private static Talon clawElevatorMotor;
 	
 	/**
 	 * Constructor
@@ -32,7 +34,7 @@ public class ClawElevator extends Subsystem {
 	public ClawElevator() {
 		// Initializes the encoder
 		clawElevatorEncoder = new Encoder(RobotMap.clawElevatorEncoderA, RobotMap.clawElevatorEncoderB);
-		distancePerPulse = 1 / Constants.GRAYHILL_ENCODER_PULSES_PER_REVOLUTION;
+		distancePerPulse = Constants.CLAW_ELEVATOR_SPROCKET_DIAMETER * Math.PI / Constants.GRAYHILL_ENCODER_PULSES_PER_REVOLUTION;
 		clawElevatorEncoder.setDistancePerPulse(distancePerPulse);
 		clawElevatorEncoder.reset();
 		
@@ -41,13 +43,14 @@ public class ClawElevator extends Subsystem {
 		lowerSwitch = new DigitalInput(RobotMap.clawElevatorLowerSwitch);
 		
 		// Initializes the motor
-		clawElevatorMotor = new CANTalon(RobotMap.clawElevatorMotor);
+//		clawElevatorMotor = new CANTalon(RobotMap.clawElevatorMotor);
+		clawElevatorMotor = new Talon(0);
 		
 	}
 
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-//        setDefaultCommand(new JoystickMoveClawElevator());
+        setDefaultCommand(new JoystickMoveClawElevator());
     }
 	
 	/**
@@ -158,7 +161,11 @@ public class ClawElevator extends Subsystem {
 		SmartDashboard.putBoolean("Lower Switch", getLowerSwitch());
 		SmartDashboard.putBoolean("Upper Switch", getUpperSwitch());
 		SmartDashboard.putNumber("Claw Elevator Encoder Distance", getTravelDistance());
-		SmartDashboard.putNumber("Claw Elevator Encoder Count", getEncoderCount());
+		SmartDashboard.putNumber("Container Height", getContainerHeight());
+		
+		if (Constants.DEBUG) {
+			SmartDashboard.putNumber("Claw Elevator Encoder Count", getEncoderCount());
+		}
 	}
 }
 
