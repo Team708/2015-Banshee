@@ -63,6 +63,7 @@ public class ClawDown extends Command {
     protected void end() {
     	if (Robot.clawElevator.getLowerSwitch()) {
     		Robot.clawElevator.setContainerHeight(0);
+    		Robot.clawElevator.resetEncoder();
     	}
     	Robot.clawElevator.stop();
     }

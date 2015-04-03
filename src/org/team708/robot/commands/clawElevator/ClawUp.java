@@ -62,6 +62,7 @@ public class ClawUp extends Command {
     protected void end() {
     	if (Robot.clawElevator.getUpperSwitch()) {
     		Robot.clawElevator.setContainerHeight(4);
+    		Robot.clawElevator.resetEncoder();
     	}
     	Robot.clawElevator.stop();
     }
