@@ -4,6 +4,7 @@ import org.team708.robot.Constants;
 import org.team708.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -12,25 +13,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class GucciGrabber extends Subsystem {
     
-    private CANTalon gucciGrabberMotor;
+    private DoubleSolenoid gucciGrabberSolenoid;
     
     private boolean deployed = false;
     
     public GucciGrabber() {
-    	gucciGrabberMotor = new CANTalon(RobotMap.gucciGrabberMotor);
-    }
-    
-    public void set(double speed) {
-    	gucciGrabberMotor.set(speed);
+    	gucciGrabberSolenoid = new DoubleSolenoid(RobotMap.gucciGrabberSolenoidA, RobotMap.gucciGrabberSolenoidB);
     }
     
     public void deploy() {
-    	set(Constants.MOTOR_FORWARD);
+    	gucciGrabberSolenoid.set(Constants.DEPLOYED);
     	deployed = true;
     }
     
     public void retract() {
-    	set(Constants.MOTOR_REVERSE);
+    	gucciGrabberSolenoid.set(Constants.RETRACTED);
     	deployed = false;
     }
     

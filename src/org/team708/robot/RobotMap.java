@@ -55,6 +55,6 @@ public class RobotMap {
 	public static final int clawWristDoubleSolenoidB = 3;
 	
 	//Hockey stick PCM Ports
-	public static final int hockeySolenoidA = 4;
-	public static final int hockeySolenoidB = 5;
+	public static final int gucciGrabberSolenoidA = 4;
+	public static final int gucciGrabberSolenoidB = 5;
 }

@@ -80,8 +80,8 @@ public class OI {
 		interruptClaw.whenPressed(new StopClawElevator());
 		toteUp.whenActive(new IndexerUp(false));
 		toteDown.whenActive(new IndexerDown());
-		clawHeightIncrement.whenPressed(new ClawUp());
-		clawHeightDecrement.whenPressed(new ClawDown());
+		clawHeightIncrement.whenPressed(new HoldClawMove(true));
+		clawHeightDecrement.whenPressed(new HoldClawMove(false));
 	}
 	
     //// CREATING BUTTONS
