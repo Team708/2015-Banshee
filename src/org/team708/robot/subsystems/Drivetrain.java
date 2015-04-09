@@ -314,7 +314,7 @@ public class Drivetrain extends PIDSubsystem {
     	SmartDashboard.putBoolean("Brake", brake);								// Brake or Coast
 //    	SmartDashboard.putNumber("DT IR Distance", getIRDistance());			// IR distance reading
     	SmartDashboard.putNumber("DT Encoder Distance", encoder.getDistance());	// Encoder reading
-    	SmartDashboard.putBoolean("Over Scoring Platform", isOpticalSensorWhite());
+//    	SmartDashboard.putBoolean("Over Scoring Platform", isOpticalSensorWhite());
     	
 //    	SmartDashboard.putNumber("Move By IR Value", moveByIR(6.0,
 //            		0.0, 0.9, 0.1));

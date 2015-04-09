@@ -25,8 +25,8 @@ public class ClawElevator extends Subsystem {
 	
 	private DigitalInput upperSwitch, lowerSwitch;	// Limit switches for the top and bottom of the travel
 	
-//	private static CANTalon clawElevatorMotor;		// Motor for the lead screw
-	private static Talon clawElevatorMotor;
+	private static CANTalon clawElevatorMotor;		// Motor for the lead screw
+//	private static Talon clawElevatorMotor;
 	
 	/**
 	 * Constructor
@@ -43,8 +43,8 @@ public class ClawElevator extends Subsystem {
 		lowerSwitch = new DigitalInput(RobotMap.clawElevatorLowerSwitch);
 		
 		// Initializes the motor
-//		clawElevatorMotor = new CANTalon(RobotMap.clawElevatorMotor);
-		clawElevatorMotor = new Talon(0);
+		clawElevatorMotor = new CANTalon(RobotMap.clawElevatorMotor);
+//		clawElevatorMotor = new Talon(0);
 		
 	}
 
@@ -164,12 +164,13 @@ public class ClawElevator extends Subsystem {
 	public void sendToDashboard() {
 		SmartDashboard.putBoolean("Lower Switch", getLowerSwitch());
 		SmartDashboard.putBoolean("Upper Switch", getUpperSwitch());
-		SmartDashboard.putNumber("Claw Elevator Encoder Distance", getTravelDistance());
+		SmartDashboard.putNumber("Travel Distance", getTravelDistance());
 		SmartDashboard.putNumber("Container Height", getContainerHeight());
 		
-		if (Constants.DEBUG) {
-			SmartDashboard.putNumber("Claw Elevator Encoder Count", getEncoderCount());
-		}
+//		if (Constants.DEBUG) {
+			SmartDashboard.putNumber("Claw Encoder Count", getEncoderCount());
+			SmartDashboard.putBoolean("Claw Stopped", clawElevatorEncoder.getStopped());
+//		}
 	}
 }
 

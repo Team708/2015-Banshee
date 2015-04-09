@@ -2,9 +2,11 @@ package org.team708.robot;
 
 
 import edu.wpi.first.wpilibj.buttons.*;
+
 import org.team708.robot.commands.claw.*;
 import org.team708.robot.commands.clawElevator.*;
 import org.team708.robot.commands.drivetrain.*;
+import org.team708.robot.commands.gucciGrabber.ToggleGucciGrabber;
 import org.team708.robot.commands.indexer.*;
 import org.team708.robot.util.*;
 import org.team708.robot.util.triggers.*;
@@ -39,27 +41,33 @@ public class OI {
 	
 	// Claw Buttons
 	public static final int TOGGLE_CLAW_OPEN_BUTTON = Gamepad.button_R_Shoulder;
-	public static final int INTERRUPT_CLAW_BUTTON = Gamepad.button_L_Shoulder;
+//	public static final int INTERRUPT_CLAW_BUTTON = Gamepad.button_L_Shoulder;
+	public static final int ANTI_SWAG_CLAW_BUTTON = Gamepad.button_L_Shoulder;
 	
 	// Claw Elevator Buttons
 	public static final int clawHeightIncrementButton = Gamepad.button_B;
 	public static final int clawHeightDecrementButton = Gamepad.button_A;
 	
+	// Gucci Grabber Buttons
+	public static final int GUCCI_GRABBER_TOGGLE_BUTTON = Gamepad.button_Y;
+	
 	/*
 	 * Driver Button Commands
 	 */
-	private static final Button adjustDown = new JoystickButton(driverGamepad, ADJUST_DOWN_BUTTON);				// Toggles whether the drive is in all brake or all coast
+	private static final Button adjustDown = new JoystickButton(driverGamepad, ADJUST_DOWN_BUTTON);						// Toggles whether the drive is in all brake or all coast
 //	public static final Button holdForNoPID = new JoystickButton(driverGamepad, HOLD_FOR_NO_PID_BUTTON);
 	public static final Button adjustUp = new JoystickButton(driverGamepad, ADJUST_UP_BUTTON);                          // Raises Totes up to place on step and/or plateform
 	/*
 	 * Operator Button Commands
 	 */
 	private static final AxisUp toteUp = new AxisUp(operatorGamepad, TOTE_AXIS);										// Increments one tote height up, picking up a tote along the way
-	private static final AxisDown toteDown = new AxisDown(operatorGamepad, TOTE_AXIS);								// Moves the indexer down to release the tote stack
-	public static final Button toggleClawOpen = new JoystickButton(operatorGamepad, TOGGLE_CLAW_OPEN_BUTTON);				// Opens and closes the claw on a toggle
-	public static final Button interruptClaw = new JoystickButton(operatorGamepad, INTERRUPT_CLAW_BUTTON);	// Toggles the wrist position (horizontal/vertical)
+	private static final AxisDown toteDown = new AxisDown(operatorGamepad, TOTE_AXIS);									// Moves the indexer down to release the tote stack
+	public static final Button toggleClawOpen = new JoystickButton(operatorGamepad, TOGGLE_CLAW_OPEN_BUTTON);			// Opens and closes the claw on a toggle
+//	public static final Button interruptClaw = new JoystickButton(operatorGamepad, INTERRUPT_CLAW_BUTTON);				// Toggles the wrist position (horizontal/vertical)
+	public static final Button antiSwagClaw = new JoystickButton(operatorGamepad, ANTI_SWAG_CLAW_BUTTON);
 	public static final Button clawHeightIncrement = new JoystickButton(operatorGamepad, clawHeightIncrementButton);	// Increases the claw height by the height of a tote
 	public static final Button clawHeightDecrement = new JoystickButton(operatorGamepad, clawHeightDecrementButton);	// Decreases the claw height by the height of a tote
+	public static final Button gucciGrabberToggle = new JoystickButton(operatorGamepad, GUCCI_GRABBER_TOGGLE_BUTTON);	// Toggles the position of the gucci grabber
 	
 	/**
 	 * Constructor
@@ -77,11 +85,12 @@ public class OI {
 		 * Operator Commands to be called by button
 		 */
 		toggleClawOpen.whenPressed(new ToggleClawOpen());
-		interruptClaw.whenPressed(new StopClawElevator());
+//		interruptClaw.whenPressed(new StopClawElevator());
 		toteUp.whenActive(new IndexerUp(false));
 		toteDown.whenActive(new IndexerDown());
-		clawHeightIncrement.whenPressed(new HoldClawMove(true));
-		clawHeightDecrement.whenPressed(new HoldClawMove(false));
+//		clawHeightIncrement.whenPressed(new HoldClawMove(true));
+//		clawHeightDecrement.whenPressed(new HoldClawMove(false));
+		gucciGrabberToggle.whenPressed(new ToggleGucciGrabber());
 	}
 	
     //// CREATING BUTTONS

@@ -15,28 +15,24 @@ public class GucciGrabber extends Subsystem {
     
     private DoubleSolenoid gucciGrabberSolenoid;
     
-    private boolean deployed = false;
-    
     public GucciGrabber() {
     	gucciGrabberSolenoid = new DoubleSolenoid(RobotMap.gucciGrabberSolenoidA, RobotMap.gucciGrabberSolenoidB);
     }
     
     public void deploy() {
     	gucciGrabberSolenoid.set(Constants.DEPLOYED);
-    	deployed = true;
     }
     
     public void retract() {
     	gucciGrabberSolenoid.set(Constants.RETRACTED);
-    	deployed = false;
     }
     
     public boolean isDeployed() {
-    	return deployed;
+    	return gucciGrabberSolenoid.get().equals(Constants.DEPLOYED);
     }
     
-    public void setDeployed(boolean deployed) {
-    	this.deployed = deployed;
+    public boolean isRetracted() {
+    	return gucciGrabberSolenoid.get().equals(Constants.RETRACTED);
     }
 
     public void initDefaultCommand() {

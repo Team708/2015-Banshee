@@ -27,7 +27,7 @@ public class ContainerSpinTote extends CommandGroup {
     	addSequential(new DriveStraightToEncoderDistance(AutoConstants.CONTAINER_TOTE_TO_TOTE_DISTANCE, AutoConstants.ENCODER_SPEED, false));
     	addSequential(new ClawDown());
     	addParallel(new OpenClaw());
-    	addSequential(new ClawDown());
+//    	addSequential(new ClawDown());
     	addSequential(new CloseClaw());
     	
     	// Go to auto zone

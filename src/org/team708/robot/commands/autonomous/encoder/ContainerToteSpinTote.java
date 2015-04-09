@@ -20,11 +20,11 @@ public class ContainerToteSpinTote extends CommandGroup {
     public  ContainerToteSpinTote() {
     	// Picks up one container
     	addSequential(new CloseClaw());
-    	addSequential(new ClawUp());
+    	addSequential(new ClawElevatorByEncoder(11.0, true));
     	
     	// Gets the first tote
 //    	addSequential(new DriveToIRDistance(Constants.IR_HAS_TOTE_DISTANCE, IR_TOLERANCE));
-    	addParallel(new ClawUp());
+    	addParallel(new ClawElevatorByEncoder(7.5, true));
     	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_DISTANCE_ONE, AutoConstants.ENCODER_SPEED));
     	addParallel(new IndexerUpAuto(AutoConstants.INDEXER_UP_DISTANCE, false));
     	addSequential(new WaitCommand(0.5));
@@ -32,10 +32,10 @@ public class ContainerToteSpinTote extends CommandGroup {
     	// Gets the second tote
     	addSequential(new DriveStraightToEncoderDistance(AutoConstants.TOTE_DISTANCE_SECOND, AutoConstants.ENCODER_SPEED, false));
 //    	addSequential(new DriveToIRDistance(Constants.IR_HAS_TOTE_DISTANCE, IR_TOLERANCE));
-    	addSequential(new ClawDown());
-    	addParallel(new OpenClaw());
-    	addSequential(new ClawDown());
-    	addSequential(new CloseClaw());
+    	addSequential(new ClawElevatorByEncoder(8.0, false));	// Was 5.0
+//    	addParallel(new OpenClaw());
+//    	addSequential(new ClawElevatorByEncoder(3.0, false));
+//    	addSequential(new CloseClaw());
     	
     	// Go to auto zone
     	addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, -AutoConstants.NINETY_DEGREE_TURN));

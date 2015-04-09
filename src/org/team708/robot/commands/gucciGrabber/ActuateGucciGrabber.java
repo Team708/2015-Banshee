@@ -1,4 +1,4 @@
-package org.team708.robot.commands.claw;
+package org.team708.robot.commands.gucciGrabber;
 
 import org.team708.robot.Robot;
 
@@ -7,11 +7,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ToggleClawOpen extends Command {
+public class ActuateGucciGrabber extends Command {
+	
+	private boolean deploy;
 
-    public ToggleClawOpen() {
+    public ActuateGucciGrabber(boolean deploy) {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.claw);
+        // eg. requires(chassis);
+    	
+    	this.deploy = deploy;
     }
 
     // Called just before this Command runs the first time
@@ -20,16 +24,11 @@ public class ToggleClawOpen extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	// Sets the claw to closed if it is open
-    	if(Robot.claw.isClawOpen()) {
-    		Robot.claw.closeClaw();
-    	} 
-    	// Sets the claw to open if it is closed
-    	else if(Robot.claw.isClawClosed()) {
-    		Robot.claw.openClaw();
-    	} 
-    	
+    	if(deploy) {
+    		Robot.gucciGrabber.deploy();
+    	} else {
+    		Robot.gucciGrabber.retract();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

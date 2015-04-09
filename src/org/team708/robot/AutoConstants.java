@@ -25,6 +25,12 @@ public final class AutoConstants {
 	public static final double SWAGTONOMOUS_TO_AUTO_DISTANCE = 89.0;
 	
 	/*
+	 * Can Grabbing Constants
+	 */
+	public static final double TO_CAN_DISTANCE = 12.0;
+	public static final double TO_SECOND_CAN_DISTANCE = 63.0;
+	
+	/*
 	 * Container To Autozone
 	 */
 	public static final double CONTAINER_TO_AUTOZONE_DISTANCE = 83.0; //inches

@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team708.robot.commands.DoNothing;
 import org.team708.robot.commands.autonomous.ShoveAll;
+import org.team708.robot.commands.autonomous.encoder.CanGrabMoveBack;
+import org.team708.robot.commands.autonomous.encoder.CanGrabMoveToNext;
+import org.team708.robot.commands.autonomous.encoder.CanGrabNoMove;
 //import org.team708.robot.commands.autonomous.ClearStep;
 //import org.team708.robot.commands.autonomous.HockeyStickClearToAutoZone;
 //import org.team708.robot.commands.autonomous.ThreeContainersToAuto;
@@ -30,12 +33,14 @@ import org.team708.robot.commands.autonomous.optical.ContainerToteToteByOptical;
 import org.team708.robot.commands.autonomous.optical.RobotToAutozoneByOptical;
 import org.team708.robot.commands.autonomous.optical.ToteToAutozoneByOptical;
 import org.team708.robot.commands.autonomous.steps.DriveOpticalAndEncoder;
+import org.team708.robot.commands.clawElevator.ClawElevatorByEncoder;
 //import org.team708.robot.commands.drivetrain.DriveToIRDistance;
 //import org.team708.robot.commands.visionProcessor.FollowYellowTote;
 import org.team708.robot.subsystems.Drivetrain;
 //import org.team708.robot.subsystems.VisionProcessor;
 import org.team708.robot.subsystems.Claw;
 import org.team708.robot.subsystems.ClawElevator;
+import org.team708.robot.subsystems.GucciGrabber;
 import org.team708.robot.subsystems.Indexer;
 
 /**
@@ -56,6 +61,7 @@ public class Robot extends IterativeRobot {
 	public static Indexer indexer;
 	public static Claw claw;
 	public static ClawElevator clawElevator;
+	public static GucciGrabber gucciGrabber;
 	public static OI oi;
 
     Command autonomousCommand;
@@ -74,6 +80,7 @@ public class Robot extends IterativeRobot {
 		indexer = new Indexer();
 		claw = new Claw();
 		clawElevator = new ClawElevator();
+		gucciGrabber = new GucciGrabber();
 		
 		oi = new OI();	// Initializes the OI. This MUST BE LAST or a NullPointerException will be thrown
 		
@@ -174,6 +181,9 @@ public class Robot extends IterativeRobot {
     	autonomousMode.addObject("4) One Container", new ContainerToAutoZone());
     	autonomousMode.addObject("5) One Container One Tote", new ContainerSpinTote());
     	autonomousMode.addObject("6) Container Tote Tote", new ContainerToteSpinTote());
+    	autonomousMode.addObject("7) Grab Can No Move", new CanGrabNoMove());
+    	autonomousMode.addObject("8) Grab Can Move Back", new CanGrabMoveBack());
+    	autonomousMode.addObject("9) Grab Can Go To Next", new CanGrabMoveToNext());
 //    	autonomousMode.addObject("Platform forward", new DriveOpticalAndEncoder(AutoConstants.CLAW_LENGTH, true));
 //    	autonomousMode.addObject("Platform backward", new DriveOpticalAndEncoder(AutoConstants.ROBOT_LENGTH, false));
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);
@@ -188,5 +198,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(claw);
 		SmartDashboard.putData(indexer);
 //		SmartDashboard.putData(visionProcessor);
+		SmartDashboard.putData(new ClawElevatorByEncoder(11.0, true));
+		SmartDashboard.putData(new ClawElevatorByEncoder(11.0, false));
     }
 }

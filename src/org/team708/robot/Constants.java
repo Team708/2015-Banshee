@@ -63,6 +63,7 @@ public final class Constants {
 	 */
 	public static final double CLAW_ELEVATOR_MOTOR_MINIMUM = 0.3;
 	public static final double CLAW_ELEVATOR_SPROCKET_DIAMETER = 1.4;
+	public static final double ANTISWAG = 0.6;
 	
 	public static final double[] CLAW_ELEVATOR_UP_TRAVEL_DISTANCES = {
 		11.0,
