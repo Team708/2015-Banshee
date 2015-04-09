@@ -32,9 +32,9 @@ public class ClawUp extends Command {
     	
     	if (isAtLimit) {
     		cancel();
+    	} else {
+    		Robot.clawElevator.resetEncoder();
     	}
-    	
-    	Robot.clawElevator.resetEncoder();
     	
 //    	if (Robot.clawElevator.getContainerHeight() == 4) {
     		Robot.clawElevator.incrementContainerHeight();

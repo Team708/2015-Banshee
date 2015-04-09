@@ -24,15 +24,15 @@ public class HoldClawMove extends Command {
     	if (moveUp) {
     		if (Robot.clawElevator.getUpperSwitch()) {
     			cancel();
+    		} else {
+    			Robot.clawElevator.moveUp();
     		}
-    		
-    		Robot.clawElevator.moveUp();
     	} else {
     		if (Robot.clawElevator.getLowerSwitch()) {
     			cancel();
+    		} else {
+    			Robot.clawElevator.moveDown();
     		}
-    		
-    		Robot.clawElevator.moveDown();
     	}
     }
 
