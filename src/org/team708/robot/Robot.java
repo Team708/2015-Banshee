@@ -164,6 +164,7 @@ public class Robot extends IterativeRobot {
             clawElevator.sendToDashboard();
             indexer.sendToDashboard();
             claw.sendToDashboard();
+            gucciGrabber.sendToDashboard();
         }
     }
     
@@ -197,8 +198,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(clawElevator);
 		SmartDashboard.putData(claw);
 		SmartDashboard.putData(indexer);
+		SmartDashboard.putData(gucciGrabber);
 //		SmartDashboard.putData(visionProcessor);
-		SmartDashboard.putData(new ClawElevatorByEncoder(11.0, true));
-		SmartDashboard.putData(new ClawElevatorByEncoder(11.0, false));
     }
 }
