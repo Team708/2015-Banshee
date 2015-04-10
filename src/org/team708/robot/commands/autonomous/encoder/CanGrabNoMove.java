@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CanGrabNoMove extends CommandGroup {
     
     public  CanGrabNoMove() {
-    	addSequential(new CloseClaw());
+    	addParallel(new CloseClaw());
     	
-    	addParallel(new ActuateGucciGrabber(true));
         addSequential(new DriveStraightToEncoderDistance(AutoConstants.TO_CAN_DISTANCE, AutoConstants.ENCODER_SPEED, false));
+        addSequential(new ActuateGucciGrabber(true));
     }
 }

@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CanGrabMoveBack extends CommandGroup {
     
     public  CanGrabMoveBack() {
-    	addSequential(new CloseClaw());
+    	addParallel(new CloseClaw());
     	
-    	addParallel(new ActuateGucciGrabber(true));
-        addSequential(new DriveStraightToEncoderDistance(AutoConstants.TO_CAN_DISTANCE, AutoConstants.ENCODER_SPEED, false));
+        addSequential(new DriveStraightToEncoderDistance(AutoConstants.TO_CAN_DISTANCE, 0.65, false));
+        addSequential(new ActuateGucciGrabber(true));
         
-        addSequential(new DriveStraightToEncoderDistance(AutoConstants.TO_CAN_DISTANCE, AutoConstants.ENCODER_SPEED));
+        addSequential(new DriveStraightToEncoderDistance(AutoConstants.TO_CAN_DISTANCE, 0.65));
     }
 }

@@ -29,8 +29,8 @@ public final class Constants {
 	public static final DoubleSolenoid.Value CLOSED = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value VERTICAL = DoubleSolenoid.Value.kReverse;
 	public static final DoubleSolenoid.Value HORIZONTAL = DoubleSolenoid.Value.kForward;
-	public static final DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
-	public static final DoubleSolenoid.Value DEPLOYED = DoubleSolenoid.Value.kForward;
+	public static final DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kForward;
+	public static final DoubleSolenoid.Value DEPLOYED = DoubleSolenoid.Value.kReverse;
 	
 	/*
 	 * Smart Dashboard

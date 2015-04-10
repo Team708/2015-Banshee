@@ -27,7 +27,7 @@ public final class AutoConstants {
 	/*
 	 * Can Grabbing Constants
 	 */
-	public static final double TO_CAN_DISTANCE = 12.0;
+	public static final double TO_CAN_DISTANCE = 26.0;
 	public static final double TO_SECOND_CAN_DISTANCE = 63.0;
 	
 	/*

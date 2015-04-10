@@ -14,10 +14,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CanGrabMoveToNext extends CommandGroup {
     
     public  CanGrabMoveToNext() {
-    	addSequential(new CloseClaw());
+    	addParallel(new CloseClaw());
     	
-    	addParallel(new ActuateGucciGrabber(true));
         addSequential(new DriveStraightToEncoderDistance(AutoConstants.TO_CAN_DISTANCE, AutoConstants.ENCODER_SPEED, false));
+        addSequential(new ActuateGucciGrabber(true));
         
         addSequential(new DriveStraightToEncoderDistance(AutoConstants.TO_CAN_DISTANCE, AutoConstants.ENCODER_SPEED));
         addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.NINETY_DEGREE_TURN));

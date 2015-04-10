@@ -25,7 +25,7 @@ public class ToggleGucciGrabber extends Command {
     		Robot.gucciGrabber.retract();
     	} 
     	// Sets the claw to open if it is closed
-    	else if(Robot.gucciGrabber.isRetracted()) {
+    	else {
     		Robot.gucciGrabber.deploy();
     	}
     }
