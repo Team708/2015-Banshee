@@ -42,7 +42,8 @@ public class OI {
 	// Claw Buttons
 	public static final int TOGGLE_CLAW_OPEN_BUTTON = Gamepad.button_R_Shoulder;
 //	public static final int INTERRUPT_CLAW_BUTTON = Gamepad.button_L_Shoulder;
-	public static final int ANTI_SWAG_CLAW_BUTTON = Gamepad.button_L_Shoulder;
+//	public static final int ANTI_SWAG_CLAW_BUTTON = Gamepad.button_L_Shoulder;
+	public static final int INDEXER_MANUAL_OVERRIDE_BUTTON = Gamepad.button_L_Shoulder;
 	
 	// Claw Elevator Buttons
 	public static final int clawHeightIncrementButton = Gamepad.button_B;
@@ -64,7 +65,8 @@ public class OI {
 	private static final AxisDown toteDown = new AxisDown(operatorGamepad, TOTE_AXIS);									// Moves the indexer down to release the tote stack
 	public static final Button toggleClawOpen = new JoystickButton(operatorGamepad, TOGGLE_CLAW_OPEN_BUTTON);			// Opens and closes the claw on a toggle
 //	public static final Button interruptClaw = new JoystickButton(operatorGamepad, INTERRUPT_CLAW_BUTTON);				// Toggles the wrist position (horizontal/vertical)
-	public static final Button antiSwagClaw = new JoystickButton(operatorGamepad, ANTI_SWAG_CLAW_BUTTON);
+//	public static final Button antiSwagClaw = new JoystickButton(operatorGamepad, ANTI_SWAG_CLAW_BUTTON);
+	public static final Button indexerManualOverride = new JoystickButton(operatorGamepad, INDEXER_MANUAL_OVERRIDE_BUTTON);
 	public static final Button clawHeightIncrement = new JoystickButton(operatorGamepad, clawHeightIncrementButton);	// Increases the claw height by the height of a tote
 	public static final Button clawHeightDecrement = new JoystickButton(operatorGamepad, clawHeightDecrementButton);	// Decreases the claw height by the height of a tote
 	public static final Button gucciGrabberToggle = new JoystickButton(operatorGamepad, GUCCI_GRABBER_TOGGLE_BUTTON);	// Toggles the position of the gucci grabber

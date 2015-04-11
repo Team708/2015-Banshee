@@ -1,6 +1,7 @@
 package org.team708.robot.commands.indexer;
 
 import org.team708.robot.Constants;
+import org.team708.robot.OI;
 import org.team708.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -41,22 +42,26 @@ public class IndexerUp extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Robot.indexer.toteCount == 0 && !irHasTote) {
-    		irHasTote = (Robot.indexer.getIRDistance() <= Constants.IR_HAS_TOTE_DISTANCE);
+    	if (!OI.indexerManualOverride.get()) {
+			if (Robot.indexer.toteCount == 0 && !irHasTote) {
+				irHasTote = (Robot.indexer.getIRDistance() <= Constants.IR_HAS_TOTE_DISTANCE);
+			}
+			
+		//		if (!atToteLimitMax && hasToteInitially) {
+				Robot.indexer.raiseIndexer();
+		//		}
+    	} else {
+    		cancel();
     	}
-    	
-//		if (!atToteLimitMax && hasToteInitially) {
-			Robot.indexer.raiseIndexer();
-//		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
  //   	return Robot.indexer.getEncoderDistance() >= Constants.TOTE_HEIGHT || !hasToteInitially;
     	if (Robot.indexer.toteCount>=1)
-    		return (Robot.indexer.getEncoderDistance() >= Constants.TOTE_HEIGHT) || !hasToteInitially;
+    		return (Robot.indexer.getEncoderDistance() >= Constants.TOTE_HEIGHT) || !hasToteInitially || OI.indexerManualOverride.get();
     	else
-    	    return (irHasTote && (Robot.indexer.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE)) || !hasToteInitially;
+    	    return (irHasTote && (Robot.indexer.getIRDistance() > Constants.IR_HAS_TOTE_DISTANCE)) || !hasToteInitially || OI.indexerManualOverride.get();
     }
 
     // Called once after isFinished returns true

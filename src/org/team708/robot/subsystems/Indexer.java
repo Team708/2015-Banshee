@@ -2,6 +2,7 @@ package org.team708.robot.subsystems;
 
 import org.team708.robot.Constants;
 import org.team708.robot.RobotMap;
+import org.team708.robot.commands.indexer.JoystickIndexerControl;
 import org.team708.robot.util.IRSensor;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -95,6 +96,10 @@ public class Indexer extends Subsystem {
 //		indexerMotorRight.set(Constants.MOTOR_REVERSE);
 	}
 	
+	public void move(double speed) {
+		indexerMotorLeft.set(-speed);
+	}
+	
 	/**
 	 * Turns off the indexer so it does not move
 	 */
@@ -120,7 +125,7 @@ public class Indexer extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new JoystickIndexerControl());
     }
     
     /**
