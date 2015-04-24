@@ -18,7 +18,7 @@ public class CanGrabMoveBack extends CommandGroup {
     	
         addSequential(new DriveStraightToEncoderDistance(AutoConstants.TO_CAN_DISTANCE, 0.65, false));
         addSequential(new ActuateGucciGrabber(true));
-        addSequential(new WaitCommand(0.1));
+        addSequential(new WaitCommand(2.0));
         
         addSequential(new DriveStraightToEncoderDistance(AutoConstants.TO_CAN_DISTANCE, 0.65));
     }
