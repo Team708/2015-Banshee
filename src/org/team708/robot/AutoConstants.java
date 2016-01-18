@@ -27,7 +27,11 @@ public final class AutoConstants {
 	/*
 	 * Can Grabbing Constants
 	 */
+<<<<<<< HEAD
 	public static final double TO_CAN_DISTANCE = 25.5;
+=======
+	public static final double TO_CAN_DISTANCE = 25.0;
+>>>>>>> refs/remotes/origin/master
 	public static final double TO_SECOND_CAN_DISTANCE = 63.0;
 	public static final double CAN_GRAB_TIMEOUT = 4.0;
 	public static final double CAN_GRAB_FORWARD_SPEED = 0.8;
