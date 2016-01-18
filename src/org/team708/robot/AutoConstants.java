@@ -29,6 +29,7 @@ public final class AutoConstants {
 	 */
 	public static final double TO_CAN_DISTANCE = 25.0;
 	public static final double TO_SECOND_CAN_DISTANCE = 63.0;
+	public static final double CAN_GRAB_TIMEOUT = 4.0;
 	
 	/*
 	 * Container To Autozone
