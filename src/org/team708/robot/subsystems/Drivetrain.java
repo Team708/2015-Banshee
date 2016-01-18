@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.GyroBase;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -51,17 +53,17 @@ public class Drivetrain extends PIDSubsystem {
     	super("Drivetrain", Constants.Kp, Constants.Ki, Constants.Kd);
     	
     	// Initializes motor controllers with device IDs from RobotMap
-		leftMaster = new CANTalon(RobotMap.drivetrainLeftMotorMaster);
-		leftSlave = new CANTalon(RobotMap.drivetrainLeftMotorSlave);
+		leftMaster  = new CANTalon(RobotMap.drivetrainLeftMotorMaster);
+		leftSlave   = new CANTalon(RobotMap.drivetrainLeftMotorSlave);
 		rightMaster = new CANTalon(RobotMap.drivetrainRightMotorMaster);
-		rightSlave = new CANTalon(RobotMap.drivetrainRightMotorSlave);
+		rightSlave  = new CANTalon(RobotMap.drivetrainRightMotorSlave);
 		
 		drivetrain = new HatterDrive(leftMaster, rightMaster, Constants.DRIVE_USE_SQUARED_INPUT);		// Initializes drivetrain class
 		
 		setupMasterSlave();								// Sets up master and slave
 		
 		accelerometer = new BuiltInAccelerometer();		// Initializes the accelerometer from the roboRIO
-		gyro = new Gyro(RobotMap.gyro);					// Initializes the gyro
+		gyro = new AnalogGyro(RobotMap.gyro);			// Initializes the gyro
 		gyro.reset();									// Resets the gyro so that it starts with a 0.0 value
 		encoder = new Encoder(RobotMap.drivetrainEncoderA, RobotMap.drivetrainEncoderB, Constants.DRIVETRAIN_USE_LEFT_ENCODER);
 														// Initializes the encoder
@@ -84,7 +86,8 @@ public class Drivetrain extends PIDSubsystem {
     /**
      * Initializes the default command for this subsystem
      */
-    public void initDefaultCommand() {
+    @Override
+	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(new JoystickDrive());
     }
@@ -232,8 +235,8 @@ public class Drivetrain extends PIDSubsystem {
      * talon is doing
      */
     public void setupMasterSlave() {
-    	leftSlave.changeControlMode(CANTalon.ControlMode.Follower);
-		rightSlave.changeControlMode(CANTalon.ControlMode.Follower);
+    	leftSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
+		rightSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		
 		leftSlave.set(leftMaster.getDeviceID());
 		rightSlave.set(rightMaster.getDeviceID());
@@ -283,14 +286,16 @@ public class Drivetrain extends PIDSubsystem {
     /**
      * Returns a process variable to the PIDSubsystem for correction
      */
-    protected double returnPIDInput() {
+    @Override
+	protected double returnPIDInput() {
     	return gyro.getAngle();
     }
     
     /**
      * Performs actions using the robot to correct for any error using the outputed value
      */
-    protected void usePIDOutput(double output) {
+    @Override
+	protected void usePIDOutput(double output) {
         pidOutput = output;
         drivetrain.arcadeDrive(moveSpeed, -output);
     }

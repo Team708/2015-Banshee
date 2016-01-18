@@ -22,7 +22,7 @@ public class CanGrabMoveToNext extends CommandGroup {
         addSequential(new ActuateGucciGrabber(true));
         addSequential(new WaitCommand(0.1));
         
-        addSequential(new DriveStraightToEncoderDistance(AutoConstants.TO_CAN_DISTANCE, AutoConstants.ENCODER_SPEED));
+        addSequential(new DriveStraightToEncoderDistance(AutoConstants.TO_CAN_DISTANCE, AutoConstants.CAN_GRAB_FORWARD_SPEED));
         addSequential(new ActuateGucciGrabber(false));
         addSequential(new TurnToDegrees(AutoConstants.TURN_SPEED, AutoConstants.NINETY_DEGREE_TURN));
         addSequential(new DriveStraightToEncoderDistance(AutoConstants.TO_SECOND_CAN_DISTANCE, AutoConstants.ENCODER_SPEED));

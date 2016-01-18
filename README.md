@@ -20,7 +20,6 @@ Software for the 2015 FRC robot, written by the Team 708 software team in Java.
 ##2015 Software Team (Quick Reference)
 - @jpiergal (Mentor)
 - @omn0mn0m (Head)
-- @katzekitteh (Head)
 - @jlwang (Head)
 - @brotibi
 - @Ethreal

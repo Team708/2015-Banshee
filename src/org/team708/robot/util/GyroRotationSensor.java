@@ -5,7 +5,7 @@
 
 package org.team708.robot.util;
 
-import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 /**
  * Wrapper class for the gyro allowing interchanging of
